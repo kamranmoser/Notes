@@ -1,0 +1,145 @@
+1. Identify Scope for the Month
+	1.	Pick the reporting month (e.g., 2025-09).
+	2.	For each domain / ADS in scope (RMO, Change, Application):
+	•	Confirm which PARCM metrics apply:
+	•	DQ-001 – Data Received & Processed Completely, Correctly, On-time
+	•	DQ-002 – Data Provisioned Completely, Correctly, On-time
+	•	DQ-003 – Successful Data Quality Checks – Completeness Checks
+	•	DM-001 – Data Loss Prevention
+
+⸻
+
+2. Pull Control-Level Counts
+
+For each metric (DQ-001/2/3, DM-001):
+	1.	Run the standard queries against the metric / control tables (e.g., GVR snapshots, CALC_MTRC tables, SLA logs, recon tables).
+	2.	For every control in that metric (ex: INGESTION_SLA_LOG_CHECK, INGESTION_PAYLOAD_CHECK, PROVISIONING_SLA_LOG_CHECK, etc.), calculate for the month:
+	•	PASS_COUNT
+	•	TOTAL_COUNT
+	•	PCT_PASSED = PASS_COUNT / TOTAL_COUNT * 100
+	3.	Export results (usually to Excel) in a table like:
+	•	CONTROL_NUM | CONTROL_NAME | PASS_COUNT | TOTAL_COUNT | PCT_PASSED | STATUS
+
+⸻
+
+3. Roll Up to Metric-Level Results
+
+For each metric within the domain:
+	1.	Sum PASS_COUNT across its controls → Metric PASS Total.
+	2.	Sum TOTAL_COUNT across its controls → Metric TOTAL.
+	3.	Compute Metric %:
+	•	Metric_Pct = (Metric_PASS_Total / Metric_TOTAL) * 100
+	4.	Assign a status color using thresholds:
+	•	Green: ≥ 99%
+	•	Yellow: 95 – 98.99%
+	•	Red: < 95%
+
+These rollups become the values in the RMO/Change/App PARCM Metrics Summary slide.
+
+⸻
+
+4. Identify Breaches (Out-of-Tolerance Months)
+	1.	Any metric that is Yellow or Red is considered out of tolerance.
+	2.	For those metrics:
+	•	Note which days had failures (from SLA logs / recon logs).
+	•	Note which controls failed and how often.
+
+This list drives which issues need RCA + action plan.
+
+⸻
+
+5. Perform Root Cause Analysis
+
+For each distinct issue (sometimes multiple issues in one month):
+	1.	Review:
+	•	Dynamic failure emails (RIMS, Distribute, TechADS)
+	•	Nexus / work requests
+	•	Dev team explanations
+	•	Meeting notes from the Controls/Dev sync.
+	2.	Decide:
+	•	Is it upstream (RIMS / Distribute / publisher) or TechADS internal?
+	•	Is it schema change, duplicate trigger, config error, platform outage, connectivity, Autosys, etc.?
+	•	Is it one-time or recurring?
+	3.	Write a short, governance-friendly Root Cause (3–6 bullets).
+
+If there are clearly different problems (e.g., RIMS schema change vs duplicate publication), treat them as separate PARCM “instances” and give each its own slide.
+
+⸻
+
+6. Draft Breach Summary
+
+For each out-of-tolerance metric / incident:
+	1.	Describe:
+	•	What failed (job/DSI/publication + domain/metric).
+	•	When it failed (dates or date range in the month).
+	•	How often (number of occurrences).
+	•	Impact:
+	•	Late loads?
+	•	Missing / duplicate rows?
+	•	Only upstream TechADS? Downstream consumers also impacted?
+	2.	Clearly state if:
+	•	The issue is limited to specific dates, or
+	•	There’s an ongoing risk.
+
+This text goes into the Breach Summary column of the Action Plan slide.
+
+⸻
+
+7. Define the Action Plan
+
+For each issue:
+	1.	List remediation steps:
+	•	Fixes already done (with date, if known).
+	•	Upcoming fixes (code changes, config updates, schema updates, script replacements).
+	•	Any platform changes or ticket references.
+	2.	Add monitoring / validation steps:
+	•	Extra checks after fix (watch SLA logs for N days, validate row counts, etc.).
+	3.	Note ownership & target date:
+	•	Which team is responsible (RIMS, Distribute, TechADS Dev, Infra).
+	•	Target completion month (often “by next release” or a specific date).
+	4.	Call out if no further failures occurred after the fix date.
+
+This becomes the Action Plan text for the slide.
+
+⸻
+
+8. Build / Update the PARCM Deck
+	1.	Update Metric Summary slide:
+	•	For the domain: add DQ-001/2/3, DM-001 metric % and status.
+	2.	For each metric that is Yellow/Red:
+	•	Ensure there is a detail slide showing:
+	•	Control-level table (PASS/TOTAL/PCT/STATUS).
+	•	“PARCM Metric Explained” text block.
+	3.	For each distinct failure / incident:
+	•	Create or update a DQCE Action Plan slide (RMO / Change / Application) with:
+	•	Data Domain / ADS
+	•	Month(s) out of tolerance
+	•	Metric Instance Name & ID
+	•	Root Cause
+	•	Breach Summary
+	•	Action Plan
+	•	Point of Contact
+	•	Target Date
+
+⸻
+
+9. Review with Dev & Controls
+	1.	Walk through the draft RCAs and action plans in the weekly Controls/Dev sync.
+	2.	Update:
+	•	Any technical clarifications.
+	•	Confirm that all fixes and dates are correct.
+	3.	Lock the wording to be governance/audit ready.
+
+⸻
+
+10. Submit to Governance
+	1.	Finalize the PARCM deck (metrics + action plan slides).
+	2.	Email to the governance contacts (e.g., EDMG / Josh) including:
+	•	Deck attached or link to SharePoint.
+	•	Brief summary:
+	•	Which domain(s) were out of tolerance.
+	•	High-level cause(s).
+	•	Confirmation that action plans are in place with target dates.
+	3.	Save the final version:
+	•	In the standard PARCM repository / SharePoint folder for that month.
+	•	Ensure it’s clearly named (e.g., TechADS_PARCM_RMO_202509_Final.pptx).
