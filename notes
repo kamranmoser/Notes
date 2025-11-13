@@ -1,0 +1,102 @@
+Purpose of Meeting
+	•	Review the current DQ Streamlit app functionality and architecture
+	•	Discuss transition to an Angular + Spring Boot framework
+	•	Understand hosting options within TechADS
+	•	Identify technical requirements for deployment, CI/CD, and SSO/security
+
+⸻
+
+Key Discussion Points
+	•	Streamlit cannot be hosted in production environments
+	•	Angular migration is required for long-term hosting and support
+	•	Dev team is considering embedding the new Angular UI within the existing “Dashboard” app
+	•	Dev team needs a full demo of both Streamlit apps before confirming hosting
+	•	Controls team will need to provide functional details, architecture, and failure workflows
+
+⸻
+
+Current App Model (Streamlit)
+
+DDQ App (Daily Failures)
+	•	Reads failure logs from TechADS schema
+	•	Extracts failures, loads into UI, allows editing, exporting, and reviewing root cause comments
+	•	Local Task Scheduler sends automated emails when failure comments are missing
+	•	Limitations:
+	•	No persistence layer
+	•	Long load times
+	•	Local dependency (non-production)
+
+PARCM App (Monthly Analysis)
+	•	Users review all control failures for the month
+	•	Edit columns, add comments, and export reports
+	•	Generates automated PowerPoint reporting
+	•	Calculates OrcIT Key Measure metrics
+	•	Limitations:
+	•	Requires unified environment
+	•	Manual controls schema missing in TechADS today
+
+⸻
+
+Future Architecture Notes
+	•	AutoSys will replace the local Task Scheduler for job automation
+	•	Failures will be loaded into the new Controls schema
+	•	Unified Angular UI will support BOTH DDQ + PARCM functionality
+	•	Application will enable:
+	•	Viewing failures
+	•	Editing and updating RCA comments
+	•	Export to Excel
+	•	Automated PPT generation
+	•	OrcIT API metric submission
+
+⸻
+
+Dev Team Requests
+	•	Full demo of DDQ and PARCM Streamlit apps
+	•	Bitbucket repo containing all current Streamlit code
+	•	Functional requirements document / enhancement list
+	•	Architecture slides summarizing app flow and dependencies
+	•	Clarification on:
+	•	User roles
+	•	Expected features in Angular
+	•	UI workflow for DDQ + PARCM
+
+⸻
+
+Action Items — Controls Team
+	•	Send all slides to Dev team ✔️
+	•	Schedule Streamlit demo for Dev team
+	•	Share Bitbucket repo access
+	•	Prepare combined walkthrough of DDQ + PARCM features
+	•	Finalize Controls Schema tables (SLA_DQ, GVR_DQ, PARCM tables)
+	•	Prepare detail on user roles and access permissions
+
+⸻
+
+Action Items — TechADS Dev Team
+	•	Review slides and functional list
+	•	Confirm whether Angular UI will be hosted in Dashboard or as a standalone app
+	•	Provide Angular hosting requirements:
+	•	Repo creation
+	•	CI/CD pipeline
+	•	Lower lane environment setup
+	•	Build and deployment steps
+	•	Provide SSO + OAuth + security integration guidance
+	•	Review new schema structures after Controls team finalizes them
+
+⸻
+
+Next Steps
+	1.	Conduct live Streamlit demo with the Dev team
+	2.	Dev team provides hosting decision (Dashboard vs standalone)
+	3.	Dev provides Angular environment + repo setup instructions
+	4.	Controls team finalizes schema and starts prepping for Angular build
+	5.	Start drafting Angular UI screens and component design
+	6.	Begin CI/CD onboarding once Dev provides framework
+
+⸻
+
+Project Status Summary
+	•	Architecture is defined and documented
+	•	Streamlit cannot move to production → Angular is the confirmed long-term direction
+	•	Dev team is aligned but needs a demo to finalize hosting approach
+	•	Once hosting and CI/CD requirements are defined, Angular development can begin
