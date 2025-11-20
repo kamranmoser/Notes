@@ -1,11 +1,216 @@
-Levy Restaurants / Compass Group – Spectrum Center & Bank of America Stadium
-IT Support Specialist | Charlotte, NC
-2021 – Present (Event-Based / Part-Time)
-	•	Provide on-site technical support during major NBA, NFL, MLS, and event operations at Spectrum Center and Bank of America Stadium.
-	•	Troubleshoot, configure, and maintain 150+ POS terminals, kiosks, handheld devices, printers, and peripherals across multiple concession zones.
-	•	Perform real-time diagnostics of network connectivity issues (Ethernet, USB, routers, switches, cabling) to ensure uninterrupted transaction flow during high-volume events.
-	•	Monitor POS performance throughout events; proactively complete system checks, hard reboots, and workstation resets following open/close procedures.
-	•	Collaborate directly with Levy management, concession leads, and operations teams to resolve IT issues under urgent, time-sensitive conditions.
-	•	Assist with onboarding, setup, and technical orientation for new operators and vendors for concerts, sporting events, and special events.
-	•	Document recurring issues and escalate hardware, software, and infrastructure concerns to Compass Group IT leadership for long-term resolution.
-	•	Ensure compliance with Levy/Compass IT policies, security procedures, and operational standards.
+1. PROJECT OVERVIEW
+
+The Controls team (Kamran, Tashu, Atharva) has built two Streamlit-based tools used for daily and monthly TechADS data quality operations:
+
+Daily DQ App
+• Runs daily DQ checks (SLA, GVR, API, Nulls, Dupes, Deviation, Intraday)
+• Generates daily DQ Excel and email
+• Currently runs on local Streamlit with Windows Task Scheduler
+
+PARCM App
+• Runs monthly Key Measure Metrics for PARCM domains
+• Supports exclusions and RCA
+• Generates PARCM PPT and ORCIT upload file
+• Future state: submit metrics directly to ORCIT via API
+
+Long-term goal:
+Convert both into a unified Angular + Spring Boot + Autosys production application hosted in TechADS Dashboard.
+
+⸻
+
+2. NEW INFORMATION FROM LATEST CALLS (NOV 18 & 19)
+
+2.1 Hosting Model Clarified (Major Development)
+
+The TechADS Dev team provided clear direction:
+	•	A new standalone app/server cannot be created for Controls.
+	•	Hosting must occur inside the existing TechADS Dashboard.
+	•	Controls will create a module inside dashboard code (Angular).
+	•	Dashboard will handle:
+• Page creation
+• Routing
+• Role-based access
+• Java API layer (dashboard service)
+	•	Controls’ backend logic (Python) can remain in your Bitbucket repo and be executed via API triggers.
+
+(From Nov 19 call)  ￼
+
+This is the final direction: Angular inside Dashboards only — no new service, no new UI host, no new server.
+
+2.2 Angular Folder Structure Guidance
+
+Per Dev team:
+	•	Angular code for Controls must be placed under the modules folder in Dashboard app.
+	•	A new module called “controls” can be created.
+	•	PARCM and Daily DQ can each be submodules inside that Controls module.
+	•	Controls team will need Angular access (UI code) in the Dashboard repo.
+
+(From Nov 19 call)  ￼
+
+2.3 Backend Logic Handling
+	•	Python logic (data extraction, evidence building, PPT creation, ORCIT logic) can stay in Python.
+	•	Java/Spring services from Dashboard will call Python where needed.
+	•	Dashboard Java layer handles database reads/writes and API endpoints.
+
+(From Nov 19 call)  ￼
+
+2.4 CI/CD Clarification
+	•	Controls cannot maintain its own independent CI/CD pipeline.
+	•	Angular code must follow TechADS Dashboard CI/CD cycle.
+	•	Releases are grouped with Dashboard releases.
+
+(From Nov 19 call)  ￼
+
+2.5 Regarding Stories and Code Check-ins
+	•	Controls team cannot push Angular code using your current board.
+	•	Dashboard Dev team must create:
+• Proper Jira stories in their board
+• Branching structure
+• Permissions for Controls team to check in code
+	•	Sylvia or Subashis will confirm structure and access.
+
+(From Nov 19 call)  ￼
+
+2.6 Confirmation Needed from Sylvia (Still Pending)
+	•	Sylvia needs to review the Streamlit demo materials.
+	•	She will confirm:
+• Where Controls module will live
+• How routing will work
+• How Python scripts will be wired
+• How “Control” pages will appear on dashboard
+
+(From Nov 19 call)  ￼
+
+2.7 EMP and EIQ Clarifications
+
+During the internal Nov 18 call, key clarifications were reached:
+	•	EMP stores domain metadata and schema definitions for all transport ADS tables.
+	•	EMP is used today for:
+• verifying schema mismatches
+• validating nullability
+• resolving EIQ control failures
+	•	The Controls app can leverage EMP DB to validate schema-based issues.
+	•	EIQ failures in the Daily DQ app should map 1:1 with EIQ dashboard results.
+
+(From Nov 18 internal call)  ￼
+
+2.8 EIQ Automation and Gaps
+	•	EIQ duplicate checks for RMO & Change can be automated once table structures are ready.
+	•	Some EIQ controls (custom validations) do not appear in EIQ backend tables; this must be investigated.
+	•	Controls team needs access to EMP/EIQ DB to automate evidence.
+
+(From Nov 18 internal call)  ￼
+
+2.9 Confluence Documentation Needs Improvement
+	•	Need to convert attached documents into actual Confluence pages (not downloads).
+	•	Controls team will restructure the DQ/PARCM documentation.
+	•	Dev team requested access-friendly format.
+
+(From Nov 18 internal call)  ￼
+
+2.10 Tomorrow’s Dev Call (Preparation)
+
+You and Tashu need to:
+	•	Prepare agenda for the next Dev call
+	•	Add questions for Angular hosting
+	•	Add SSO/CIQ concerns
+	•	Confirm what remaining decisions are needed
+	•	Identify what tables still need to be built
+	•	Bring app instructions and architecture documents
+
+(From Nov 18 internal call)  ￼
+
+⸻
+
+3. UPDATED CURRENT STATE (AFTER NEW CALLS)
+
+Functional (Streamlit MVP)
+
+Daily DQ and PARCM apps work end-to-end.
+
+Required for Production
+	•	Must migrate to Angular + Spring Boot inside Dashboard
+	•	Cannot create a new server or separate app
+	•	Must follow Dashboard CI/CD
+	•	Need Dev team to create the Controls module and routing
+
+Controls Schema
+	•	Some tables created (e.g., SLA_DQ).
+	•	Pending finalization of:
+• PARCM evidence tables
+• GVR_DQ tables
+• EIQ tables
+• ORCIT logging tables
+
+Autosys
+	•	Not yet started.
+	•	Must be aligned with dashboard service/APIs after Spring Boot layer is defined.
+
+Documentation
+	•	Process guides created (Daily DQ + PARCM user guide).
+	•	Need proper Confluence pages.
+
+SSO
+	•	UAT tokens working.
+	•	PROD CIQ still pending SSO team response.
+
+⸻
+
+4. UPDATED NEXT STEPS (AFTER NEW CALLS)
+
+Immediate (Next Few Days)
+	1.	Finalize agenda/questions for tomorrow’s Dev call.
+	2.	Convert all documentation into Confluence pages.
+	3.	Send updated user guides + architecture docs to Dev team.
+	4.	Gather additional questions for Sylvia:
+	•	Module creation timelines
+	•	Routing model
+	•	Python execution model
+	•	API requirements
+	5.	Confirm permissions required for Controls team to access and modify Angular code.
+
+Angular Migration Steps (Based on Dev Direction)
+	1.	Dev team creates the Controls module in Dashboard.
+	2.	Dev provides branching structure and repo access.
+	3.	Controls team begins building Angular UI inside Dashboard modules.
+	4.	Controls team defines exact pages/tabs needed:
+	•	Daily DQ UI
+	•	PARCM UI
+	•	Evidence pages
+	•	Email triggers
+	5.	Dev builds Java service layer endpoints.
+	6.	Controls defines Python execution model for PPT, ORCIT, etc.
+
+Autosys / DB Integration
+	1.	Finalize DDL for missing tables.
+	2.	Provide insert logic to Dev team.
+	3.	Dev builds Autosys job definitions once endpoints are defined.
+
+EIQ & EMP Integration
+	1.	Get full DB access to EMP and EIQ schemas.
+	2.	Validate coverage of EIQ controls (duplicates, nulls, etc.).
+	3.	Map missing EIQ logic into Controls schema tables.
+
+SSO & ORCIT
+	1.	Follow up with Vaibhav on CIQ details.
+	2.	Confirm PROD client ID process and timeline.
+	3.	Work with ORCIT team on API payloads and authentication.
+
+⸻
+
+5. OVERALL PROJECT STATUS (UPDATED)
+
+• Functional MVP in Streamlit is complete for both Daily DQ and PARCM.
+• Angular rewrite must happen inside TechADS Dashboard (confirmed).
+• Controls team will develop UI in Dashboard modules.
+• Python logic may remain external but must be invoked through APIs.
+• Database work is ongoing; tables not fully finalized.
+• Autosys jobs not yet started.
+• EIQ integration needs DB access and schema review.
+• SSO for PROD pending CIQ response.
+
+High-level projection:
+• Late Nov – Dec: Requirements, module creation, DB finalization.
+• Jan – Feb: Angular/Spring Boot development.
+• Mar – Apr: SIT/UAT.
+• May+: Production readiness.
