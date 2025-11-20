@@ -1,216 +1,181 @@
-1. PROJECT OVERVIEW
+Working Session – Nov 20, 2025
 
-The Controls team (Kamran, Tashu, Atharva) has built two Streamlit-based tools used for daily and monthly TechADS data quality operations:
+DQ/PARCM App – Discussion Summary (Copy & Paste Version)
 
-Daily DQ App
-• Runs daily DQ checks (SLA, GVR, API, Nulls, Dupes, Deviation, Intraday)
-• Generates daily DQ Excel and email
-• Currently runs on local Streamlit with Windows Task Scheduler
-
-PARCM App
-• Runs monthly Key Measure Metrics for PARCM domains
-• Supports exclusions and RCA
-• Generates PARCM PPT and ORCIT upload file
-• Future state: submit metrics directly to ORCIT via API
-
-Long-term goal:
-Convert both into a unified Angular + Spring Boot + Autosys production application hosted in TechADS Dashboard.
+Source:  ￼
 
 ⸻
 
-2. NEW INFORMATION FROM LATEST CALLS (NOV 18 & 19)
-
-2.1 Hosting Model Clarified (Major Development)
-
-The TechADS Dev team provided clear direction:
-	•	A new standalone app/server cannot be created for Controls.
-	•	Hosting must occur inside the existing TechADS Dashboard.
-	•	Controls will create a module inside dashboard code (Angular).
-	•	Dashboard will handle:
-• Page creation
-• Routing
-• Role-based access
-• Java API layer (dashboard service)
-	•	Controls’ backend logic (Python) can remain in your Bitbucket repo and be executed via API triggers.
-
-(From Nov 19 call)  ￼
-
-This is the final direction: Angular inside Dashboards only — no new service, no new UI host, no new server.
-
-2.2 Angular Folder Structure Guidance
-
-Per Dev team:
-	•	Angular code for Controls must be placed under the modules folder in Dashboard app.
-	•	A new module called “controls” can be created.
-	•	PARCM and Daily DQ can each be submodules inside that Controls module.
-	•	Controls team will need Angular access (UI code) in the Dashboard repo.
-
-(From Nov 19 call)  ￼
-
-2.3 Backend Logic Handling
-	•	Python logic (data extraction, evidence building, PPT creation, ORCIT logic) can stay in Python.
-	•	Java/Spring services from Dashboard will call Python where needed.
-	•	Dashboard Java layer handles database reads/writes and API endpoints.
-
-(From Nov 19 call)  ￼
-
-2.4 CI/CD Clarification
-	•	Controls cannot maintain its own independent CI/CD pipeline.
-	•	Angular code must follow TechADS Dashboard CI/CD cycle.
-	•	Releases are grouped with Dashboard releases.
-
-(From Nov 19 call)  ￼
-
-2.5 Regarding Stories and Code Check-ins
-	•	Controls team cannot push Angular code using your current board.
-	•	Dashboard Dev team must create:
-• Proper Jira stories in their board
-• Branching structure
-• Permissions for Controls team to check in code
-	•	Sylvia or Subashis will confirm structure and access.
-
-(From Nov 19 call)  ￼
-
-2.6 Confirmation Needed from Sylvia (Still Pending)
-	•	Sylvia needs to review the Streamlit demo materials.
-	•	She will confirm:
-• Where Controls module will live
-• How routing will work
-• How Python scripts will be wired
-• How “Control” pages will appear on dashboard
-
-(From Nov 19 call)  ￼
-
-2.7 EMP and EIQ Clarifications
-
-During the internal Nov 18 call, key clarifications were reached:
-	•	EMP stores domain metadata and schema definitions for all transport ADS tables.
-	•	EMP is used today for:
-• verifying schema mismatches
-• validating nullability
-• resolving EIQ control failures
-	•	The Controls app can leverage EMP DB to validate schema-based issues.
-	•	EIQ failures in the Daily DQ app should map 1:1 with EIQ dashboard results.
-
-(From Nov 18 internal call)  ￼
-
-2.8 EIQ Automation and Gaps
-	•	EIQ duplicate checks for RMO & Change can be automated once table structures are ready.
-	•	Some EIQ controls (custom validations) do not appear in EIQ backend tables; this must be investigated.
-	•	Controls team needs access to EMP/EIQ DB to automate evidence.
-
-(From Nov 18 internal call)  ￼
-
-2.9 Confluence Documentation Needs Improvement
-	•	Need to convert attached documents into actual Confluence pages (not downloads).
-	•	Controls team will restructure the DQ/PARCM documentation.
-	•	Dev team requested access-friendly format.
-
-(From Nov 18 internal call)  ￼
-
-2.10 Tomorrow’s Dev Call (Preparation)
-
-You and Tashu need to:
-	•	Prepare agenda for the next Dev call
-	•	Add questions for Angular hosting
-	•	Add SSO/CIQ concerns
-	•	Confirm what remaining decisions are needed
-	•	Identify what tables still need to be built
-	•	Bring app instructions and architecture documents
-
-(From Nov 18 internal call)  ￼
+1. Purpose of Today’s Session
+	•	Align internally on next steps after yesterday’s TechADS Dev call.
+	•	Discuss Confluence cleanup and documentation.
+	•	Finalize strategy for the Angular migration.
+	•	Clarify timeline concerns and TechADS dependencies.
+	•	Decide how to begin Angular UI development locally while waiting on Dev.
 
 ⸻
 
-3. UPDATED CURRENT STATE (AFTER NEW CALLS)
+2. Key Updates From Yesterday’s TechADS Dev Call (Reconfirmed Today)
 
-Functional (Streamlit MVP)
+A. Independent app is no longer possible
+	•	Dev confirmed that creating a new standalone app or new server would require 1 year of approvals and funding.
+	•	Therefore, the DQ/PARCM app must be hosted inside the existing TechADS Dashboard, not as an independent product.
+	•	This contradicts the earlier vision for a separate Controls app.
+(Confirmed by Tashu in transcript.)  ￼
 
-Daily DQ and PARCM apps work end-to-end.
+B. Angular module must live inside Dashboard UI
+	•	Sylvia’s team controls the Dashboard UI codebase.
+	•	Controls team needs a module created inside Dashboard (similar to “enablement” module).
+	•	All Controls Angular code must follow TechADS Dashboard’s folder structure.
+	•	Controls cannot create their own independent Angular repo.
 
-Required for Production
-	•	Must migrate to Angular + Spring Boot inside Dashboard
-	•	Cannot create a new server or separate app
-	•	Must follow Dashboard CI/CD
-	•	Need Dev team to create the Controls module and routing
+C. Controls cannot push code directly
+	•	Because your board is an analytics/Jira board, not a development board:
+	•	You cannot move stories through Dev → Testing → Ready for Prod.
+	•	The commit hooks will fail.
+	•	Dev must:
+	•	Create Jira stories for your work on their board
+	•	OR add the Controls team to the Dashboard Dev board.
 
-Controls Schema
-	•	Some tables created (e.g., SLA_DQ).
-	•	Pending finalization of:
-• PARCM evidence tables
-• GVR_DQ tables
-• EIQ tables
-• ORCIT logging tables
+D. You are locked into TechADS release cycles
+	•	Controls cannot deploy independently.
+	•	Every UI update depends on Dashboard’s release schedule.
+	•	This will slow down timelines significantly.
+(You voiced concern about being bound by their cycles.)  ￼
 
-Autosys
-	•	Not yet started.
-	•	Must be aligned with dashboard service/APIs after Spring Boot layer is defined.
+E. Python backend discussion
+	•	Sylvia originally said Python backend might not be allowed.
+	•	Namrata said Python backend can be supported.
+	•	After explanation, Namrata understood that TechADS already runs Python scripts behind Dashboard in other modules.
+	•	Dev will need to confirm the pattern for:
+	•	Where Python scripts live
+	•	How UI triggers them
+	•	How to wire them into Dashboard APIs
 
-Documentation
-	•	Process guides created (Daily DQ + PARCM user guide).
-	•	Need proper Confluence pages.
-
-SSO
-	•	UAT tokens working.
-	•	PROD CIQ still pending SSO team response.
+F. TechADS Dev still owes Controls:
+	1.	The module structure for Controls inside Dashboard
+	2.	Repo access
+	3.	Guidance on Python execution model
+	4.	Confirmation on Angular + backend approach
 
 ⸻
 
-4. UPDATED NEXT STEPS (AFTER NEW CALLS)
+3. Internal Strategy Alignment (Controls Team)
 
-Immediate (Next Few Days)
-	1.	Finalize agenda/questions for tomorrow’s Dev call.
-	2.	Convert all documentation into Confluence pages.
-	3.	Send updated user guides + architecture docs to Dev team.
-	4.	Gather additional questions for Sylvia:
-	•	Module creation timelines
-	•	Routing model
-	•	Python execution model
-	•	API requirements
-	5.	Confirm permissions required for Controls team to access and modify Angular code.
+A. Build Angular Locally FIRST (without waiting for Dev)
+	•	Because TechADS Dev moves slowly, Controls team decided:
+	•	Start building the entire UI in Angular locally
+	•	Follow the same structure as Dashboard’s Angular code
+	•	Build it in a “controls” module folder
+	•	Once Dev creates the official module, simply copy/paste the working Angular folder into Dashboard UI repo
 
-Angular Migration Steps (Based on Dev Direction)
-	1.	Dev team creates the Controls module in Dashboard.
-	2.	Dev provides branching structure and repo access.
-	3.	Controls team begins building Angular UI inside Dashboard modules.
-	4.	Controls team defines exact pages/tabs needed:
-	•	Daily DQ UI
-	•	PARCM UI
+This avoids sitting idle waiting for Dev’s module creation.
+
+B. Local Build Strategy
+	•	Follow the existing Dashboard repo structure:
+	•	Source
+	•	App
+	•	Modules
+	•	Enablement module (as reference)
+	•	Build your own “controls” module with:
+	•	DQ page
+	•	PARCM page
 	•	Evidence pages
-	•	Email triggers
-	5.	Dev builds Java service layer endpoints.
-	6.	Controls defines Python execution model for PPT, ORCIT, etc.
+	•	API placeholders
+	•	Then, later, merge with Dashboard.
 
-Autosys / DB Integration
-	1.	Finalize DDL for missing tables.
-	2.	Provide insert logic to Dev team.
-	3.	Dev builds Autosys job definitions once endpoints are defined.
+C. Kamran to be involved in Angular learning
+	•	You asked to be included in Angular development sessions.
+	•	You will attend sessions to understand UI structuring and participate in building Components/Pages.
 
-EIQ & EMP Integration
-	1.	Get full DB access to EMP and EIQ schemas.
-	2.	Validate coverage of EIQ controls (duplicates, nulls, etc.).
-	3.	Map missing EIQ logic into Controls schema tables.
-
-SSO & ORCIT
-	1.	Follow up with Vaibhav on CIQ details.
-	2.	Confirm PROD client ID process and timeline.
-	3.	Work with ORCIT team on API payloads and authentication.
+D. Confluence updates
+	•	You updated links, tracker, architecture diagrams, and enhancements list.
+	•	The goal is to have one place where the whole team is aligned.
 
 ⸻
 
-5. OVERALL PROJECT STATUS (UPDATED)
+4. Timeline Expectations
+	•	Real work won’t start until January due to:
+	•	December release freezes
+	•	Holidays
+	•	Dev team’s slow response rate
+	•	Angular development will take multiple months.
+	•	Controls agreed internally:
+	•	A realistic timeline for complete SIT + UAT + PROD readiness is May 2026 or later.
+(You stated you already pushed expectations to May.)
 
-• Functional MVP in Streamlit is complete for both Daily DQ and PARCM.
-• Angular rewrite must happen inside TechADS Dashboard (confirmed).
-• Controls team will develop UI in Dashboard modules.
-• Python logic may remain external but must be invoked through APIs.
-• Database work is ongoing; tables not fully finalized.
-• Autosys jobs not yet started.
-• EIQ integration needs DB access and schema review.
-• SSO for PROD pending CIQ response.
+⸻
 
-High-level projection:
-• Late Nov – Dec: Requirements, module creation, DB finalization.
-• Jan – Feb: Angular/Spring Boot development.
-• Mar – Apr: SIT/UAT.
-• May+: Production readiness.
+5. Governance & RMO Side Discussion (Not Project Work, but Relevant)
+	•	Kamran has been handling governance questions around RMO failures.
+	•	RCA and action plans require more clarity.
+	•	Plan to involve Sridhar (offshore) in DQ process training.
+(This is separate from PARCM app but increases workload.)
+
+⸻
+
+6. Action Items (Controls Team)
+
+For Controls Team
+	•	Continue enriching Confluence – make it the source of truth.
+	•	Begin local Angular build next week or when Kamran returns.
+	•	Follow TechADS Dashboard module structure.
+	•	Include Sridhar in future morning syncs for Angular development.
+	•	Prepare questions for Dev:
+	•	“Provide module structure and repo access”
+	•	“Confirm Python hosting pattern”
+	•	“Assign us to Dev Jira board”
+	•	Prepare a follow-up email to Sylvia + Namrata summarizing what Controls needs.
+
+Future Work
+	•	Build Angular UI locally:
+	•	Replicate Dashboard structure
+	•	Controls module
+	•	Pages and components
+	•	When Dev responds, merge local work inside Dashboard repo.
+
+⸻
+
+7. What Controls Needs from TechADS Dev (Still Outstanding)
+	1.	Module Creation
+The official “controls” module inside Dashboard.
+	2.	Repo Access
+Code permissions to the Angular UI repo.
+	3.	How Python Will Run
+Confirmation on:
+	•	pattern
+	•	folder
+	•	triggers
+	•	API integration
+	4.	JIRA Access
+Either:
+	•	Create Dev stories for Controls
+	•	OR allow Controls to use Dev board statuses for commit hooks.
+	5.	Timeline for Their Deliverables
+They asked “When do you need it?”
+Controls clarified you need module structure immediately to start.
+
+⸻
+
+8. Updated Overall Status (After Nov 20 Session)
+
+Current Status
+	•	Streamlit MVP works for Daily DQ + PARCM.
+	•	Controls schema partially done.
+	•	Autosys not started.
+	•	ORCIT work pending SSO CIQ.
+	•	Angular migration blocked by TechADS Dev, but Controls will begin Angular locally.
+
+Major Dependencies
+	•	Dashboard module creation
+	•	Repo access
+	•	Dev confirmation on Python backend
+	•	API structure
+	•	CI/CD details
+
+Key Risks
+	•	Being forced to follow Dashboard release cycle
+	•	Dev team slow responsiveness
+	•	Lack of upfront technical clarity
+	•	Two-step integration:
+(1) build locally → (2) merge into Dashboard
