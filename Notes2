@@ -1,31 +1,19 @@
-Hope you’re doing well. I’m reaching out regarding our PARCM automation work and the upcoming integration with the ORCIT API. Our team is preparing to begin testing API submissions in the lower lanes, and we want to ensure we have all required information and validation steps from the ORCIT side.
+I wanted to share a quick update on the database work for the DQ/PARCM app. I’ve created the EIQ DQ tables in the Dev environment, so we now have the basic structures in place for the EIQ Null and EIQ Duplicate failure loads.
 
-To move forward, we are requesting your guidance on the following items:
+Before we finalize anything, we still need to confirm the exact table structure, specifically around how we plan to store the additional, non-source columns such as:
+	•	Analyst comments
+	•	Jira/story information
+	•	RCA inputs
+	•	Other user-entered metadata
 
-1. Lower-Lane API Testing Setup
-	•	Can you confirm the correct ORCIT Dev/UAT endpoints we should use for testing?
-	•	Are there any restrictions around sending test payloads (e.g., dummy data, duplicate submissions, sample metrics)?
-	•	Do we need to notify the ORCIT team before running test submissions?
+As discussed, these fields should not live in the main failure tables, and we will need a separate comments/additional metadata table that links back to each failure. We still need alignment on:
+	1.	What columns the metadata table should contain
+	2.	How the primary key relationship should work between:
+	•	Base failure tables
+	•	Comments/metadata table
+	3.	How Autosys will populate the base tables vs. how the Angular UI will populate the metadata table
+	4.	How we will handle updates, auditing, and historical records
 
-2. API Payload Specifications
-	•	Can you provide the expected JSON/XML structure for PARCM Key Measure Metric submissions?
-	•	Are there specific required fields, codes, or domain identifiers that must be included?
-	•	Any sample payloads or API documentation would be very helpful.
+Once we finalize the design, I can update the table structures accordingly and begin preparing the insert scripts for Autosys.
 
-3. API Error Handling and Response Types
-	•	What response formats should we expect for successful vs. failed submissions?
-	•	Are there standard error codes or retry conditions we should account for in the integration?
-
-4. Authentication Details
-	•	We have successfully generated tokens using the SSO configuration.
-	•	For PROD, we are working on the CIQ request—are there any ORCIT-specific fields we should be aware of for that setup?
-
-5. Validation Requirements for Automation Approval
-	•	Once we perform lower-lane test uploads, what evidence does ORCIT require to approve automation for Production?
-	•	Is there a checklist or criteria that must be met?
-
-Our goal is to fully automate PARCM metric submission from TechADS to ORCIT, and having your guidance on these points will help us design the API layer and begin end-to-end testing.
-
-Please let me know if you prefer a quick call to walk through this—happy to accommodate.
-
-Thanks in advance for your support,
+Let me know once we have clarity on the metadata approach so I can apply the final structure to Dev.
