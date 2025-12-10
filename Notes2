@@ -1,19 +1,39 @@
-I wanted to share a quick update on the database work for the DQ/PARCM app. I’ve created the EIQ DQ tables in the Dev environment, so we now have the basic structures in place for the EIQ Null and EIQ Duplicate failure loads.
+Following our recent discussions with the TechADS Dev team regarding the DQ/PARCM application migration to Angular + Spring Boot, we need your guidance on a few items so that our team can begin development in alignment with TechADS standards.
 
-Before we finalize anything, we still need to confirm the exact table structure, specifically around how we plan to store the additional, non-source columns such as:
-	•	Analyst comments
-	•	Jira/story information
-	•	RCA inputs
-	•	Other user-entered metadata
+Specifically, we need clarification on the following:
 
-As discussed, these fields should not live in the main failure tables, and we will need a separate comments/additional metadata table that links back to each failure. We still need alignment on:
-	1.	What columns the metadata table should contain
-	2.	How the primary key relationship should work between:
-	•	Base failure tables
-	•	Comments/metadata table
-	3.	How Autosys will populate the base tables vs. how the Angular UI will populate the metadata table
-	4.	How we will handle updates, auditing, and historical records
+⸻
 
-Once we finalize the design, I can update the table structures accordingly and begin preparing the insert scripts for Autosys.
+1. Repo Structure & Dashboard Alignment
 
-Let me know once we have clarity on the metadata approach so I can apply the final structure to Dev.
+Sylvia confirmed that the Controls team will need to place our Angular module inside the TechADS Dashboard repo under the modules directory.
+Before we can begin contributing code, we need confirmation on:
+	•	Whether the Controls team will be given contributor access to the Dashboard Angular repo.
+	•	Any required onboarding steps for repo access (e.g., permissions, access groups, etc.).
+
+⸻
+
+2. Jira Board & Commit Hook Requirements
+
+The Dashboard repo enforces strict commit hooks that require valid Jira stories from the TechADS change board.
+Since our Controls board does not currently enforce these hooks, we need to understand the expected workflow:
+	•	Should DQ/PARCM development stories be created under the TechADS board going forward?
+	•	Can commit hooks be enabled for the Controls board, or do we need to migrate work items into your board?
+	•	Any additional requirements for Controls team to be included under the TechADS change management process?
+
+This clarification will determine where we create our user stories and how code promotions will be handled.
+
+⸻
+
+3. CI/CD and Branching Expectations
+
+In order to structure our Angular module correctly, we need alignment on:
+	•	Branching strategy the Controls team should follow
+	•	Expected release cycles, build pipelines, or any Controls-specific requirements
+	•	Whether our code will follow the same CI/CD path as the Dashboard application
+
+⸻
+
+Once we have your guidance on the above items, our team (Tashu, Atharva, and myself) can begin building the Angular UI using the correct structure, commit process, and development workflow.
+
+Please let me know if you’d prefer a quick call to walk through this. We are ready to proceed as soon as we receive your direction.
