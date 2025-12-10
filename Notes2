@@ -1,39 +1,22 @@
-Following our recent discussions with the TechADS Dev team regarding the DQ/PARCM application migration to Angular + Spring Boot, we need your guidance on a few items so that our team can begin development in alignment with TechADS standards.
+Agenda: Weekly TechADS Dev Sync – DQ/PARCM App Migration
 
-Specifically, we need clarification on the following:
+1. Quick Status Update (Kamran / Controls Team)
+	•	Progress on UI requirements, table structures, and backend mapping
+	•	Updates from recent internal working sessions
 
-⸻
+2. Repo Structure & Dashboard Alignment
+	•	Confirm placement of the new Angular module within the Dashboard repo
+	•	Expected folder structure & naming conventions (Sylvia to advise)
 
-1. Repo Structure & Dashboard Alignment
+3. Jira & Commit Hook Requirements
+	•	Story placement across Controls vs Dashboard boards
+	•	Commit hook expectations for promotions
 
-Sylvia confirmed that the Controls team will need to place our Angular module inside the TechADS Dashboard repo under the modules directory.
-Before we can begin contributing code, we need confirmation on:
-	•	Whether the Controls team will be given contributor access to the Dashboard Angular repo.
-	•	Any required onboarding steps for repo access (e.g., permissions, access groups, etc.).
+4. CI/CD & Branching Strategy
+	•	Branching model we must follow for Angular + Java work
+	•	Code promotion workflow and build pipeline dependencies
 
-⸻
-
-2. Jira Board & Commit Hook Requirements
-
-The Dashboard repo enforces strict commit hooks that require valid Jira stories from the TechADS change board.
-Since our Controls board does not currently enforce these hooks, we need to understand the expected workflow:
-	•	Should DQ/PARCM development stories be created under the TechADS board going forward?
-	•	Can commit hooks be enabled for the Controls board, or do we need to migrate work items into your board?
-	•	Any additional requirements for Controls team to be included under the TechADS change management process?
-
-This clarification will determine where we create our user stories and how code promotions will be handled.
-
-⸻
-
-3. CI/CD and Branching Expectations
-
-In order to structure our Angular module correctly, we need alignment on:
-	•	Branching strategy the Controls team should follow
-	•	Expected release cycles, build pipelines, or any Controls-specific requirements
-	•	Whether our code will follow the same CI/CD path as the Dashboard application
-
-⸻
-
-Once we have your guidance on the above items, our team (Tashu, Atharva, and myself) can begin building the Angular UI using the correct structure, commit process, and development workflow.
-
-Please let me know if you’d prefer a quick call to walk through this. We are ready to proceed as soon as we receive your direction.
+5. Backend Service Layer Design
+	•	Clarify where Java service layer should be built
+	•	How Python processes will be triggered/wrapped
+	•	Examples or templates from existing Dashboard services
