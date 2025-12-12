@@ -1,9 +1,1 @@
-PPRT_MVIEWs within the Change Domain represent a consolidated aggregation layer that captures one-hop upstream source assets contributing to Change data processing. While PPRT is listed as a source AIT, multiple upstream systems (including UCRA, SDAR, PMMT, Agile View, Remedy, and CECE) do not independently publish control metrics. Instead, their data is ingested, consolidated, and evaluated through PPRT materialized view refresh processes.
-
-As a result, source pass/fail metrics for these upstream applications are intentionally accounted for under the PPRT source AIT for DQ-001 and DQ-002 metric calculations. This approach ensures accurate metric attribution while preventing double-counting of assets that feed a shared Change processing pipeline.
-
-This asset list is limited to one-hop upstream and one-hop downstream flows only, consistent with Metric QA scope. While additional two-hop dependencies may be registered in EMP, they are intentionally excluded from metric calculations and monthly evidence submissions.
-
-Exception: Alteryx (EDP Alteryx Platform) is not ingested via PPRT_MVIEW refresh processes and is therefore represented independently as a source asset in metric calculations.
-
-Refer to the Change Domain Design Diagram provided by data owners, which illustrates upstream application feeds converging into PPRT prior to downstream TechADS processing, as supporting evidence for this metric attribution approach.
+btConverge is currently under Data Governance review and is not being considered as an in-scope source or target asset for Application Inventory metric calculations at this time. While btConverge may be registered in EMP, it does not participate directly in the one-hop data flows used for APPHQ DQ-001 and DQ-002 metric evaluation. As a result, btConverge is intentionally excluded from current Application Inventory metric reporting and will be reassessed once Governance finalizes its domain classification.
