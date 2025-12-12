@@ -1,1 +1,8 @@
-btConverge is currently under Data Governance review and is not being considered as an in-scope source or target asset for Application Inventory metric calculations at this time. While btConverge may be registered in EMP, it does not participate directly in the one-hop data flows used for APPHQ DQ-001 and DQ-002 metric evaluation. As a result, btConverge is intentionally excluded from current Application Inventory metric reporting and will be reassessed once Governance finalizes its domain classification.
+Following up on our recent Metric QA discussions, we have updated the Control Metric documentation to address the gaps and clarifications identified during the review.
+
+Summary of updates included:
+	•	Updated source asset listings for the Change Domain to align with one-hop upstream scope.
+	•	Added a consolidated PPRT_MVIEW explanatory note clarifying how upstream Change sources are aggregated and represented in source metric calculations.
+	•	Explicitly documented exceptions (e.g., Alteryx) where applicable.
+	•	Added clarifying comments for Application Inventory (APPHQ) regarding btConverge, which remains under Governance review.
+	•	Incorporated supporting design diagrams from data owners to reinforce metric attribution and lineage.
