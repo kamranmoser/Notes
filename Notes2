@@ -1,30 +1,9 @@
-1. Led PARCM & DQC Metric Ownership End-to-End
-	•	Owned the end-to-end PARCM process, including monthly metric calculation, validation, breach analysis, and submission for TechADS.
-	•	Acted as the primary point of contact for PARCM-related questions, audits, and governance reviews.
-	•	Ensured accuracy and timely submission across multiple DQ metrics despite upstream and downstream control failures.
+PPRT_MVIEWs within the Change Domain represent a consolidated aggregation layer that captures one-hop upstream source assets contributing to Change data processing. While PPRT is listed as a source AIT, multiple upstream systems (including UCRA, SDAR, PMMT, Agile View, Remedy, and CECE) do not independently publish control metrics. Instead, their data is ingested, consolidated, and evaluated through PPRT materialized view refresh processes.
 
-👉 This is your strongest accomplishment — clear ownership + governance impact.
+As a result, source pass/fail metrics for these upstream applications are intentionally accounted for under the PPRT source AIT for DQ-001 and DQ-002 metric calculations. This approach ensures accurate metric attribution while preventing double-counting of assets that feed a shared Change processing pipeline.
 
-⸻
+This asset list is limited to one-hop upstream and one-hop downstream flows only, consistent with Metric QA scope. While additional two-hop dependencies may be registered in EMP, they are intentionally excluded from metric calculations and monthly evidence submissions.
 
-2. Drove Root Cause Analysis & Remediation for Repeated DQ / SLA Failures
-	•	Led investigation and RCA for recurring DQC, SLA, and GVR failures, including:
-	•	RIMS duplicate publication triggers
-	•	Autosys-related job delays
-	•	Schema changes causing truncation and ingestion failures
-	•	Partnered with RIMS, Distribute, Autosys, and Dev teams to identify root causes and implement fixes.
-	•	Provided structured RCA documentation used in governance reviews and control discussions.
+Exception: Alteryx (EDP Alteryx Platform) is not ingested via PPRT_MVIEW refresh processes and is therefore represented independently as a source asset in metric calculations.
 
-👉 Highlights leadership, cross-team coordination, and problem-solving.
-
-⸻
-
-3. Key Contributor to DQC & PARCM Automation Efforts
-	•	Partnered closely with the Dev team to translate manual PARCM and DQC processes into automation logic.
-	•	Provided detailed:
-	•	Query logic
-	•	Metric calculation rules
-	•	Edge cases and failure scenarios
-	•	Helped shape the automation design to reduce manual effort, improve accuracy, and strengthen control reliability.
-
-👉 This shows future-facing impact and scalability.
+Refer to the Change Domain Design Diagram provided by data owners, which illustrates upstream application feeds converging into PPRT prior to downstream TechADS processing, as supporting evidence for this metric attribution approach.
