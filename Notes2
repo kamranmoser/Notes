@@ -1,7 +1,38 @@
-Quick question as we’re finalizing SQL and load logic for the DQ/PARCM app. We’re trying to confirm the expected approach for handling EIQ failure data.
+Meeting Minutes – Change Domain Source Asset Gap Review
 
-Do you know whether EIQ failures (nulls, dupes, recon, etc.) are expected to be:
-	•	Loaded into TechADS/Controls schemas by a Change-owned process, or
-	•	Pulled/ingested directly by the Controls team (via Autosys or app logic)?
+Date: December 15, 2025
+Meeting Type: Change Domain Metric QA – Source Asset Review
+Attendees: TechADS Controls, Governance, Change Domain representatives
 
-TechADS Dev mentioned this decision likely sits with the Change team, so we wanted to confirm before locking down our design.
+⸻
+
+Purpose
+
+Review and resolve source asset gaps identified during Metric QA for the Change Domain, specifically for DQ-001 and DQ-002 metric calculations.
+
+⸻
+
+Discussion Summary
+	•	Governance clarified that Metric QA validation is limited to assets directly used in metric calculations, not all assets registered in EMP.
+	•	PPRT_MVIEWs were confirmed as the aggregation layer used by TechADS for Change Domain source metrics.
+	•	Multiple upstream systems (e.g., UCRA, SDAR, PMMT, Agile View, Remedy, CECE) feed into PPRT, but do not directly feed TechADS.
+	•	As a result, these upstream systems are implicitly represented via PPRT_MVIEW refreshes and should not be listed individually as source assets.
+	•	Alteryx was confirmed as an exception, as it does not feed through PPRT and must remain explicitly listed.
+	•	Governance reaffirmed that Metric QA scope is one-hop upstream only; two-hop dependencies registered in EMP are out of scope.
+	•	ChangeScape status was discussed; believed to be migrated into PPRT. Validation will be performed to confirm whether it remains active.
+	•	TPAS was confirmed as informational only and not directly contributing to DQ-001/DQ-002 source metrics.
+
+⸻
+
+Decisions
+	•	The Change Domain source asset list will include only assets that directly contribute to metric calculations.
+	•	PPRT will be treated as the primary source asset for Change Domain metrics.
+	•	Upstream systems feeding into PPRT will not be individually listed.
+	•	A consolidated PPRT_MVIEW explanatory note will be added to the Control Metric Document.
+	•	Alteryx will remain explicitly documented as a standalone source asset.
+
+Key Takeaways
+	•	The identified gaps were due to documentation scope, not missing data.
+	•	PPRT is the correct aggregation point for Change Domain source metrics.
+	•	Clear documentation of aggregation logic resolves QA discrepancies.
+	•	This approach aligns Change Domain with existing ADS domain QA standards.
