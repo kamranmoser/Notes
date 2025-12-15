@@ -1,7 +1,7 @@
-Key Takeaways
-	•	FAILURE_ID generation can remain in the SQL layer if current approach works.
-	•	EIQ ingestion decision is outside Dev scope and must be addressed with the Change team.
-	•	SQL work is nearly complete and will be circulated shortly.
-	•	Two follow-up emails are required:
-	1.	Scripts to Seeresha
-	2.	EIQ ingestion question to Change team
+Quick question as we’re finalizing SQL and load logic for the DQ/PARCM app. We’re trying to confirm the expected approach for handling EIQ failure data.
+
+Do you know whether EIQ failures (nulls, dupes, recon, etc.) are expected to be:
+	•	Loaded into TechADS/Controls schemas by a Change-owned process, or
+	•	Pulled/ingested directly by the Controls team (via Autosys or app logic)?
+
+TechADS Dev mentioned this decision likely sits with the Change team, so we wanted to confirm before locking down our design.
