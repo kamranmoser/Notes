@@ -1,8 +1,56 @@
-Following up on our recent Metric QA discussions, we have updated the Control Metric documentation to address the gaps and clarifications identified during the review.
+Meeting Summary
 
-Summary of updates included:
-	•	Updated source asset listings for the Change Domain to align with one-hop upstream scope.
-	•	Added a consolidated PPRT_MVIEW explanatory note clarifying how upstream Change sources are aggregated and represented in source metric calculations.
-	•	Explicitly documented exceptions (e.g., Alteryx) where applicable.
-	•	Added clarifying comments for Application Inventory (APPHQ) regarding btConverge, which remains under Governance review.
-	•	Incorporated supporting design diagrams from data owners to reinforce metric attribution and lineage.
+We reviewed the updated SQL DDL and INSERT scripts for the DQ / PARCM application and aligned on the final table structure, failure ID strategy, comments handling, and next steps for EIQ integration.
+
+⸻
+
+Key Decisions & Discussion Points
+
+1. Failure Table Restructuring
+	•	Agreed to remove additional metadata columns from the 10 DQ failure tables.
+	•	Failure tables will retain only core failure attributes.
+	•	Each failure table will include a generated FAILURE_PK.
+	•	FAILURE_PK will be created using a sequence and trigger and serve as the unique identifier for each failure record.
+
+2. FAILURE_COMMENTS Table
+	•	A new FAILURE_COMMENTS table will be created to store all comments and supplemental metadata.
+	•	Design decisions:
+	•	COMMENT_ID will be the primary key.
+	•	FAILURE_ID will be a foreign key referencing the failure table FAILURE_PK.
+	•	One failure can have multiple comments.
+	•	USER_NAME will be captured to track who made each update.
+	•	Comment timestamps will be stored as a DATE.
+
+3. INSERT Script Updates
+	•	INSERT scripts were updated to:
+	•	Populate only core failure columns and FAILURE_PK.
+	•	Remove embedded comment and metadata fields.
+	•	RUN_DATE remains parameterized and will be passed in by Autosys.
+	•	Jobs will continue to load prior-day (retro) data, consistent with current behavior.
+
+4. EIQ Failure Integration
+	•	EIQ failures originate from a separate database/service ID.
+	•	Direct DB link access is not a preferred or approved solution.
+	•	Likely path forward is for TechADS Dev to:
+	•	Load EIQ failures via Autosys or
+	•	Use a Python-based integration to write EIQ results into Controls schemas.
+	•	This approach will be confirmed with the Dev team.
+
+5. EIQ Failure Tables
+	•	New EIQ failure tables have been created (Duplicate, Null, Reconciliation).
+	•	These tables follow the same FAILURE_PK + sequence/trigger pattern.
+	•	EIQ tables were not part of earlier deliveries and are new additions.
+
+⸻
+
+Open Items / Questions
+	•	Confirm final approach for EIQ data ingestion with TechADS Dev.
+	•	Align on ownership for EIQ load logic (Autosys vs Python).
+	•	Confirm any Dev-side standards for ID prefixes or promotion workflows.
+
+⸻
+
+Next Steps
+	•	Finalize FAILURE_COMMENTS table DDL and foreign key constraints.
+	•	Share updated SQL scripts once EIQ ingestion approach is confirmed.
+	•	Schedule follow-up discussion with TechADS Dev to close EIQ integration items.
