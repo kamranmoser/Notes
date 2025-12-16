@@ -1,6 +1,24 @@
-Quick update — I discussed the SQL/table design with the team, and we’ve confirmed we won’t need the Master Failure table going forward.
+Key Takeaways
+	•	Master failure table is officially out of scope
+	•	PK generation will use sequence + trigger with prefixes
+	•	FAILURE_COMMENTS remains the only user-editable table
+	•	EIQ tables are defined but not yet integrated
+	•	Insert scripts must be aligned to UAT logic, not Dev
+	•	No urgency to rush — quality and alignment preferred over speed
 
-Since FAILURE_PK is globally unique, we’ll link everything directly by:
-	•	FAILURE_COMMENTS.FAILURE_PK → each DQ table’s FAILURE_PK
+⸻
 
-So the app/UI can pull failures from the target DQ table and join to FAILURE_COMMENTS to display the full comment history.
+Next Steps / Action Items
+
+Kamran
+	•	Update column name from FAILURE_PK → ID in all local DQ tables
+	•	Finalize trigger scripts for PK generation (one per table)
+	•	Validate COMMENT_ID generation for FAILURE_COMMENTS
+	•	Compare Dev vs UAT schemas to resolve insert issues
+	•	Align insert scripts with TechADS UAT object code logic
+	•	Send final script package in early January
+
+TechADS Dev
+	•	Share updated UAT insert logic/object codes
+	•	Create Jira stories once final scripts are received
+	•	Schedule work for Sprint 7/8 (Feb–Mar release)
