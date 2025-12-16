@@ -1,18 +1,6 @@
-Hi team,
+Quick update — I discussed the SQL/table design with the team, and we’ve confirmed we won’t need the Master Failure table going forward.
 
-Here’s a quick list of all the DQ/PARCM-related tables now created/updated in Dev, along with a brief description of each:
-	•	DEVIATION_DQ – Stores deviation-related DQ failures and attributes.
-	•	DUPLICATE_CHECK_DQ – Stores duplicate record DQ failures.
-	•	NULL_CHECK_DQ – Stores null check DQ failures.
-	•	INTRADAY_DQ – Stores intraday processing DQ failures.
-	•	REST_API_DQ – Stores REST/API-related DQ failures.
-	•	GVR_DQ – Stores GVR domain DQ failures.
-	•	SLA_DQ – Stores SLA-related DQ failures (e.g., SLA1, SLA2, SLA3).
-	•	EIQ_DUP_CHECK_DQ – EIQ duplicate check DQ table (DDL created).
-	•	EIQ_NULL_CHECK_DQ – EIQ null check DQ table (DDL created).
-	•	EIQ_RECON_CHECK_DQ – EIQ reconciliation DQ table (DDL created).
-	•	FAILURES (Master Failure Table) – Consolidated list of all failure IDs across DQ tables; used as the master reference.
-	•	FAILURE_COMMENTS – Stores all user-entered comments, exclusions, Jira info, and metadata; linked back via FAILURE_ID.
-	•	PARCM_METRICS – Stores calculated PARCM metrics derived from DQ failures.
+Since FAILURE_PK is globally unique, we’ll link everything directly by:
+	•	FAILURE_COMMENTS.FAILURE_PK → each DQ table’s FAILURE_PK
 
-Let me know if you want a walkthrough of how these tables link together or how the joins are handled for the app.
+So the app/UI can pull failures from the target DQ table and join to FAILURE_COMMENTS to display the full comment history.
