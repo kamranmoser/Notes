@@ -1,38 +1,35 @@
-Meeting Minutes – Change Domain Source Asset Gap Review
+I wanted to share a consolidated update on the SQL work I’ve completed for the DQ app and walk through what’s included in the scripts I’m sending over.
 
-Date: December 15, 2025
-Meeting Type: Change Domain Metric QA – Source Asset Review
-Attendees: TechADS Controls, Governance, Change Domain representatives
+1. Local DQ Table Updates (Non-EIQ)
+	•	I’ve updated the ALTER scripts for all local DQ tables to remove analyst/comment-related columns and keep only core failure attributes.
+	•	Updated INSERT scripts for all local DQ tables to align with the revised structure.
+	•	These updates apply only to the local DQ tables (SLA, GVR, REST API, NULL, DUP, INTRADAY, DEVIATION, etc.) — not the EIQ tables.
 
-⸻
+2. Master Failure Table
+	•	I created a master failure table that consolidates all failure records across the local DQ tables.
+	•	This table stores the FAILURE_ID (VARCHAR – e.g., SLA1, GVR3, API2), which is already globally unique across DQ types.
+	•	At the end of each run, we merge failures from all local DQ tables into the master table, giving us a single place to reference failures across the app.
 
-Purpose
+3. Failure Comments Table
+	•	I added a new FAILURE_COMMENTS table to store all analyst-entered fields (comments, exclusions, Jira info, etc.).
+	•	Users will only update this table from the app.
+	•	The table links back to failures using FAILURE_ID, which allows us to associate comments to any DQ failure without modifying the underlying DQ tables.
+	•	This keeps the DQ tables immutable and clean while supporting ongoing analysis and updates.
 
-Review and resolve source asset gaps identified during Metric QA for the Change Domain, specifically for DQ-001 and DQ-002 metric calculations.
+4. EIQ DQ Tables (DDL Only)
+	•	I’ve included new DDL scripts for the EIQ DQ tables (Null, Duplicate, Reconciliation).
+	•	These follow the same failure structure pattern as the local DQ tables.
+	•	At this point, these are table definitions only — load logic is still being finalized.
 
-⸻
+5. EIQ Load Strategy (In Progress)
+	•	We are currently working with EIQ and TechADS Change/Dev to determine the best approach for loading EIQ failures into TechADS-managed schemas.
+	•	The goal is to have both local DQ and EIQ failures co-located within TechADS, so the DQ app can treat them consistently.
+	•	Once the ingestion approach is confirmed (Autosys vs upstream Change-owned load), we’ll align the insert logic accordingly.
 
-Discussion Summary
-	•	Governance clarified that Metric QA validation is limited to assets directly used in metric calculations, not all assets registered in EMP.
-	•	PPRT_MVIEWs were confirmed as the aggregation layer used by TechADS for Change Domain source metrics.
-	•	Multiple upstream systems (e.g., UCRA, SDAR, PMMT, Agile View, Remedy, CECE) feed into PPRT, but do not directly feed TechADS.
-	•	As a result, these upstream systems are implicitly represented via PPRT_MVIEW refreshes and should not be listed individually as source assets.
-	•	Alteryx was confirmed as an exception, as it does not feed through PPRT and must remain explicitly listed.
-	•	Governance reaffirmed that Metric QA scope is one-hop upstream only; two-hop dependencies registered in EMP are out of scope.
-	•	ChangeScape status was discussed; believed to be migrated into PPRT. Validation will be performed to confirm whether it remains active.
-	•	TPAS was confirmed as informational only and not directly contributing to DQ-001/DQ-002 source metrics.
+6. DQ + Comments Join Queries
+	•	I’ve also included SQL query scripts for each local DQ table that demonstrate how to:
+	•	Pull failure records from the DQ tables, and
+	•	Join them to the FAILURE_COMMENTS table using FAILURE_ID
+	•	These queries are what the app will use to display failures alongside analyst comments.
 
-⸻
-
-Decisions
-	•	The Change Domain source asset list will include only assets that directly contribute to metric calculations.
-	•	PPRT will be treated as the primary source asset for Change Domain metrics.
-	•	Upstream systems feeding into PPRT will not be individually listed.
-	•	A consolidated PPRT_MVIEW explanatory note will be added to the Control Metric Document.
-	•	Alteryx will remain explicitly documented as a standalone source asset.
-
-Key Takeaways
-	•	The identified gaps were due to documentation scope, not missing data.
-	•	PPRT is the correct aggregation point for Change Domain source metrics.
-	•	Clear documentation of aggregation logic resolves QA discrepancies.
-	•	This approach aligns Change Domain with existing ADS domain QA standards.
+Please let me know if you’d like to walk through any of the scripts live, or if you have feedback on the master failure table or comments approach before we proceed further.
