@@ -1,24 +1,9 @@
-Key Takeaways
-	•	Master failure table is officially out of scope
-	•	PK generation will use sequence + trigger with prefixes
-	•	FAILURE_COMMENTS remains the only user-editable table
-	•	EIQ tables are defined but not yet integrated
-	•	Insert scripts must be aligned to UAT logic, not Dev
-	•	No urgency to rush — quality and alignment preferred over speed
+Throughout 2025, I consistently delivered strong results aligned to our company goals of Drive Growth, Drive Operational Excellence, Manage Risk, and Great Place to Work. I took ownership of critical Data Quality Controls (DQC) and PARCM processes, ensuring accurate, timely reporting while supporting audit readiness and governance expectations across TechADS.
 
-⸻
+I led and supported the development, execution, and ongoing enhancement of PARCM metrics and DQ controls, partnering closely with stakeholders across TechADS, EIQ, ORCIT, EMP, and Governance to resolve data issues, clarify requirements, and improve transparency. This included identifying process gaps, driving remediation efforts, and implementing improvements that reduced manual effort and improved consistency in reporting and escalation.
 
-Next Steps / Action Items
+From an operational excellence standpoint, I focused on standardizing processes, improving documentation, and enabling more data-driven decision-making. I proactively identified opportunities to streamline workflows, enhance control visibility, and support platform maturity, while balancing delivery timelines with risk management expectations.
 
-Kamran
-	•	Update column name from FAILURE_PK → ID in all local DQ tables
-	•	Finalize trigger scripts for PK generation (one per table)
-	•	Validate COMMENT_ID generation for FAILURE_COMMENTS
-	•	Compare Dev vs UAT schemas to resolve insert issues
-	•	Align insert scripts with TechADS UAT object code logic
-	•	Send final script package in early January
+I also demonstrated a strong risk mindset by ensuring adherence to EDM T-100 standards, supporting control coverage and evidence needs, and maintaining clear documentation to support internal and external audit reviews. I consistently escalated issues appropriately and collaborated with partners to drive timely resolution.
 
-TechADS Dev
-	•	Share updated UAT insert logic/object codes
-	•	Create Jira stories once final scripts are received
-	•	Schedule work for Sprint 7/8 (Feb–Mar release)
+In addition, I contributed to a positive team culture by being a reliable partner, sharing knowledge, supporting teammates, and engaging constructively across teams. Overall, I believe my performance reflects strong execution of my core responsibilities, meaningful contributions beyond my role, and behaviors aligned with the firm’s values.
