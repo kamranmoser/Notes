@@ -1,16 +1,18 @@
-Hi Team,
+Hi JK and Sebastian,
 
-I wanted to reach out regarding the scheduling of our EIQ control runs.
+I’m currently compiling the December PARCM metrics and noticed that one of our Alteryx jobs is in an ON HOLD status and has been missing SLA beginning 12/8.
 
-We typically schedule our EIQ runs once a year to cover the full calendar year through December 31. However, it appears the runs were not scheduled out through December 31, 2026, and as a result, we currently do not have any EIQ controls running.
+From the SLA log and Autosys details, the job appears to be:
+ALTERYX_GCEAC_CHR_SUP_DTL_3004_3005_6021
 
-I’ve attached a spreadsheet with the full list of EIQ runs from the previous week, including the run IDs. Ideally, we would like to have those same run IDs scheduled through the remainder of the year using the same timing and frequency as before.
+I’ve attached the SLA log and Autosys screenshots showing the missing SLA and job status for reference. I wanted to check in to understand:
+- Why the job was placed on hold  
+- Whether there are any upstream or dependency issues contributing to this  
+- What the expected path/timing is to resume normal runs
 
-I wanted to check with your team first to see if this is something EIQ is able to assist with on your end. If so, please let me know the best way to proceed and whether there’s any additional information needed from me.
+This will help ensure we accurately document the issue and resolution for PARCM reporting.
 
-If the rescheduling needs to be handled on our side instead, could you please advise on the recommended process or steps to do this correctly? I want to ensure the runs are re-enabled properly and avoid any gaps going forward.
+Please let me know if there’s any additional information you need from my side.
 
-Thanks in advance for your help, and I appreciate your guidance on how best to proceed.
-
-Best regards,  
+Thanks,  
 Kamran
