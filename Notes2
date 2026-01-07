@@ -1,22 +1,20 @@
-Hi Vedad and Namrata,
+Hi Team,
 
-I’m in the process of finalizing the December PARCM metrics and wanted to align with you both on the GT Reporting controls results before submission.
+Thank you for the discussion and follow-ups on the TechADS EIQ scheduling gap.
 
-I’ve attached:
-1. December GT Reporting Controls summary report (showing total passed / failed by data source), and  
-2. Detailed failures spreadsheet with job-level information.
+Attached is the unique list of RUN IDs from our prior executions. For these runs, please note:
 
-Could you please help confirm the following:
+- Confirmed parameters: The only parameter that varies across executions is the run date. No additional parameters are required.
+- Scheduling intent: We are requesting that these RUN IDs be scheduled with the same timing and frequency as prior months for the remainder of the year.
 
-- Data Source ID validation:  
-  Please review the Data Source IDs included in the report and confirm that these are the correct and complete set for GT Reporting for December.
+In parallel, I want to share that Satya from the TechADS Controls team is currently scheduling a subset of high-priority recon runs that are required for critical reporting and near-term deliverables. This is to ensure coverage while the broader scheduling effort is addressed.
 
-- Failure review / exclusions:  
-  From the attached failures detail, please let me know if there are any failures that should be excluded (e.g., known issues, expected behavior, upstream dependencies, or non-reportable events).
+We can use tomorrow’s sync to:
+- Confirm what has already been scheduled
+- Identify any remaining RUN IDs that still need coverage
+- Align on next steps for completing the full scheduling window
 
-If possible, I’d appreciate your feedback by [insert desired date] so I can incorporate any updates before finalizing the PARCM submission.
+Please let me know if you need anything further from my side ahead of the meeting.
 
-Thanks in advance for your help, and please let me know if you’d like to walk through the report together.
-
-Best regards,  
+Thanks,  
 Kamran
