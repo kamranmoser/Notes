@@ -1,23 +1,41 @@
-Hi Jeff,
+Hi Aswathy,
 
-Thanks again for the discussion. I wanted to follow up with a high-level clarification on how we approach SLAs and downstream inventory across TechADS domains, based on the questions raised during Metric QA.
+I’m handing off the remaining updates needed for the TechADS control metric document so we can align with the recent governance (Metric QA) discussion and close out the open items.
 
-SLA Model Overview
-SLAs are applied only to scheduled, provisioned data feeds (e.g., TechADS to downstream platforms such as RDR, Distribute, or equivalent provisioning layers). These SLAs are measured at the TechADS-to-next-hop boundary, and a single SLA may cover multiple downstream consumers when data is delivered through a shared provisioning mechanism.
+Below is a summary of what needs to be updated and why.
 
-In contrast, REST APIs and other consumer-driven access patterns are pull-based and inherently variable. Consumers, volumes, and usage frequency can change month to month, and failures are typically driven by request parameters or usage behavior rather than data delivery issues. As a result, these access patterns are treated as observational and are not governed by delivery SLAs.
+⸻
 
-Downstream Inventory Approach
-Due to the dynamic nature of downstream consumption (e.g., onboarding/offboarding of API consumers), maintaining a static, permanent downstream asset list is not feasible or representative. Instead, downstream completeness is addressed through:
-	•	Monthly evidence snapshots reflecting actual consumers during the reporting period
-	•	Subscriber or provisioning extracts when required
-	•	Explicit governance statements documenting the dynamic nature of downstream usage
+What needs to be updated
 
-This approach ensures downstream inventory remains controlled, traceable, and defensible, while accurately reflecting real-world consumption.
+1. Target Asset Scope
+	•	Please ensure the control metric document includes only one-hop provisioning assets, specifically:
+	•	TechADS → RDR
+	•	TechADS → Distribute
+	•	Any assets downstream of Distribute should be removed, as they are out of scope for this control.
 
-We are aligning the Control Metric documentation to reflect this model so that it clearly matches what is measured for DQ-002, and we’ll have the updated materials ready ahead of the next governance checkpoint.
+2. API Assets
+	•	REST / API consumers should be listed in the control metric document.
+	•	The document should clearly note that API consumers are dynamic and may change month to month due to onboarding, offboarding, and subscriber activity.
+	•	The API consumer list should be treated as a point-in-time snapshot aligned to the reporting period and supporting evidence.
 
-Please let me know if you’d like to review the updates together or if any additional clarification would be helpful.
+3. Alignment with Governance Statement
+	•	The document should align with the agreed approach that:
+	•	Target assets are recalculated monthly
+	•	Evidence must align exactly with what is documented in the control metric
+	•	SLAs apply to provisioned feeds, not APIs
 
-Thanks,
-Kamran
+⸻
+
+Context / Why this matters
+
+Governance is aligned with TechADS having dynamic downstream consumers, but they want the control metric document to:
+	•	Clearly define what is in scope vs. out of scope
+	•	Ensure the evidence matches what’s documented in the control metric
+	•	Avoid ambiguity around APIs and downstream assets
+
+⸻
+
+Let me know if you want to review the changes together once you’ve made updates, or if anything above needs clarification before you start.
+
+Thanks for taking this on — appreciate it.
