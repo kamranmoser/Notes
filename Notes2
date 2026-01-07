@@ -1,20 +1,23 @@
-Hi Team,
+Hi Jeff,
 
-Thank you for the discussion and follow-ups on the TechADS EIQ scheduling gap.
+Thanks again for the discussion. I wanted to follow up with a high-level clarification on how we approach SLAs and downstream inventory across TechADS domains, based on the questions raised during Metric QA.
 
-Attached is the unique list of RUN IDs from our prior executions. For these runs, please note:
+SLA Model Overview
+SLAs are applied only to scheduled, provisioned data feeds (e.g., TechADS to downstream platforms such as RDR, Distribute, or equivalent provisioning layers). These SLAs are measured at the TechADS-to-next-hop boundary, and a single SLA may cover multiple downstream consumers when data is delivered through a shared provisioning mechanism.
 
-- Confirmed parameters: The only parameter that varies across executions is the run date. No additional parameters are required.
-- Scheduling intent: We are requesting that these RUN IDs be scheduled with the same timing and frequency as prior months for the remainder of the year.
+In contrast, REST APIs and other consumer-driven access patterns are pull-based and inherently variable. Consumers, volumes, and usage frequency can change month to month, and failures are typically driven by request parameters or usage behavior rather than data delivery issues. As a result, these access patterns are treated as observational and are not governed by delivery SLAs.
 
-In parallel, I want to share that Satya from the TechADS Controls team is currently scheduling a subset of high-priority recon runs that are required for critical reporting and near-term deliverables. This is to ensure coverage while the broader scheduling effort is addressed.
+Downstream Inventory Approach
+Due to the dynamic nature of downstream consumption (e.g., onboarding/offboarding of API consumers), maintaining a static, permanent downstream asset list is not feasible or representative. Instead, downstream completeness is addressed through:
+	•	Monthly evidence snapshots reflecting actual consumers during the reporting period
+	•	Subscriber or provisioning extracts when required
+	•	Explicit governance statements documenting the dynamic nature of downstream usage
 
-We can use tomorrow’s sync to:
-- Confirm what has already been scheduled
-- Identify any remaining RUN IDs that still need coverage
-- Align on next steps for completing the full scheduling window
+This approach ensures downstream inventory remains controlled, traceable, and defensible, while accurately reflecting real-world consumption.
 
-Please let me know if you need anything further from my side ahead of the meeting.
+We are aligning the Control Metric documentation to reflect this model so that it clearly matches what is measured for DQ-002, and we’ll have the updated materials ready ahead of the next governance checkpoint.
 
-Thanks,  
+Please let me know if you’d like to review the updates together or if any additional clarification would be helpful.
+
+Thanks,
 Kamran
