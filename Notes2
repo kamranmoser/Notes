@@ -1,39 +1,22 @@
-Hi Team,
+Hi Vedad and Namrata,
 
-Thank you for joining the sync tomorrow to discuss the TechADS EIQ run scheduling issue. Below is the proposed agenda to ensure we align on immediate remediation and long-term prevention.
+I’m in the process of finalizing the December PARCM metrics and wanted to align with you both on the GT Reporting controls results before submission.
 
----
+I’ve attached:
+1. December GT Reporting Controls summary report (showing total passed / failed by data source), and  
+2. Detailed failures spreadsheet with job-level information.
 
-### Agenda
+Could you please help confirm the following:
 
-1. Issue Overview
-   - Summary of what occurred (EIQ runs falling off schedule after 12/31)
-   - Impact to TechADS controls and PARCM reporting
+- Data Source ID validation:  
+  Please review the Data Source IDs included in the report and confirm that these are the correct and complete set for GT Reporting for December.
 
-2. Current State Assessment
-   - Confirmation of which TechADS EIQ runs are currently unscheduled
-   - Review of the run inventory (based on prior week’s run IDs, timing, and frequency)
+- Failure review / exclusions:  
+  From the attached failures detail, please let me know if there are any failures that should be excluded (e.g., known issues, expected behavior, upstream dependencies, or non-reportable events).
 
-3. Rescheduling Approach (Near-Term Fix)
-   - Options for bulk rescheduling existing run IDs through 12/31/2026
-   - Clarification on ownership:
-     - Can EIQ team reschedule on our behalf?
-     - If not, guidance on steps TechADS should follow to reschedule correctly
-   - Expected timeline to fully restore all runs
+If possible, I’d appreciate your feedback by [insert desired date] so I can incorporate any updates before finalizing the PARCM submission.
 
-4. Prevention & Control Enhancements (Future State)
-   - Ideas to prevent recurrence (e.g., scheduling checks, alerts, annual calendar validation)
-   - Potential ownership model for schedule maintenance going forward
-   - Opportunities for automation or governance checkpoints
+Thanks in advance for your help, and please let me know if you’d like to walk through the report together.
 
-5. Next Steps & Action Items
-   - Confirm owners and deadlines for rescheduling
-   - Agree on preventative actions and follow-ups
-   - Determine any documentation or validation needed post-reschedule
-
----
-
-Looking forward to aligning and getting this resolved quickly.
-
-Thanks,  
+Best regards,  
 Kamran
