@@ -1,36 +1,30 @@
-Hi [Teammate Name],  
+Hi Team,
 
-Thanks again for hopping on the call. As discussed, our TechADS EIQ runs fell off the schedule after 12/31, so we currently have no EIQ controls running.  
+Sharing a PARCM-focused agenda for today’s TechADS Controls / Dev Sync at 3:30 PM.
 
-Request: Please reschedule the runs through 12/31/2026, using the same Run IDs, execution times, and frequencies from the attached spreadsheet. Priority is Recon runs first, then the remaining runs.
+---
 
-### Step-by-step (EIQ)
-1. Log into EIQ  
-2. Navigate to: Data Quality → DQ Execution → Schedule Run Execution  
-3. Set filters:
-   - Source System: TechADS  
-   - Group Name: TechADS  
-4. Update the date range:
-   - Start Date: [use today or 01/08/2026]  
-   - End Date: 12/31/2026  
-5. For each run in the attached file:
-   - Select the Run ID
-   - Confirm the Execution Type matches what we used previously
-   - Set the same schedule time and frequency (daily/weekly/etc.)
-   - Save/submit the schedule
-6. Start with Recon runs first (these are most critical), then proceed with the rest.
-7. After saving, refresh and confirm each scheduled run shows:
-   - Next run date/time populated
-   - Correct recurrence pattern
-   - End date = 12/31/2026
+### Agenda
 
-### Confirmation needed
-Once you’ve scheduled the Recon runs, can you please reply back confirming:
-- Which Recon Run IDs were scheduled
-- The next run date/time is visible
-- End date shows 12/31/2026
+1. PARCM Metric Failures – Overview
+   - Summary of PARCM metrics currently out of tolerance
+   - Impacted domains and controls
 
-Attached: Spreadsheet with prior run list (Run IDs, time, frequency)
+2. Root Cause Review
+   - Walkthrough of known RCA for recent PARCM failures
+   - Validation from Dev on identified causes (expected vs unexpected)
+   - Clarification on any remaining unknowns
 
-Thank you!  
+3. December PARCM Reporting Items
+   - Items requiring documentation for December submission
+   - Confirmation of how specific failures should be reported to governance
+
+4. Remediation Status & Next Steps
+   - Fixes already implemented
+   - Open actions, owners, and target timelines
+   - Items to carry forward into next reporting cycle
+
+---
+
+Thanks,  
 Kamran
