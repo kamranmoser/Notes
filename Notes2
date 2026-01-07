@@ -1,30 +1,39 @@
 Hi Team,
 
-Sharing a PARCM-focused agenda for today’s TechADS Controls / Dev Sync at 3:30 PM.
+Thank you for joining the sync tomorrow to discuss the TechADS EIQ run scheduling issue. Below is the proposed agenda to ensure we align on immediate remediation and long-term prevention.
 
 ---
 
 ### Agenda
 
-1. PARCM Metric Failures – Overview
-   - Summary of PARCM metrics currently out of tolerance
-   - Impacted domains and controls
+1. Issue Overview
+   - Summary of what occurred (EIQ runs falling off schedule after 12/31)
+   - Impact to TechADS controls and PARCM reporting
 
-2. Root Cause Review
-   - Walkthrough of known RCA for recent PARCM failures
-   - Validation from Dev on identified causes (expected vs unexpected)
-   - Clarification on any remaining unknowns
+2. Current State Assessment
+   - Confirmation of which TechADS EIQ runs are currently unscheduled
+   - Review of the run inventory (based on prior week’s run IDs, timing, and frequency)
 
-3. December PARCM Reporting Items
-   - Items requiring documentation for December submission
-   - Confirmation of how specific failures should be reported to governance
+3. Rescheduling Approach (Near-Term Fix)
+   - Options for bulk rescheduling existing run IDs through 12/31/2026
+   - Clarification on ownership:
+     - Can EIQ team reschedule on our behalf?
+     - If not, guidance on steps TechADS should follow to reschedule correctly
+   - Expected timeline to fully restore all runs
 
-4. Remediation Status & Next Steps
-   - Fixes already implemented
-   - Open actions, owners, and target timelines
-   - Items to carry forward into next reporting cycle
+4. Prevention & Control Enhancements (Future State)
+   - Ideas to prevent recurrence (e.g., scheduling checks, alerts, annual calendar validation)
+   - Potential ownership model for schedule maintenance going forward
+   - Opportunities for automation or governance checkpoints
+
+5. Next Steps & Action Items
+   - Confirm owners and deadlines for rescheduling
+   - Agree on preventative actions and follow-ups
+   - Determine any documentation or validation needed post-reschedule
 
 ---
+
+Looking forward to aligning and getting this resolved quickly.
 
 Thanks,  
 Kamran
