@@ -1,18 +1,36 @@
-Hi JK and Sebastian,
+Hi [Teammate Name],  
 
-I’m currently compiling the December PARCM metrics and noticed that one of our Alteryx jobs is in an ON HOLD status and has been missing SLA beginning 12/8.
+Thanks again for hopping on the call. As discussed, our TechADS EIQ runs fell off the schedule after 12/31, so we currently have no EIQ controls running.  
 
-From the SLA log and Autosys details, the job appears to be:
-ALTERYX_GCEAC_CHR_SUP_DTL_3004_3005_6021
+Request: Please reschedule the runs through 12/31/2026, using the same Run IDs, execution times, and frequencies from the attached spreadsheet. Priority is Recon runs first, then the remaining runs.
 
-I’ve attached the SLA log and Autosys screenshots showing the missing SLA and job status for reference. I wanted to check in to understand:
-- Why the job was placed on hold  
-- Whether there are any upstream or dependency issues contributing to this  
-- What the expected path/timing is to resume normal runs
+### Step-by-step (EIQ)
+1. Log into EIQ  
+2. Navigate to: Data Quality → DQ Execution → Schedule Run Execution  
+3. Set filters:
+   - Source System: TechADS  
+   - Group Name: TechADS  
+4. Update the date range:
+   - Start Date: [use today or 01/08/2026]  
+   - End Date: 12/31/2026  
+5. For each run in the attached file:
+   - Select the Run ID
+   - Confirm the Execution Type matches what we used previously
+   - Set the same schedule time and frequency (daily/weekly/etc.)
+   - Save/submit the schedule
+6. Start with Recon runs first (these are most critical), then proceed with the rest.
+7. After saving, refresh and confirm each scheduled run shows:
+   - Next run date/time populated
+   - Correct recurrence pattern
+   - End date = 12/31/2026
 
-This will help ensure we accurately document the issue and resolution for PARCM reporting.
+### Confirmation needed
+Once you’ve scheduled the Recon runs, can you please reply back confirming:
+- Which Recon Run IDs were scheduled
+- The next run date/time is visible
+- End date shows 12/31/2026
 
-Please let me know if there’s any additional information you need from my side.
+Attached: Spreadsheet with prior run list (Run IDs, time, frequency)
 
-Thanks,  
+Thank you!  
 Kamran
