@@ -1,37 +1,38 @@
-Hi Amit,
+Hi Aswathy,
 
-Hope you’re doing well. I wanted to loop you in and get alignment with the EIQ and Change Dev teams on an approach we’re discussing for EIQ ingestion into TechADS.
+I wanted to follow up after the recent Metric QA discussions (including the review with Vidya/Joshua and the follow-up alignment call with Jeff, Tara, and Vedad) to make sure we’re fully aligned on the updates needed for the control metric document.
 
-Context
-- The Controls team is building out a DQ App that consolidates daily DQ results (SLA, GVR, Nulls, Dupes, Deviation, etc.) in TechADS.
-- For local TechADS DQ checks, we already have tables, inserts, and triggers in place.
-- We’d like to bring EIQ DQ results into TechADS as well so they can be viewed, analyzed, and commented on in the same app and reporting flow.
+At a high level, governance is aligned with the overall approach — the focus now is ensuring the documentation clearly reflects how the metric is actually calculated and evidenced, in a way that is consistent and defensible across all domains.
 
-What we’re trying to achieve
-- Pull EIQ run results (failures + metadata) into TechADS tables.
-- Keep EIQ as the source of truth, but land results in TechADS for:
-  - Unified DQ visibility
-  - RCA and analyst comments
-  - PARCM and downstream reporting
+Key items to confirm alignment on:
 
-Open questions we’d like to align on
-- Best ingestion approach:
-  - Autosys job pulling from EIQ?
-  - Change-owned ingestion / distribute feed?
-  - Lightweight module or job that extracts EIQ run results and lands them in Controls tables?
-- What result-level data is available/appropriate to ingest (failure IDs, check type, status, timestamps, etc.).
-- Ownership and sequencing (what belongs with EIQ vs. Change Dev vs. Controls).
+1. Target Asset Scope
+   - The control metric document should reflect one-hop provisioning targets only (i.e., direct TechADS → downstream provisioning).
+   - Multi-hop downstream chains should be excluded, as they are out of scope for this control.
 
-Subashis and the Controls team felt it would be best to sync with you directly before locking in an approach. Happy to walk through what we’ve built so far and talk through options.
+2. API / Dynamic Consumers
+   - REST/API consumers are inherently dynamic and can vary month-to-month.
+   - These should be treated as point-in-time snapshots aligned to the reporting period, not as a fixed/static inventory.
+   - SLAs apply to scheduled/provisioned feeds, not to ad-hoc API pulls.
 
-Would you be open to a short working session to align on this and decide next steps?
+3. Governance Statement / Documentation Clarity
+   - The document should explicitly state that:
+     - Target assets are recalculated monthly
+     - Evidence reflects actual activity for the reporting period
+     - API consumers are consumer-driven and not schedule-driven
+     - SLAs are measured at the provisioning boundary (table/view availability), not individual API calls
 
-Thanks,  
+4. Source Asset Clean-Up
+   - Any assets that do not flow into TechADS should be removed from scope to avoid confusion during QA review.
+
+The goal is for the control metric document, monthly evidence, and metric logic to all tell the same story, so governance can easily reconcile what’s being measured without needing additional context.
+
+For reference, the latest working documents are located here:
+👉 [INSERT SHARED DRIVE LINK HERE]
+
+Let me know if this aligns with your understanding or if you’d like to quickly walk through any of this together before finalizing. Happy to review once you’ve incorporated the updates.
+
+Thanks again for partnering on this.
+
+Best,  
 Kamran
-
----
-
-If you want, I can also:
-- Make this even shorter
-- Add a 1–2 line executive summary at the top
-- Draft a calendar invite agenda for the follow-up meeting
