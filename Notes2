@@ -1,26 +1,37 @@
-Hi Seeresha,
+Hi Amit,
 
-Following up on our recent discussions, I wanted to share the updated SQL scripts needed to support the TechADS DQ App and outline where things stand.
+Hope you’re doing well. I wanted to loop you in and get alignment with the EIQ and Change Dev teams on an approach we’re discussing for EIQ ingestion into TechADS.
 
-What’s included:
-- Updated DDL and INSERT scripts for the local DQ tables (SLA, GVR, Null, Duplicate, Recon, API, Deviation)
-  - Analyst/comment-related fields have been removed from the local DQ tables
-  - Each table now generates a globally unique FAILURE_ID via triggers
-- New FAILURE_COMMENTS table to centrally capture analyst comments, exclusions, Jira references, status, and audit fields
-  - This table links back to each DQ table via FAILURE_ID
-  - Local DQ tables remain immutable and source-driven
-- New DDL scripts for EIQ DQ tables (Null, Duplicate, Reconciliation)
-- Sample join queries showing how the DQ app will pull failures from each local DQ table and overlay comments from FAILURE_COMMENTS for the UI
+Context
+- The Controls team is building out a DQ App that consolidates daily DQ results (SLA, GVR, Nulls, Dupes, Deviation, etc.) in TechADS.
+- For local TechADS DQ checks, we already have tables, inserts, and triggers in place.
+- We’d like to bring EIQ DQ results into TechADS as well so they can be viewed, analyzed, and commented on in the same app and reporting flow.
 
-Design clarification:
-- After reviewing with the team, we confirmed that a separate “master failures” table is not needed.
-- The FAILURE_ID generated in each DQ table will be the common join key used by the app.
+What we’re trying to achieve
+- Pull EIQ run results (failures + metadata) into TechADS tables.
+- Keep EIQ as the source of truth, but land results in TechADS for:
+  - Unified DQ visibility
+  - RCA and analyst comments
+  - PARCM and downstream reporting
 
-Open item – EIQ ingestion:
-- We’re still aligning with the EIQ and Change Dev teams on the best approach to ingest EIQ DQ results into TechADS (e.g., autosys-driven vs. upstream-managed loads).
-- Once that’s finalized, we’ll align the insert/load logic so EIQ failures can be used in the DQ app the same way as local DQ results.
+Open questions we’d like to align on
+- Best ingestion approach:
+  - Autosys job pulling from EIQ?
+  - Change-owned ingestion / distribute feed?
+  - Lightweight module or job that extracts EIQ run results and lands them in Controls tables?
+- What result-level data is available/appropriate to ingest (failure IDs, check type, status, timestamps, etc.).
+- Ownership and sequencing (what belongs with EIQ vs. Change Dev vs. Controls).
 
-Let me know if you’d like to set up a quick review call to walk through the scripts or confirm scope before implementation. Happy to go through anything in more detail.
+Subashis and the Controls team felt it would be best to sync with you directly before locking in an approach. Happy to walk through what we’ve built so far and talk through options.
+
+Would you be open to a short working session to align on this and decide next steps?
 
 Thanks,  
 Kamran
+
+---
+
+If you want, I can also:
+- Make this even shorter
+- Add a 1–2 line executive summary at the top
+- Draft a calendar invite agenda for the follow-up meeting
