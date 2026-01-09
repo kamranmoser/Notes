@@ -1,19 +1,26 @@
-Hi Aswathy, Satya, and Lakshmi,
+Hi Seeresha,
 
-Hope you’re all doing well.
+Following up on our recent discussions, I wanted to share the updated SQL scripts needed to support the TechADS DQ App and outline where things stand.
 
-I’m reaching out to request your help with rescheduling a set of critical TechADS EIQ runs that we need in place to support the January PARCM reporting.
+What’s included:
+- Updated DDL and INSERT scripts for the local DQ tables (SLA, GVR, Null, Duplicate, Recon, API, Deviation)
+  - Analyst/comment-related fields have been removed from the local DQ tables
+  - Each table now generates a globally unique FAILURE_ID via triggers
+- New FAILURE_COMMENTS table to centrally capture analyst comments, exclusions, Jira references, status, and audit fields
+  - This table links back to each DQ table via FAILURE_ID
+  - Local DQ tables remain immutable and source-driven
+- New DDL scripts for EIQ DQ tables (Null, Duplicate, Reconciliation)
+- Sample join queries showing how the DQ app will pull failures from each local DQ table and overlay comments from FAILURE_COMMENTS for the UI
 
-I’ve attached a spreadsheet that contains the full list of RUN IDs and their current status. Please note the following to avoid any confusion or duplicate scheduling:
+Design clarification:
+- After reviewing with the team, we confirmed that a separate “master failures” table is not needed.
+- The FAILURE_ID generated in each DQ table will be the common join key used by the app.
 
-- The attachment includes all RUN IDs that need to be reviewed.
-- RUN IDs highlighted in green and marked as “Complete” in the Status column are already scheduled and do not require any action.
-- RUN IDs marked with the comment “Scheduled by Controls” are the ones that still need to be scheduled and should be your primary focus.
-- Before scheduling, please coordinate with each other to confirm which runs are already in place so we do not accidentally reschedule any jobs that are active. Duplicate scheduling could cause runs to execute multiple times per day, which we want to avoid.
+Open item – EIQ ingestion:
+- We’re still aligning with the EIQ and Change Dev teams on the best approach to ingest EIQ DQ results into TechADS (e.g., autosys-driven vs. upstream-managed loads).
+- Once that’s finalized, we’ll align the insert/load logic so EIQ failures can be used in the DQ app the same way as local DQ results.
 
-These runs are critical for ensuring we have complete and accurate data for the January PARCM report. Please let me know if there are any questions, conflicts, or dependencies we should be aware of as you work through the list.
+Let me know if you’d like to set up a quick review call to walk through the scripts or confirm scope before implementation. Happy to go through anything in more detail.
 
-Thank you all for the support here — I really appreciate it.
-
-Best regards,  
+Thanks,  
 Kamran
