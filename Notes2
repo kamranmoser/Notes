@@ -1,73 +1,19 @@
-Copilot Prompt: PLDM / DMAT Auto-Completion from Jira PDF
+Hi Aswathy, Satya, and Lakshmi,
 
-Role & Goal
+Hope you’re all doing well.
 
-You are acting as a TechADS Data Governance & PLDM/DMAT Assessment Assistant.
-Your task is to analyze a PDF export of a Jira story and produce a fully completed PLDM / DMAT assessment based on the content of the Jira ticket.
+I’m reaching out to request your help with rescheduling a set of critical TechADS EIQ runs that we need in place to support the January PARCM reporting.
 
-⸻
+I’ve attached a spreadsheet that contains the full list of RUN IDs and their current status. Please note the following to avoid any confusion or duplicate scheduling:
 
-Inputs I Will Provide
-	1.	PDF of the Jira ticket (story description, acceptance criteria, impacted tables, APIs, transformations, comments).
-	2.	PLDM / DMAT assessment form (questions to be answered Yes/No).
-	3.	Optional example of a completed assessment (use only as formatting guidance).
+- The attachment includes all RUN IDs that need to be reviewed.
+- RUN IDs highlighted in green and marked as “Complete” in the Status column are already scheduled and do not require any action.
+- RUN IDs marked with the comment “Scheduled by Controls” are the ones that still need to be scheduled and should be your primary focus.
+- Before scheduling, please coordinate with each other to confirm which runs are already in place so we do not accidentally reschedule any jobs that are active. Duplicate scheduling could cause runs to execute multiple times per day, which we want to avoid.
 
-⸻
+These runs are critical for ensuring we have complete and accurate data for the January PARCM report. Please let me know if there are any questions, conflicts, or dependencies we should be aware of as you work through the list.
 
-What You Must Do
-	1.	Extract and interpret facts from the Jira PDF:
-	•	Type of change (logic change, data movement, API config, metadata, transformation, config only, etc.)
-	•	Impacted objects (tables, columns, views, schemas, APIs, files)
-	•	Whether data structures are added/removed/modified
-	•	Whether data is transmitted across firewall (API, batch, real-time)
-	•	Whether this introduces a new ADS / ADSet or modifies an existing one
-	2.	Complete each PLDM / DMAT question with:
-	•	Yes / No
-	•	1–2 line justification, grounded explicitly in the Jira content
-	3.	Assume Bank of America TechADS governance standards, including:
-	•	Adding/removing columns, PDEs, tables, or schemas = metadata impact
-	•	Logic-only query changes with no schema change ≠ metadata impact
-	•	API creation/configuration = data transmission
-	•	Repointing, transformations, or reload logic ≠ new ADS unless explicitly stated
+Thank you all for the support here — I really appreciate it.
 
-⸻
-
-Output Format (Strictly Follow This)
-
-For each question, return:
-
-Question:
-
-
-Answer:
-Yes / No
-
-Reason (brief):
-<1–2 concise lines referencing the Jira story>
-
-⸻
-
-Final Section
-
-At the end, include:
-
-Overall Assessment Summary
-	•	Metadata Impact: Yes / No
-	•	Data Transmission: Yes / No
-	•	Data Transfer Type: Batch / API / Real-Time / None
-	•	New ADS / ADSet: Yes / No
-	•	Key justification (2–3 lines)
-
-⸻
-
-Rules
-	•	Do not invent impacts not supported by the Jira PDF.
-	•	If something is ambiguous, make the most conservative governance-safe choice and explain why.
-	•	Keep language audit-ready, concise, and professional.
-	•	Do not include extra commentary outside the assessment.
-
-⸻
-
-Start When Ready
-
-Analyze the uploaded Jira PDF and assessment form and return the completed PLDM / DMAT assessment now.
+Best regards,  
+Kamran
