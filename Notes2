@@ -1,38 +1,23 @@
-Hi Aswathy,
+Hi Team,
 
-I wanted to follow up after the recent Metric QA discussions (including the review with Vidya/Joshua and the follow-up alignment call with Jeff, Tara, and Vedad) to make sure we’re fully aligned on the updates needed for the control metric document.
+Following up on the GT Reporting SLA failures from December 8, 2025, I’ve updated the attached spreadsheet to make it easier to capture the details Governance is requesting.
 
-At a high level, governance is aligned with the overall approach — the focus now is ensuring the documentation clearly reflects how the metric is actually calculated and evidenced, in a way that is consistent and defensible across all domains.
+I’ve added the following columns at the end of each failed record:
+- Root Cause  
+- Source of the Issue (Upstream vs. TechADS)  
+- Short-Term Fix  
+- Long-Term / Prevention Plan  
+- Failure Status  
+- TechADS Jira Story (if applicable)
 
-Key items to confirm alignment on:
+Request:  
+Please review the rows relevant to your area and fill out the new columns directly in the spreadsheet, then send the updated file back to me.
 
-1. Target Asset Scope
-   - The control metric document should reflect one-hop provisioning targets only (i.e., direct TechADS → downstream provisioning).
-   - Multi-hop downstream chains should be excluded, as they are out of scope for this control.
+This information will be used to respond to Governance (Jeff) and to support leadership reporting, so concise but clear explanations are appreciated.
 
-2. API / Dynamic Consumers
-   - REST/API consumers are inherently dynamic and can vary month-to-month.
-   - These should be treated as point-in-time snapshots aligned to the reporting period, not as a fixed/static inventory.
-   - SLAs apply to scheduled/provisioned feeds, not to ad-hoc API pulls.
+If any item requires discussion or coordination across teams, feel free to note that in the comments or flag it to me separately.
 
-3. Governance Statement / Documentation Clarity
-   - The document should explicitly state that:
-     - Target assets are recalculated monthly
-     - Evidence reflects actual activity for the reporting period
-     - API consumers are consumer-driven and not schedule-driven
-     - SLAs are measured at the provisioning boundary (table/view availability), not individual API calls
-
-4. Source Asset Clean-Up
-   - Any assets that do not flow into TechADS should be removed from scope to avoid confusion during QA review.
-
-The goal is for the control metric document, monthly evidence, and metric logic to all tell the same story, so governance can easily reconcile what’s being measured without needing additional context.
-
-For reference, the latest working documents are located here:
-👉 [INSERT SHARED DRIVE LINK HERE]
-
-Let me know if this aligns with your understanding or if you’d like to quickly walk through any of this together before finalizing. Happy to review once you’ve incorporated the updates.
-
-Thanks again for partnering on this.
+Thanks for the quick turnaround on this.
 
 Best,  
 Kamran
