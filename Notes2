@@ -1,1 +1,29 @@
-Yes, you can add similar responsibilities for Sridarshan. He supports the daily DQ process from offshore by monitoring and analyzing data quality and job failures, and reporting and escalating issues to the respective development and support teams as needed.
+Root Cause
+
+What was the root cause of the metric breach? If an SLA was missed, for example, why was it missed?
+	•	Three SLA failures occurred on 12/08/2025
+	•	Two SLA failures were caused by password vaulting during a production CRQ, which delayed job execution timing
+	•	Password rotation timing is dependent on CRQ execution and is outside the direct control of the DQC Controls team
+	•	One SLA failure occurred due to a partition deletion logic issue
+	•	Job failed while attempting to delete older partitions in the stage table
+	•	No historical/older partitions were available to delete, resulting in job failure
+
+⸻
+
+Breach Summary
+
+What failed, when did the failure(s) occur, were there any downstream impacts?
+	•	The SLA failures occurred on 12/08/2025 during GT Reporting processing
+	•	All jobs ultimately completed successfully after remediation
+	•	There were no downstream impacts
+	•	No data consumers were impacted
+	•	No reporting inaccuracies were introduced
+
+⸻
+
+Action Plan
+
+What steps are being taken towards preventing this issue from occurring in the future?
+	•	Partition deletion logic fix has been developed and is scheduled for deployment in the 01/29/2026 release
+	•	SLA thresholds are being reassessed and updated to better account for CRQ-related password vaulting timing as part of the 01/29/2026 release
+	•	Password vaulting-related delays have been documented as non-preventable timing_toggle events, and no additional technical remediation is required
