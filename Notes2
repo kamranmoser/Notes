@@ -1,23 +1,25 @@
-Hi Team,
+🔹 10/10 Copilot Prompt — Email Summary, Actions & Takeaways
 
-Following up on the GT Reporting SLA failures from December 8, 2025, I’ve updated the attached spreadsheet to make it easier to capture the details Governance is requesting.
+Prompt to paste into Copilot:
 
-I’ve added the following columns at the end of each failed record:
-- Root Cause  
-- Source of the Issue (Upstream vs. TechADS)  
-- Short-Term Fix  
-- Long-Term / Prevention Plan  
-- Failure Status  
-- TechADS Jira Story (if applicable)
+“Review the entire email thread and summarize it clearly and concisely.
+Then do the following in this exact structure:
 
-Request:  
-Please review the rows relevant to your area and fill out the new columns directly in the spreadsheet, then send the updated file back to me.
+1. Executive Summary:
+	•	2–4 bullet points explaining what the email is about and why it matters.
 
-This information will be used to respond to Governance (Jeff) and to support leadership reporting, so concise but clear explanations are appreciated.
+2. Key Takeaways:
+	•	Important decisions, confirmations, risks, dependencies, or context I should be aware of.
 
-If any item requires discussion or coordination across teams, feel free to note that in the comments or flag it to me separately.
+3. Action Items (if any):
+	•	Clearly list any actions I need to take.
+	•	Include what needs to be done, by whom, and any deadlines if mentioned.
+	•	If there are no action items for me, explicitly say “No action required from me at this time.”
 
-Thanks for the quick turnaround on this.
+4. Questions or Follow-Ups to Consider:
+	•	Call out any open questions, unclear ownership, or areas that may require follow-up.
 
-Best,  
-Kamran
+5. Priority Level:
+	•	Indicate whether this email is High / Medium / Low priority and briefly explain why.
+
+Use concise language, avoid repeating the email verbatim, and focus on what I actually need to know or do.”
