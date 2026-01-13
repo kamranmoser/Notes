@@ -1,2 +1,45 @@
 Date	Time	Meeting Title / Topic	Attendees	Key Discussion Points	Decisions Made	Action Items	Follow-Up Needed	Next Meeting Date	Notes / Comments
-01/13/2026	2:00 PM – 2:30 PM	Sync on TechADS Dashboard Backend Setup for DQ Controls Module	Kamran Moser (Organizer); Jayaprakash Kesavan; Jayaprabakar Subbaiyan; Shitanshu Thakur	Purpose was to align on backend integration for the DQ Controls module; discussed API design patterns using Spring Boot; preference for generic parameter-driven APIs; Controls data resides in separate schema; environment discipline emphasized (Local/SIT only); challenges running backend locally via Tomcat	Backend will follow existing TechADS API patterns; no new libraries or dependencies to be introduced; all changes require TechADS review and approval; development limited to Local/SIT environments	Set up 1:1 backend walkthrough (Owner: Jayaprabakar Subbaiyan, Due: Not specified); Continue UI development while backend is enabled (Owner: Kamran Moser, Due: Ongoing)	Schedule backend walkthrough; confirm API reuse vs new endpoint strategy	Not specified	Controls module will be implemented as a sub-module within TechADS Dashboard; production rollout not time-critical; expected production timeframe March–April
+01/13/2026	2:00 PM – 2:30 PM	Sync on TechADS Dashboard Backend Setup for DQ Controls Module	Kamran Moser (Organizer)
+Jayaprakash Kesavan (JK)
+Jayaprabakar Subbaiyan (JS)
+Shitanshu Thakur	Purpose of the meeting was to align on the backend integration approach for a new DQ Controls module within the TechADS Dashboard.
+The DQ Controls team is building a new UI module to:
+Display high-level DQ status (pass / fail / pending)
+Show failure-level drilldowns
+Display PARCM (monthly reporting) metrics
+Frontend (Angular) setup is already in progress; backend connectivity is the current blocker.
+Backend design guidance provided:
+Use Spring Boot–based APIs consistent with existing TechADS architecture.
+Prefer generic, parameter-driven APIs rather than creating separate APIs per table.
+A single read endpoint can support multiple queries using parameters or object codes.
+Write operations should be handled via JSON-driven POST APIs, routed to the appropriate tables.
+DQ Controls data resides in a separate Controls schema, populated via automated jobs from the TechADS schema.
+Controls team initially assumed they would build Spring Boot services; clarified that:
+TechADS team will review and approve PRs
+Code must comply with existing KDS / TechADS standards
+Strong emphasis on environment discipline:
+Development and testing must remain in Local / SIT
+Avoid UAT and Production until explicitly approved
+Kamran flagged difficulty running the backend locally due to unfamiliarity with Tomcat setup.
+Agreement to conduct a 1:1 working session to walk through:
+Starting and stopping Tomcat
+Local backend execution
+Build and deployment flow	Backend integration will follow existing TechADS API design patterns (generic read/write endpoints).
+Controls team will not introduce new libraries or external dependencies in the UI.
+All backend changes must go through TechADS code review and approval before promotion.
+Initial development will remain in Local / SIT only.	Set up 1:1 working session to walk through local backend and Tomcat setup
+Owner: Jayaprabakar Subbaiyan
+Due Date: Not specified
+
+Provide examples of existing read/write API patterns used in TechADS
+Owner: Jayaprabakar Subbaiyan / TechADS team
+Due Date: Not specified
+
+Continue UI development while backend connectivity is being enabled
+Owner: Kamran Moser
+Due Date: Ongoing	Schedule and complete the backend walkthrough session.
+Confirm whether existing APIs can be reused or if a dedicated endpoint is required.
+Align on promotion strategy once development stabilizes (SIT → later environments).	Not specified (1:1 follow-up to be scheduled offline)	This effort will be implemented as a sub-module within the TechADS Dashboard.
+Strong emphasis placed on avoiding changes that could impact existing tightly coupled modules.
+Production rollout is not time-critical; Controls schema data expected to reach production in the March–April timeframe.
+Governance expectation: all code changes must be reviewed, approved, and environment-safe.
