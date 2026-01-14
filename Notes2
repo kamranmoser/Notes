@@ -1,2 +1,63 @@
-Date	Time	Meeting Title / Topic	Attendees	Key Discussion Points	Decisions Made	Action Items	Follow-Up Needed	Next Meeting Date	Notes / Comments
-01/13/2026	3:00 PM – 3:30 PM	DQ App Working Session — Controls Dashboard (Daily DQ & Backend Integration)	Kamran Moser (Organizer) • Houda Lahrouz • Shitanshu Thakur • Saurabh Ambardekar • Atharva Ranade	• Purpose of the session was to align on DQ App direction and backend integration approach • Tableau usage was discussed and clarified • → Tableau is suitable only for visualization / read-only use cases • → Tableau cannot write back to databases, call APIs, or support edit workflows • → Tableau is not suitable for Daily DQ or control editing • Decision to continue building a custom UI for DQ App • → View and Edit will use the same app; Edit is View without edit permissions • Backend and data strategy discussion • → Controls schema will be the primary working table • → Failure-level data will continue to be stored in Controls schema • → Additional editable columns will be added for failure comments • PARCM denominator logic discussion • → Total control count required • → Denominator may come from TechADS source tables • → EIQ may require full data pull • API strategy discussion • → Generic read/write APIs • UI progress update • → 14-column prototype • → Filters, pagination, edit, full-screen planned • Timeline updates • → Offsite impacts next two days • → Friday focus • Backend support updates • → JS to assist with local setup	• DQ App will remain custom-built • Tableau not used for Daily DQ • Controls schema stores failure data • Edit access restricted • Generic API pattern adopted • PARCM denominator not from Controls alone	• Continue UI enhancements → Owner: Houda Lahrouz → Due Date: Ongoing • Backend walkthrough → Owner: Jayaprabakar Subbaiyan → Due Date: Not specified • Confirm PARCM denominator source → Owner: Kamran Moser / Backend Team → Due Date: Not specified	• Backend walkthrough • PARCM denominator decision • Visual Reports approach	Not specified	• DQ App to be source of truth • Audit safety emphasized • Backend support available
+Hi Aswathy,  
+Hi Lakshmi,
+
+I wanted to follow up on the recent Metric QA discussions we had (including the Jan 6 review with Vidya Joshua and the follow-up confirmation with Jeff, Tara, and Vedad) to make sure we’re aligned on the control metric update approach as you continue working through the documents.
+
+Below is a consolidated summary of the agreed-upon direction and what needs to be reflected in the control metric documentation. This guidance is generalized and applies across all domains, not just Change.
+
+---
+
+### Key Takeaways from Metric QA Discussions
+
+1. Target Asset Scope (One-Hop Only)  
+- Control metrics should include only one-hop provisioning targets directly downstream of TechADS.  
+- Multi-hop paths (e.g., TechADS → intermediate → downstream consumer) are out of scope for the metric.  
+- The intent is for the control metric to align exactly with what is being measured and evidenced.
+
+2. REST / API Consumers  
+- API consumers are dynamic and consumer-driven, with onboarding/offboarding occurring regularly.  
+- APIs should not be treated as static target assets in the control metric document.  
+- Instead:
+  - Reference APIs via a governance statement
+  - Treat API consumer listings as point-in-time snapshots aligned to the reporting period evidence
+
+3. SLA Applicability  
+- SLAs apply to scheduled / provisioned feeds only.  
+- REST/API interactions are pull-based and ad-hoc and therefore do not have meaningful delivery SLAs.  
+- This distinction should be clearly documented to avoid inflating target counts or creating misalignment with evidence.
+
+4. Monthly Recalculation & Evidence Alignment  
+- Target asset counts are recalculated monthly based on actual provisioning activity.  
+- Evidence reflects the state of activity for the reporting period, not a fixed inventory.  
+- This dynamic approach was reviewed and accepted, as long as it is clearly documented.
+
+5. Source Asset Clean-Up  
+- Source assets that do not flow into TechADS should be removed from the control metric scope.  
+- Only assets that actively participate in the TechADS data flow should be represented.
+
+---
+
+### What to Update in the Control Metric Document
+
+- Clearly define in-scope one-hop targets
+- Remove multi-hop downstream references
+- Add or refine the governance statement covering:
+  - Dynamic target recalculation
+  - API treatment
+  - SLA applicability
+- Ensure the document visually and logically matches what DQ-002 is measuring and what monthly evidence supports
+
+---
+
+### Reference Documents
+The latest versions of the control metric documents and supporting materials are available here:  
+[Insert Shared Drive Link Here]
+
+---
+
+Please let me know if this aligns with your understanding, or if you’d like to walk through anything together before finalizing updates. Happy to review once changes are in, or jump on a quick sync if helpful.
+
+Thanks for all the work you’re doing on this.
+
+Best,  
+Kamran
