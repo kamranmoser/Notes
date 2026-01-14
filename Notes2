@@ -1,63 +1,145 @@
-Hi Aswathy,  
-Hi Lakshmi,
+TechADS Control Metric Document Updates — What to Change + How to Validate (All Domains)
 
-I wanted to follow up on the recent Metric QA discussions we had (including the Jan 6 review with Vidya Joshua and the follow-up confirmation with Jeff, Tara, and Vedad) to make sure we’re aligned on the control metric update approach as you continue working through the documents.
+Purpose / Why we’re doing this
 
-Below is a consolidated summary of the agreed-upon direction and what needs to be reflected in the control metric documentation. This guidance is generalized and applies across all domains, not just Change.
+Governance Metric QA is validating that our Control Metric Documents align with what we actually report in monthly evidence. The key requirement is: the asset inventories and counts in the Control Metric documents must match what our evidence queries return for the reporting period.
 
----
+This applies across all domains.
 
-### Key Takeaways from Metric QA Discussions
+⸻
 
-1. Target Asset Scope (One-Hop Only)  
-- Control metrics should include only one-hop provisioning targets directly downstream of TechADS.  
-- Multi-hop paths (e.g., TechADS → intermediate → downstream consumer) are out of scope for the metric.  
-- The intent is for the control metric to align exactly with what is being measured and evidenced.
+Definitions (use these consistently)
+	•	Upstream / Ingestion = Source assets
+Assets/DSIs where data is coming into TechADS (supports DQ-001).
+	•	Downstream / Provisioning = Target assets
+Assets/DSIs where TechADS is providing data out to consumers (supports DQ-002).
+	•	API consumers are downstream/target from the evidence perspective (API calls appear in downstream logs).
 
-2. REST / API Consumers  
-- API consumers are dynamic and consumer-driven, with onboarding/offboarding occurring regularly.  
-- APIs should not be treated as static target assets in the control metric document.  
-- Instead:
-  - Reference APIs via a governance statement
-  - Treat API consumer listings as point-in-time snapshots aligned to the reporting period evidence
+⸻
 
-3. SLA Applicability  
-- SLAs apply to scheduled / provisioned feeds only.  
-- REST/API interactions are pull-based and ad-hoc and therefore do not have meaningful delivery SLAs.  
-- This distinction should be clearly documented to avoid inflating target counts or creating misalignment with evidence.
+What Governance Confirmed (High-Level Takeaways)
 
-4. Monthly Recalculation & Evidence Alignment  
-- Target asset counts are recalculated monthly based on actual provisioning activity.  
-- Evidence reflects the state of activity for the reporting period, not a fixed inventory.  
-- This dynamic approach was reviewed and accepted, as long as it is clearly documented.
+1) Target Asset Scope: One-hop only
+	•	The Control Metric document should include only one-hop provisioning targets directly downstream of TechADS.
+	•	Multi-hop chains (TechADS → intermediate → downstream consumer) should not be enumerated as targets in the control metric document.
+	•	Goal: the document should match the exact boundary that the metric is measuring and that evidence supports.
 
-5. Source Asset Clean-Up  
-- Source assets that do not flow into TechADS should be removed from the control metric scope.  
-- Only assets that actively participate in the TechADS data flow should be represented.
+2) REST/API consumers are dynamic (treat as point-in-time evidence)
+	•	API consumers are consumer-driven and can change month-to-month (onboarding/offboarding).
+	•	Do not treat API consumers as a permanent static inventory list.
+	•	Instead:
+	•	Reference APIs in the document as dynamic and validated via monthly evidence snapshots (what actually occurred during the reporting period).
+	•	Evidence is the source of truth for “who consumed” in that month.
 
----
+3) SLA applicability (document the distinction clearly)
+	•	SLAs apply to scheduled/provisioned feeds (the “provisioning” side) where SLAs are meaningful.
+	•	API interactions are pull-based and variable; they should be addressed via the “dynamic/monthly evidence snapshot” approach (not as fixed target counts).
 
-### What to Update in the Control Metric Document
+4) Monthly recalculation + evidence alignment is acceptable (as long as documented)
+	•	Target counts can change month to month based on actual provisioning/API activity.
+	•	This is acceptable if the Control Metric document explicitly states that:
+	•	counts are based on monthly evidence snapshots, and
+	•	the document aligns to the same definition/boundary as the evidence queries.
 
-- Clearly define in-scope one-hop targets
-- Remove multi-hop downstream references
-- Add or refine the governance statement covering:
-  - Dynamic target recalculation
-  - API treatment
-  - SLA applicability
-- Ensure the document visually and logically matches what DQ-002 is measuring and what monthly evidence supports
+5) Source Asset cleanup
+	•	If a “source asset” listed in the document does not actually flow into TechADS, it should be removed from scope.
+	•	Only include assets that actively participate in the TechADS flow relevant to DQ-001 (ingestion) and DQ-002 (provisioning).
 
----
+⸻
 
-### Reference Documents
-The latest versions of the control metric documents and supporting materials are available here:  
-[Insert Shared Drive Link Here]
+What to Update in the Control Metric Document (Per Domain)
 
----
+A) Scope and structure updates
+	1.	Clearly define in-scope assets by control type
+	•	DQ-001 (Ingestion) = upstream/source DSIs or controls that represent inbound feeds into TechADS
+	•	DQ-002 (Provisioning) = downstream/target DSIs or controls that represent TechADS outbound provisioning (including API activity as evidenced)
+	2.	Remove multi-hop downstream references from the target inventory
+	•	Keep TechADS → immediate downstream only.
+	3.	Add/refine governance statements (recommended statements to include)
+	•	Target counts are validated monthly based on actual activity in the reporting period.
+	•	API consumers are dynamic and represented via point-in-time evidence snapshots.
+	•	The document aligns to the same boundary and definitions used in evidence queries.
 
-Please let me know if this aligns with your understanding, or if you’d like to walk through anything together before finalizing updates. Happy to review once changes are in, or jump on a quick sync if helpful.
+⸻
 
-Thanks for all the work you’re doing on this.
+REQUIRED: Evidence-to-Document Validation Step (This is the most important part)
 
-Best,  
-Kamran
+Goal
+
+For each domain, the Control Metric document must match the evidence produced by our query/script outputs for the same period.
+
+What must match
+
+For the reporting month:
+	1.	All control records returned by the evidence queries must be represented in the document with the correct classification:
+	•	DQ-001 = ingestion/upstream/source
+	•	DQ-002 = provisioning/downstream/target
+	2.	AIT/Asset/DSI identifiers (as returned by the queries) must match what is documented.
+	3.	Upstream vs downstream classification must match the evidence:
+	•	Upstream/ingestion controls = source
+	•	Downstream/provisioning controls (including API log activity) = target
+	4.	Counts/totals in the Control Metric doc must reconcile to evidence:
+	•	If evidence includes a DSI/asset/control, it should be in the doc.
+	•	If the doc includes an asset not returned by evidence, it must be removed or justified as out-of-scope (but generally it should be removed).
+
+Recommended validation checklist (copy into your working notes)
+	•	I ran the evidence script for the reporting month and captured outputs.
+	•	I confirmed which records are DQ-001 (ingestion) vs DQ-002 (provisioning).
+	•	Every evidence record has a matching entry in the Control Metric doc (same domain, same identifier).
+	•	There are no “extra” assets in the Control Metric doc that do not appear in evidence (unless explicitly out-of-scope and removed).
+	•	The doc uses one-hop target scope only (no multi-hop downstream lists).
+	•	API consumers are treated as dynamic and supported by monthly evidence snapshot language.
+
+⸻
+
+How to Pull the Evidence Using the Packaged Script (VS Code Instructions)
+
+1) Open the repo/folder in VS Code
+	•	Open VS Code
+	•	File → Open Folder
+	•	Select the folder/repo that contains the packaged queries/script (the folder I shared)
+
+2) Open a terminal in VS Code
+	•	Terminal → New Terminal
+	•	Navigate (if needed) to the script directory (example):
+	•	cd <repo-folder>
+
+3) Run the packaged script (follow the commands I attached)
+	•	Run the command exactly as provided in my instructions/attachment.
+	•	The script will prompt for:
+	•	Start date (YYYYMMDD)
+	•	End date (YYYYMMDD)
+	•	Domain selection (ex: APPHQ / Change / RMO / or “all”)
+
+4) What the script returns (what you’ll use for validation)
+
+The script returns outputs that break down our controls by:
+	•	Control type (ex: ingestion vs provisioning controls)
+	•	Whether the control is for:
+	•	Upstream DSIs (source / ingestion / DQ-001), or
+	•	Downstream DSIs (target / provisioning / DQ-002)
+
+Use these outputs as the “monthly evidence snapshot” to compare against what is in the Control Metric document.
+
+5) Reference the underlying queries (optional but helpful)
+
+If needed, you can open and reference the underlying SQL/query files that the script runs (in the repo) to understand:
+	•	where identifiers are sourced,
+	•	how DSIs are classified as upstream vs downstream,
+	•	and how the evidence totals are calculated.
+
+⸻
+
+How to Apply Evidence Results Back to the Control Metric Doc (Per Domain)
+
+When you have the script output for a domain and month:
+	1.	Update the document’s Source/Ingestion section (DQ-001) to match the upstream controls returned.
+	2.	Update the document’s Target/Provisioning section (DQ-002) to match the downstream controls returned.
+	3.	Remove any:
+	•	multi-hop target paths,
+	•	assets not present in evidence,
+	•	sources that don’t flow into TechADS.
+	4.	Ensure the document language explicitly states:
+	•	evidence is a monthly snapshot,
+	•	API consumers are dynamic,
+	•	and the boundary is one-hop from TechADS.
