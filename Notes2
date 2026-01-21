@@ -1,36 +1,55 @@
-Hi all,
+1️⃣ GT Reporting – RCA for Control Failures
 
-I wanted to follow up ahead of today’s scheduled call regarding ingesting EIQ data quality results into TechADS. I understand schedules may be tight today, so I wanted to clearly outline what we’re trying to accomplish and what we’re hoping to align on.
+Summary: GT Reporting – Root Cause Analysis for Recent Control Failures
+Scope:
+	•	Analyze GT_REPORTING control failures
+	•	Perform RCA on reported failures
+	•	Determine root cause (data issue, upstream dependency, timing, logic, etc.)
+	•	Prepare findings for reporting / governance follow-up
 
-Context
-- The Controls team is building a DQ / PARCM application within TechADS to support:
-  - Daily DQ review and RCA
-  - Analyst comments and Jira tracking
-  - Monthly PARCM reporting
-- For local TechADS DQ checks, the required tables, inserts, and triggers are currently being developed by the TechADS dev team.
-- To fully support the app and PARCM reporting, we also need EIQ DQ results available within TechADS.
+⸻
 
-What we’re trying to achieve
-- Ingest all relevant EIQ data quality results (failures + metadata) into TechADS-owned tables.
-- Run this ingestion on a scheduled basis (daily / per run).
-- Treat EIQ failures the same way as local DQ failures in the app:
-  - Visible in the UI
-  - Available for RCA and comments
-  - Included in PARCM metrics and reporting
+2️⃣ PLDM – January Intake Assessments
 
-What we need to align on
-- The best ingestion approach from EIQ → TechADS:
-  - Scheduled job (e.g., Autosys pulling from EIQ)
-  - Change-owned ingestion / distribute feed
-  - Any existing ingestion framework we should leverage
-- What failure-level data EIQ can provide for ingestion (IDs, check type, run info, timestamps, etc.).
-- Ownership and setup:
-  - Which team configures and owns the ingestion
-  - Any access or service IDs required
+Summary: Complete PLDM Assessments for January Intake Tickets
+Scope:
+	•	Complete PLDM assessments for January intake Jira tickets
+	•	Identify metadata impacts
+	•	Validate any ADS / ADSet / AIT changes
+	•	Follow up on required BT Converge or metadata updates
+	•	Coordinate with relevant teams to close out assessments
 
-If it’s easier, we’re happy to set up a short working session to walk through the DQ app, explain how the data will be used, and align on the best way to implement this ingestion.
+⸻
 
-Please let us know the best next step and who we should coordinate with to move this forward.
+3️⃣ DQ App – SQL & Data Model Validation
 
-Thanks,  
-Kamran
+Summary: Validate DQ App SQL and Underlying Tables for Dev Implementation
+Scope:
+	•	Review and validate SQL logic used by the DQ app
+	•	Confirm underlying table structures and joins
+	•	Ensure alignment with control logic and reporting needs
+	•	Share validated SQL with TechADS dev team for implementation in Dev
+
+⸻
+
+4️⃣ EIQ → TechADS Integration Design
+
+Summary: Define Approach to Ingest EIQ Data Quality Results into TechADS
+Scope:
+	•	Partner with EIQ team
+	•	Define ingestion approach for EIQ DQ results into TechADS
+	•	Confirm source data, scheduling, schema alignment, and mappings
+	•	Document agreed design for downstream automation and PARCM use
+
+⸻
+
+5️⃣ Knowledge Transfer for DQC / PARCM Workstreams
+
+Summary: Provide Knowledge Transfer Sessions for DQC / PARCM Processes
+Scope:
+	•	Conduct knowledge transfer sessions for two teammates
+	•	Cover:
+	•	DQ / PARCM processes
+	•	Governance expectations
+	•	Tools, workflows, and dependencies
+	•	Answer questions and provide reference materials as needed
