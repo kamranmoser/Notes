@@ -1,28 +1,6 @@
-Hi Subashis,
+Yes — the plan is a daily scheduled run that pulls EIQ DQ results for the report date only (not a full historical dump each time).
 
-Following up after today’s call — unfortunately Amit and you weren’t able to join, so I wanted to summarize where we landed and request help getting this work moving.
-
-What we’re trying to do  
-The Controls team needs to ingest all EIQ data quality results into TechADS so they can be consumed by the DQ / PARCM app we’re building. This includes EIQ run-level failure results and associated metadata.
-
-Proposed approach (discussed on the call):
-- Pull data directly from the existing EIQ reporting views
-- Land the results into TechADS Controls-owned tables
-- Run this ingestion on a scheduled basis via Autosys
-- EIQ remains the source of truth; TechADS simply consumes the results for UI, RCA, and PARCM reporting
-
-From a technical standpoint, it sounds like this should be feasible via an Autosys job that queries the EIQ reporting views and inserts the results into TechADS.
-
-What I’m providing:
-- The SQL scripts/queries that define exactly what EIQ data we need to ingest (failures + metadata)
-- The target table structures in TechADS that the DQ app will read from
-
-What we need help with:
-- Adding a story to the Change Dev board to track this work
-- Assigning ownership to set up the Autosys job for the EIQ → TechADS ingestion
-- Confirming any prerequisites (service ID, access, scheduling constraints, etc.)
-
-Once the story is created, I’m happy to walk through the SQL and answer any questions to help get this implemented.
-
-Thanks,  
-Kamran
+High-level approach:
+	•	One daily Autosys job
+	•	Pull EIQ DQ results scoped to the reporting date
+	•	Land results into TechADS control tables for downstream use
