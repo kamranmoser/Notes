@@ -1,6 +1,29 @@
-Yes — the plan is a daily scheduled run that pulls EIQ DQ results for the report date only (not a full historical dump each time).
+Hi Sridarshan,
 
-High-level approach:
-	•	One daily Autosys job
-	•	Pull EIQ DQ results scoped to the reporting date
-	•	Land results into TechADS control tables for downstream use
+Thanks again for taking the time to connect today. I wanted to recap what we covered on our onboarding call and outline next steps so we’re aligned.
+
+Topics Covered
+- Overview of the TechADS DQ Controls team hub, including team responsibilities and how the work fits into Daily DQ and PARCM processes.
+- Walkthrough of the Onboarding Confluence site, which outlines access requirements and instructions for getting set up across tools and platforms.
+- Review of the TechADS process documentation housed on the team hub, including end-to-end process guides.
+- High-level overview of the Daily DQC monitoring workflow, where you’ll:
+  - Monitor each control type daily
+  - Perform root cause analysis (RCA) for failures
+  - Identify the owning / responsible team
+  - Track remediation and resolution status
+- Introductory discussion on:
+  - PARCM submission process
+  - Daily DQ & PARCM application
+  - EIQ integrations
+  - TechADS Control Metric documentation
+
+Next Steps
+- Please continue working through the access setup outlined on the onboarding Confluence page.
+- I’ll schedule a KT session to go deeper into the Daily DQC monitoring workflow, tools, and RCA expectations.
+- We’ll connect with Lakshmi to ensure the appropriate Jira stories are created/assigned for your work.
+- We’ll also coordinate with Amruta, who is currently in KT sessions, so we can bring you both into the Daily Controls Monitoring KT together.
+
+Feel free to reach out if you have any questions as you go through onboarding or run into access issues. Looking forward to working closely with you.
+
+Thanks,  
+Kamran
