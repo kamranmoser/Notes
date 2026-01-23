@@ -1,29 +1,28 @@
-Hi Sridarshan,
+Hi Amruta,
 
-Thanks again for taking the time to connect today. I wanted to recap what we covered on our onboarding call and outline next steps so we’re aligned.
+Thanks again for taking the time to connect earlier this week. I wanted to follow up with a quick recap of what we covered and outline the next steps as you continue onboarding with the TechADS DQ Controls team.
 
-Topics Covered
-- Overview of the TechADS DQ Controls team hub, including team responsibilities and how the work fits into Daily DQ and PARCM processes.
-- Walkthrough of the Onboarding Confluence site, which outlines access requirements and instructions for getting set up across tools and platforms.
-- Review of the TechADS process documentation housed on the team hub, including end-to-end process guides.
-- High-level overview of the Daily DQC monitoring workflow, where you’ll:
-  - Monitor each control type daily
-  - Perform root cause analysis (RCA) for failures
-  - Identify the owning / responsible team
-  - Track remediation and resolution status
-- Introductory discussion on:
+What we covered:
+- Overview of the TechADS DQ Controls Team Hub and how it’s used as the central location for documentation, process guides, and team references.
+- Walkthrough of the onboarding Confluence site, including steps for requesting and tracking required system access.
+- High-level overview of the Daily DQC Monitoring process, including:
+  - Monitoring control executions across control types  
+  - Performing initial root cause analysis  
+  - Identifying the responsible team (upstream / downstream / TechADS)  
+  - Tracking remediation and updates for each failure
+- Brief discussion of related areas such as:
   - PARCM submission process
-  - Daily DQ & PARCM application
-  - EIQ integrations
-  - TechADS Control Metric documentation
+  - Daily DQ & PARCM app
+  - EIQ
+  - TechADS control metric documentation
 
-Next Steps
-- Please continue working through the access setup outlined on the onboarding Confluence page.
-- I’ll schedule a KT session to go deeper into the Daily DQC monitoring workflow, tools, and RCA expectations.
-- We’ll connect with Lakshmi to ensure the appropriate Jira stories are created/assigned for your work.
-- We’ll also coordinate with Amruta, who is currently in KT sessions, so we can bring you both into the Daily Controls Monitoring KT together.
+Next steps:
+- Please continue progressing through your current KT sessions and onboarding materials.
+- We’ll continue aligning with your ongoing KT sessions, and I’ll plan to include Sridarshan alongside you for the Daily Controls Monitoring KT, so you’re both aligned and get the same walkthrough.
+- I’ll also coordinate with Lakshmi to ensure the appropriate Jira stories are in place for tracking this work.
+- As needed, we can schedule additional deep-dive sessions to walk through the daily monitoring workflow, tools, and expectations in more detail.
 
-Feel free to reach out if you have any questions as you go through onboarding or run into access issues. Looking forward to working closely with you.
+Let me know if you have any questions in the meantime or if there’s anything specific you’d like to prioritize as part of the upcoming KT sessions.
 
 Thanks,  
 Kamran
