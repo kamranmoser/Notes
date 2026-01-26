@@ -1,13 +1,25 @@
-Hi Subashis,
+Hi Amruta and Sridarshan,
 
-Now that Amit and the EIQ team are aligned on the approach, I wanted to check on next steps to get this into execution.
+Ahead of our KT session tomorrow, I wanted to share a high-level agenda so you know what to expect.
 
-Can you let me know:
-	•	What the process is to get the required Change Dev stories created
-	•	Whether your team would prefer to create the stories, or if you’d like us to draft them
-	•	How this work would get scheduled into an upcoming release once the stories are in place
+KT Session Agenda (High-Level):
+- Overview of the TechADS DQ Controls Team Hub and key documentation
+- Purpose and scope of the Daily DQC monitoring process
+- Walkthrough of the Daily DQC Guide
+  - Key control types monitored (SLA, GVR, Null/Duplicate, Deviation, etc.)
+  - End-to-end daily monitoring workflow
+- Tools and resources used for daily monitoring
+  - EIQ, Autosys, Tableau, logs, and trackers
+- High-level RCA and escalation approach
+  - Identifying root cause
+  - Determining ownership (upstream vs TechADS)
+  - Tracking remediation
+- How Daily DQC ties into PARCM, control metric documents, and reporting
+- Next steps and follow-up KT sessions (deeper dives as needed)
 
-I’ve shared the SQL/scripts for the daily EIQ → TechADS ingestion and can walk through them if helpful.
+This session will be focused on providing a shared foundation and walkthrough. We’ll plan additional sessions to go deeper into hands-on monitoring, RCA examples, and PARCM submissions.
 
-Thanks,
+Looking forward to walking through this together.
+
+Thanks,  
 Kamran
