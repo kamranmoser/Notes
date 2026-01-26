@@ -1,1 +1,38 @@
-so the main stories to open would be onboarding/access setup, Daily DQC Monitoring KT, PARCM overview KT, and shadowing for daily controls. We can keep them KT-focused for now and expand execution stories once KT is complete.
+🆕 STORY 1 — PARCM METRIC CALCULATION WALKTHROUGH
+
+Summary
+
+Conduct PARCM Metric Calculation Walkthrough for Governance and Architecture
+
+Description
+
+Prepare and deliver a walkthrough of the PARCM metric calculation process to the Governance and Architecture teams. The walkthrough will explain how PARCM metrics are calculated, including data sources, calculation logic, exclusions, thresholds, tooling (TechADS, DQ app, PARCM app), and downstream governance reporting expectations. Feedback and follow-up items will be captured as needed.
+
+Acceptance Criteria
+	•	Walkthrough materials are prepared (deck or documentation)
+	•	PARCM metric calculation logic is explained end-to-end
+	•	Inputs, exclusions, thresholds, and outputs are clearly covered
+	•	Governance and Architecture questions are addressed
+	•	Follow-ups or action items are captured (if applicable)
+
+⸻
+
+🆕 STORY 2 — PARCM METRICS (DOMAIN-LEVEL TEMPLATE)
+
+⬅️ You will clone this story once per domain
+
+Summary
+
+Compile PARCM Metrics, RCA, and Governance Artifacts – [Domain Name]
+
+Description
+
+Compile and analyze PARCM metrics for the [Domain Name] domain. This includes compiling metric results, performing root cause analysis for failures, validating exclusions or inclusions, creating a domain-specific PowerPoint, and publishing all required artifacts to SharePoint for governance review.
+
+Acceptance Criteria
+	•	PARCM metrics for the domain are compiled and validated
+	•	Root cause analysis is completed for failed metrics
+	•	Inclusion/exclusion decisions are documented
+	•	Domain-specific PARCM PowerPoint is created
+	•	Metric results and PowerPoint are uploaded to SharePoint
+	•	Artifacts are ready for governance consumption
