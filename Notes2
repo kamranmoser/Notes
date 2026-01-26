@@ -1,25 +1,48 @@
-Hi Amruta and Sridarshan,
+Hi everyone,
 
-Ahead of our KT session tomorrow, I wanted to share a high-level agenda so you know what to expect.
+Ahead of our walkthrough tomorrow, I wanted to share the high-level agenda so we can stay aligned and ensure we cover the full PARCM process end to end.
 
-KT Session Agenda (High-Level):
-- Overview of the TechADS DQ Controls Team Hub and key documentation
-- Purpose and scope of the Daily DQC monitoring process
-- Walkthrough of the Daily DQC Guide
-  - Key control types monitored (SLA, GVR, Null/Duplicate, Deviation, etc.)
-  - End-to-end daily monitoring workflow
-- Tools and resources used for daily monitoring
-  - EIQ, Autosys, Tableau, logs, and trackers
-- High-level RCA and escalation approach
-  - Identifying root cause
-  - Determining ownership (upstream vs TechADS)
-  - Tracking remediation
-- How Daily DQC ties into PARCM, control metric documents, and reporting
-- Next steps and follow-up KT sessions (deeper dives as needed)
+Agenda
 
-This session will be focused on providing a shared foundation and walkthrough. We’ll plan additional sessions to go deeper into hands-on monitoring, RCA examples, and PARCM submissions.
+1. PARCM Overview & Scope
+   - What PARCM is measuring
+   - Metrics in scope (DQ-001 / DQ-002 / DQ-003 / DM-001)
+   - Monthly reporting expectations
 
-Looking forward to walking through this together.
+2. PARCM Data Inputs
+   - Daily DQ control results and failure capture
+   - Control-level counts vs. metric-level rollups
+   - How failures roll up into PARCM metrics
+
+3. PARCM Calculation Logic
+   - Pass / Fail / Total counts
+   - Percent pass calculation
+   - Metric status thresholds (Green / Yellow / Red)
+   - Identifying out-of-tolerance metrics
+
+4. Root Cause Analysis (RCA) & Action Planning
+   - Reviewing failures by control type
+   - Determining ownership and root cause
+   - Drafting breach summaries and action plans
+
+5. Using the Streamlit DQ & PARCM App
+   - Generating the PARCM dataset
+   - Reviewing failure details in the app
+   - Exporting data to Excel (if needed)
+   - Generating ORCIT upload templates
+   - Generating the PARCM PowerPoint deck
+
+6. PARCM Review & Submission Process
+   - Review with Dev & Controls
+   - Finalizing metrics and action plans
+   - Submitting to Governance
+   - Saving final artifacts and documentation
+
+7. Next Steps & Q&A
+   - Follow-up KT sessions (if needed)
+   - Ownership and expectations going forward
+
+Let me know if there’s anything specific you’d like to make sure we spend extra time on during the session.
 
 Thanks,  
 Kamran
