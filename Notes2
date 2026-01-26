@@ -1,28 +1,13 @@
-Hi Amruta,
+Hi Subashis,
 
-Thanks again for taking the time to connect earlier this week. I wanted to follow up with a quick recap of what we covered and outline the next steps as you continue onboarding with the TechADS DQ Controls team.
+Now that Amit and the EIQ team are aligned on the approach, I wanted to check on next steps to get this into execution.
 
-What we covered:
-- Overview of the TechADS DQ Controls Team Hub and how it’s used as the central location for documentation, process guides, and team references.
-- Walkthrough of the onboarding Confluence site, including steps for requesting and tracking required system access.
-- High-level overview of the Daily DQC Monitoring process, including:
-  - Monitoring control executions across control types  
-  - Performing initial root cause analysis  
-  - Identifying the responsible team (upstream / downstream / TechADS)  
-  - Tracking remediation and updates for each failure
-- Brief discussion of related areas such as:
-  - PARCM submission process
-  - Daily DQ & PARCM app
-  - EIQ
-  - TechADS control metric documentation
+Can you let me know:
+	•	What the process is to get the required Change Dev stories created
+	•	Whether your team would prefer to create the stories, or if you’d like us to draft them
+	•	How this work would get scheduled into an upcoming release once the stories are in place
 
-Next steps:
-- Please continue progressing through your current KT sessions and onboarding materials.
-- We’ll continue aligning with your ongoing KT sessions, and I’ll plan to include Sridarshan alongside you for the Daily Controls Monitoring KT, so you’re both aligned and get the same walkthrough.
-- I’ll also coordinate with Lakshmi to ensure the appropriate Jira stories are in place for tracking this work.
-- As needed, we can schedule additional deep-dive sessions to walk through the daily monitoring workflow, tools, and expectations in more detail.
+I’ve shared the SQL/scripts for the daily EIQ → TechADS ingestion and can walk through them if helpful.
 
-Let me know if you have any questions in the meantime or if there’s anything specific you’d like to prioritize as part of the upcoming KT sessions.
-
-Thanks,  
+Thanks,
 Kamran
