@@ -1,15 +1,90 @@
-Hi Eric,
+1️⃣ Onboarding & Access Setup – TechADS DQ Controls
 
-I wanted to give you a heads up on an upcoming database change that will impact the TechADS log views used by the Tableau dashboards.
+Owner: Amruta / Sridarshan
+Type: Story
+Purpose: Ensure full access before hands-on execution
 
-As part of recent remediation work, the DOMAIN column in the TechADS SLA/log configuration tables is being renamed to TARGET_CATEGORY. This change applies across the underlying log views and supporting objects that feed reporting and dashboards.
+Description:
+Complete onboarding activities required to support TechADS DQ Controls processes, including system access, documentation review, and environment readiness.
 
-Once this change is released, any Tableau logic, filters, or mappings that currently reference DOMAIN will need to be updated to reference TARGET_CATEGORY instead.
+Key Tasks:
+	•	Request and validate access to:
+	•	TechADS schemas / log views
+	•	Autosys
+	•	EIQ
+	•	Tableau dashboards
+	•	Jira / Confluence (DQ Controls Team Hub)
+	•	Review onboarding Confluence site
+	•	Confirm access with Controls lead
 
-The change is tied to the TechADS Base remediation work (Jira: TADSBASE-7720) and is expected to be promoted shortly. I wanted to loop you in early so you have time to plan the necessary updates on the Tableau side and avoid any reporting disruptions.
+Acceptance Criteria:
+	•	All required access granted and validated
+	•	Able to view DQ logs, dashboards, and documentation
+	•	Ready to participate in Daily DQC monitoring
 
-Let me know if you’d like to review the impacted views together or if you need additional details from the dev team.
+⸻
 
-Thanks,  
-Kamran  
-TechADS DQ Controls
+2️⃣ KT: Daily DQC Monitoring Process
+
+Owner: Amruta / Sridarshan
+Type: Story
+Purpose: Core operational KT
+
+Description:
+Attend and complete knowledge transfer for the TechADS Daily DQC monitoring process.
+
+KT Scope (high level):
+	•	Daily control types (SLA, GVR, Deviation, Null/Duplicate, REST API)
+	•	Failure identification and triage
+	•	Root Cause Analysis (RCA) expectations
+	•	Fault attribution (TechADS vs upstream/downstream)
+	•	Tracking remediation and follow-ups
+
+Acceptance Criteria:
+	•	Attended KT session
+	•	Understand end-to-end daily monitoring workflow
+	•	Able to explain how failures are identified, RCA’d, and tracked
+
+⸻
+
+3️⃣ KT: PARCM Process Overview
+
+Owner: Amruta / Sridarshan
+Type: Story
+Purpose: Foundational PARCM knowledge (not execution yet)
+
+Description:
+Receive high-level KT on the PARCM reporting and submission process to understand how daily DQ feeds monthly metrics.
+
+KT Scope:
+	•	PARCM metrics (DQ-001/002/003, DM-001)
+	•	How daily failures roll up into PARCM
+	•	Overview of breach identification and action plans
+	•	Governance submission flow
+
+Acceptance Criteria:
+	•	Understand how PARCM metrics are calculated
+	•	Understand relationship between Daily DQ and PARCM
+	•	No hands-on execution required yet
+
+⸻
+
+4️⃣ Shadowing: Daily DQC Monitoring (Hands-on)
+
+Owner: Amruta / Sridarshan
+Type: Story
+Purpose: Transition from KT → execution
+
+Description:
+Shadow existing team members while performing Daily DQC monitoring to gain hands-on experience.
+
+Activities:
+	•	Review daily failures
+	•	Draft RCA notes
+	•	Identify responsible teams
+	•	Observe escalation and remediation tracking
+
+Acceptance Criteria:
+	•	Participated in live daily monitoring
+	•	Drafted sample RCA entries
+	•	Ready to independently support daily checks (with review)
