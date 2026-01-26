@@ -1,48 +1,15 @@
-Hi everyone,
+Hi Eric,
 
-Ahead of our walkthrough tomorrow, I wanted to share the high-level agenda so we can stay aligned and ensure we cover the full PARCM process end to end.
+I wanted to give you a heads up on an upcoming database change that will impact the TechADS log views used by the Tableau dashboards.
 
-Agenda
+As part of recent remediation work, the DOMAIN column in the TechADS SLA/log configuration tables is being renamed to TARGET_CATEGORY. This change applies across the underlying log views and supporting objects that feed reporting and dashboards.
 
-1. PARCM Overview & Scope
-   - What PARCM is measuring
-   - Metrics in scope (DQ-001 / DQ-002 / DQ-003 / DM-001)
-   - Monthly reporting expectations
+Once this change is released, any Tableau logic, filters, or mappings that currently reference DOMAIN will need to be updated to reference TARGET_CATEGORY instead.
 
-2. PARCM Data Inputs
-   - Daily DQ control results and failure capture
-   - Control-level counts vs. metric-level rollups
-   - How failures roll up into PARCM metrics
+The change is tied to the TechADS Base remediation work (Jira: TADSBASE-7720) and is expected to be promoted shortly. I wanted to loop you in early so you have time to plan the necessary updates on the Tableau side and avoid any reporting disruptions.
 
-3. PARCM Calculation Logic
-   - Pass / Fail / Total counts
-   - Percent pass calculation
-   - Metric status thresholds (Green / Yellow / Red)
-   - Identifying out-of-tolerance metrics
-
-4. Root Cause Analysis (RCA) & Action Planning
-   - Reviewing failures by control type
-   - Determining ownership and root cause
-   - Drafting breach summaries and action plans
-
-5. Using the Streamlit DQ & PARCM App
-   - Generating the PARCM dataset
-   - Reviewing failure details in the app
-   - Exporting data to Excel (if needed)
-   - Generating ORCIT upload templates
-   - Generating the PARCM PowerPoint deck
-
-6. PARCM Review & Submission Process
-   - Review with Dev & Controls
-   - Finalizing metrics and action plans
-   - Submitting to Governance
-   - Saving final artifacts and documentation
-
-7. Next Steps & Q&A
-   - Follow-up KT sessions (if needed)
-   - Ownership and expectations going forward
-
-Let me know if there’s anything specific you’d like to make sure we spend extra time on during the session.
+Let me know if you’d like to review the impacted views together or if you need additional details from the dev team.
 
 Thanks,  
-Kamran
+Kamran  
+TechADS DQ Controls
