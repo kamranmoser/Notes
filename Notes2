@@ -1,12 +1,27 @@
-Hi Shailesh,
+Hello Team,
 
-Thank you for the kind note — I really appreciate you taking the time to share that feedback.
+As part of our upcoming TechADS releases this week, Veda has requested that we complete both pre-release and post-release validation for the impacted stories.
 
-I’ve been intentional about increasing transparency and making sure the right stakeholders are looped in early, so it’s encouraging to hear that it’s landing the way I intended. I’ve learned a lot by observing how you and Vasanthan approach leadership and communication, and I’m trying to apply those principles in my day-to-day work.
+Attached are the release lists for the three upcoming deployments:
+- TADSGTDS – 01/29 (primary focus)
+- TADSBASE – 01/30
+- TADSCHANGE – 01/30
 
-I appreciate the support and guidance, and I’ll continue to lean into opportunities where I can add value and grow as a leader.
+Priority:  
+We’d like the team to focus on TADSGTDS first, given its reporting impact and earlier release date.
 
-Thanks again.
+What we need from the team:
+- Pre-release validation:  
+  Please review the attached release lists and validate impacted controls, metrics, and dependencies in UAT prior to deployment.
+- Post-release validation:  
+  After each release, confirm expected behavior in PROD and validate that no new DQ or SLA issues are introduced.
 
-Best regards,  
-Kamran
+We’ll also conduct a brief post-release review to capture any observations, issues, or follow-ups needed.
+
+Please take some time to review the attached files and let me know if you see any concerns or areas that need additional attention ahead of the releases.
+
+Thanks everyone for the support and partnership on this.
+
+Best,  
+Kamran  
+TechADS Controls Team
