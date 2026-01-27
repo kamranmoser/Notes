@@ -6,6 +6,11 @@ We’re mainly looking for:
 - When the last control typically completes per domain  
 - A reasonable buffer time for sending the daily email  
 
+How to approach the analysis:
+- Use the controls repo to reference the queries for each domain  
+- Review historical runs (previous days/weeks/months) to determine the average completion time for the controls  
+- Focus on identifying the latest finishing control per domain as the anchor time
+
 Let me know if you need anything from my side.
 
 Thanks,  
