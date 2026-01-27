@@ -1,120 +1,117 @@
-Absolutely — here’s a clean, copy-and-paste–ready version formatted perfectly for email. It’s concise, professional, and governance-friendly, while still capturing the full discussion.
+Here’s a clean, copy-paste–ready version of the meeting notes you can drop directly into an email. I’ve kept it professional, structured, and aligned with how governance / dev audiences expect notes to look.
 
 ⸻
 
-Subject: TechADS PARCM Calculation Walkthrough – Meeting Notes & Key Takeaways
+Subject: DQ App Working Session – Notes & Next Steps
 
 Hi everyone,
 
-Below are the meeting notes and key takeaways from the TechADS PARCM calculation walkthrough. This session covered how daily DQ controls roll up into monthly PARCM metrics, how exclusions are handled, and how final results are packaged and submitted.
+Below are the meeting notes and takeaways from our recent Data Quality App working session.
 
 ⸻
 
-Purpose of Session
-	•	Walk through the end-to-end TechADS PARCM calculation process
-	•	Demonstrate how daily DQC monitoring feeds monthly PARCM metrics
-	•	Review root cause analysis, exclusions, and governance artifacts
+Meeting Overview
+
+Attendees: Kamran, Tashu, Saurabh, Huda
+Purpose:
+	•	Align on the current PARCM calculation process
+	•	Review governance feedback
+	•	Discuss future-state architecture and required backend work for automation, reporting, and governance integration
 
 ⸻
 
-PARCM Metric Overview
-	•	DQ-001 – Data ingestion received and processed correctly and on time
-	•	DQ-002 – Data provisioning completed correctly and on time
-	•	DQ-003 – Data quality checks (nulls, duplicates, etc.) passing
+Key Discussion Points
 
-PARCM is a monthly aggregation fully driven by daily DQC monitoring (no separate calculation logic).
-
-⸻
-
-Inputs to PARCM
-	•	SLA checks (upstream and downstream)
-	•	GVR checks
-	•	API checks
-	•	Null and duplicate checks
-
-Metrics are calculated by:
-	•	Determining pass / fail / total counts at the control level
-	•	Rolling results up to the metric level
-	•	Calculating % pass = pass ÷ total
+1. Governance Alignment on PARCM Process
+	•	Governance team reviewed the current PARCM calculation approach (Streamlit-based).
+	•	Focus was on how control-level results roll up into metric-level PARCM results, not just the final percentages.
+	•	Governance is aligned with:
+	•	Submitting metric numbers directly via the application
+	•	Using the application as evidence for how metrics were calculated for a given domain/month
+	•	Important distinction confirmed:
+	•	Metric numbers can be automated
+	•	Failure commentary / remediation details must still be reviewed manually before submission (per Michael’s guidance)
 
 ⸻
 
-Walkthrough Highlights
-	•	PARCM processor was pre-run for the Application Domain
-	•	Metric-level view shows each control contributing to PARCM
-	•	Analysts primarily work from the exported Excel file, not the UI
-	•	Raw data is reviewed first, followed by RCA and exclusions
+2. PARCM Submission Model (Current + Future State)
+	•	Today’s process includes two submissions:
+	1.	Metric numbers
+	2.	Failure details / remediation commentary (only required when there is a breach)
+	•	Future-state vision:
+	•	Application stores:
+	•	Raw results
+	•	Exclusions / inclusions
+	•	Analyst comments
+	•	Enables historical lookback (e.g., “how was last month’s metric calculated?”)
+	•	Long-term goal: direct submission to ORCIT via API
+	•	SharePoint remains a temporary step until full automation is live.
 
 ⸻
 
-Root Cause Analysis & Exclusions
-	•	Each failure is reviewed day by day
-	•	For planned outages:
-	•	Failures are excluded
-	•	SLA windows are adjusted by outage duration
-	•	If recovered within the adjusted window, the run is treated as a pass
-	•	All exclusions are documented with outage details, ownership, and justification
-	•	Exclusions are tracked for audit traceability
+3. Daily Domain-Level Failure Emails
+	•	Request from Vedad:
+	•	Daily automated emails per domain
+	•	Each email should include:
+	•	High-level metric summary (pass/total)
+	•	Categorized failures (SLA, GVR, nulls, dupes, APIs)
+	•	Proposal:
+	•	Leverage existing TechADS email framework (similar to current failure alerts)
+	•	Pull data from Control Schema (not raw TechADS logs) so analyst context is included
+	•	Open question to confirm:
+	•	Whether emails should reflect:
+	•	Day-before reviewed failures (with RCA), or
+	•	Near-real-time snapshot (Tableau already serves this purpose)
 
 ⸻
 
-Results & Reporting
-	•	After RCA and exclusions:
-	•	Updated files are re-uploaded into the app
-	•	Final metrics are generated
-	•	A PowerPoint is created for governance review
-	•	If a metric is yellow or red, a formal Action Plan is required
-	•	Includes breach summary, root cause, and remediation plan
+4. Backend & SQL Work Required
+
+Significant backend effort identified for the next phase:
+	•	Three major SQL efforts required:
+	1.	SQL for daily domain emails
+	2.	SQL for Autosys ingestion into control tables
+	3.	SQL for application UI views
+	•	Schema updates discussed:
+	•	Move from domain → target_category
+	•	Remove analyst-only columns where not needed
+	•	EIQ handling:
+	•	Need to pull both pass and fail records to support total counts
+	•	Introduce run_status / control_status instead of a strict failure ID
+	•	Use run_id as the primary identifier
+	•	Agreement to:
+	•	Store SQL in DB where possible to avoid app redeploys for query-only changes
+	•	Align with existing object-pull / DAO patterns where appropriate
 
 ⸻
 
-SLA & Configuration Notes
-	•	SLAs are driven by TechADS SLA configuration tables
-	•	Logic aligns with DSA documentation
-	•	Queries used are documented in the Control Metric Document
-	•	Historical raw data is available; post-RCA historical views are planned
+5. Roles & Support
+	•	Lakshmi to assist with:
+	•	Control completion-time analysis
+	•	SQL validation support
+	•	Sridharshan & Amruta
+	•	Focus first on onboarding + daily control monitoring
+	•	Later assist with:
+	•	Pre-release / post-release validation
+	•	Verification tasks (not deep SQL development yet)
 
 ⸻
 
-Provisioning Clarifications
-	•	DQ-002 includes target table availability, distribution, and API access
-	•	API metrics represent successful consumer pulls
-	•	Consumer lists are informational; calculations are based on successful interactions
-	•	Documentation wording will be updated to reflect current provisioning behavior
+Action Items
+	•	Kamran
+	•	Update scripts to use target_category
+	•	Finalize table changes and insert test data (month-level)
+	•	Confirm daily email expectations with Vedad
+	•	Backend / Dev
+	•	Build and test required SQL scripts
+	•	Validate schema changes in dev
+	•	Team
+	•	Schedule follow-up working session to review SQL + schema designs
+	•	Align on EIQ table structure and failure handling logic
 
 ⸻
 
-Governance Considerations
-	•	Metric percentages are submitted first to ORCIT
-	•	Commentary and action plans require governance review, especially for upstream issues
-	•	Submission language must be carefully reviewed due to CIO dashboard visibility
-	•	Exclusions and remediation details should also be reflected in the Control Metric Document
-
-⸻
-
-Future Enhancements (In Progress)
-	•	Automated persistence of RCA and exclusions in the database
-	•	One-click ORCIT submissions
-	•	Centralized PARCM module on the TechADS dashboard
-	•	Full historical audit traceability
-	•	Reduced reliance on SharePoint as an interim step
-
-⸻
-
-Key Takeaways
-	•	PARCM is fully driven by daily DQC monitoring
-	•	RCA and exclusions are critical to accurate reporting
-	•	Planned outages are handled via SLA window adjustments
-	•	The current process is governance-sound and audit-ready
-
-Please let me know if there are any questions or if additional follow-ups are needed.
+Please let me know if anything was missed or needs clarification. We’ll follow up with a working session to continue backend and automation alignment.
 
 Thanks,
 Kamran
-
-⸻
-
-If you want, I can also:
-	•	Shorten this into an exec-level summary
-	•	Pull out explicit action items by owner
-	•	Reformat it for Confluence or governance documentation
