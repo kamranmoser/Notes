@@ -1,91 +1,120 @@
-Here’s a clean, concise set of meeting notes Lakshmi can reference to complete the task confidently. This is written in a “handoff-ready” format you can send directly to her or store in Confluence.
+Absolutely — here’s a clean, copy-and-paste–ready version formatted perfectly for email. It’s concise, professional, and governance-friendly, while still capturing the full discussion.
 
 ⸻
 
-Meeting Notes: Daily Control Completion Time Analysis
+Subject: TechADS PARCM Calculation Walkthrough – Meeting Notes & Key Takeaways
 
-Purpose: Determine when all daily controls finish by domain so automated domain-level reports can be scheduled correctly.
+Hi everyone,
 
-Attendees:
-	•	Kamran
-	•	Lakshmi
-
-Context:
-We need to identify the latest completion time of daily controls for each domain to ensure automated Autosys reports are triggered after all controls have completed, avoiding incomplete or partial reporting.
+Below are the meeting notes and key takeaways from the TechADS PARCM calculation walkthrough. This session covered how daily DQ controls roll up into monthly PARCM metrics, how exclusions are handled, and how final results are packaged and submitted.
 
 ⸻
 
-What We Are Trying to Determine
-
-For each domain, identify:
-	•	When the last control finishes running on a typical day
-	•	Across all relevant control types, including:
-	•	Upstream SLA
-	•	Downstream SLA
-	•	GVR
-	•	Deviation
-	•	Null checks
-	•	Duplicate checks
-	•	Any other daily controls applicable to the domain
-
-The key data point used to determine completion is the INSERT_DTM timestamp.
+Purpose of Session
+	•	Walk through the end-to-end TechADS PARCM calculation process
+	•	Demonstrate how daily DQC monitoring feeds monthly PARCM metrics
+	•	Review root cause analysis, exclusions, and governance artifacts
 
 ⸻
 
-Approach Discussed
+PARCM Metric Overview
+	•	DQ-001 – Data ingestion received and processed correctly and on time
+	•	DQ-002 – Data provisioning completed correctly and on time
+	•	DQ-003 – Data quality checks (nulls, duplicates, etc.) passing
 
-1. Query Control Execution Data
-	•	Use the controls repo → Auxiliary scripts (e.g., Application, Change, GT Reporting, etc.).
-	•	Run queries by domain and control type.
-	•	Pull at least one full day of data initially (can expand to multiple days for averaging).
-
-2. Focus on INSERT_DTM
-	•	The INSERT_DTM column represents when a control record was written (i.e., control completion).
-	•	For each control type:
-	•	Identify the maximum INSERT_DTM value for that day.
-	•	This represents the latest completion time for that control.
-
-3. Export to Excel for Analysis
-	•	Export query results to Excel.
-	•	Use Excel to:
-	•	Group by control type
-	•	Identify max completion times
-	•	Compare across control types
-	•	Determine the latest overall completion time per domain.
-
-4. Repeat for All Domains
-	•	Perform the same analysis for:
-	•	Application
-	•	Change
-	•	Records Management
-	•	Operations
-	•	GT Reporting (G2)
-	•	One domain at a time.
-	•	Share results incrementally as each domain is completed.
+PARCM is a monthly aggregation fully driven by daily DQC monitoring (no separate calculation logic).
 
 ⸻
 
-Expected Output
+Inputs to PARCM
+	•	SLA checks (upstream and downstream)
+	•	GVR checks
+	•	API checks
+	•	Null and duplicate checks
 
-For each domain:
-	•	A summary showing:
-	•	Each control type
-	•	Typical completion time
-	•	Latest completion time overall
-	•	This will be used to:
-	•	Define Autosys scheduling times
-	•	Ensure automated reports run after all controls complete
-
-⸻
-
-Timeline / Next Steps
-	•	Lakshmi will begin analysis immediately.
-	•	Target to have initial domain results shared as they are completed.
-	•	Goal is to provide enough data by end of the week for the dev team to begin scheduling Autosys jobs.
+Metrics are calculated by:
+	•	Determining pass / fail / total counts at the control level
+	•	Rolling results up to the metric level
+	•	Calculating % pass = pass ÷ total
 
 ⸻
 
-If you want, next I can:
-	•	Turn this into a step-by-step checklist Lakshmi can follow
-	•	Create a template Excel layout for how to organize the results
-	•	Draft a follow-up email once she completes the first domain
+Walkthrough Highlights
+	•	PARCM processor was pre-run for the Application Domain
+	•	Metric-level view shows each control contributing to PARCM
+	•	Analysts primarily work from the exported Excel file, not the UI
+	•	Raw data is reviewed first, followed by RCA and exclusions
+
+⸻
+
+Root Cause Analysis & Exclusions
+	•	Each failure is reviewed day by day
+	•	For planned outages:
+	•	Failures are excluded
+	•	SLA windows are adjusted by outage duration
+	•	If recovered within the adjusted window, the run is treated as a pass
+	•	All exclusions are documented with outage details, ownership, and justification
+	•	Exclusions are tracked for audit traceability
+
+⸻
+
+Results & Reporting
+	•	After RCA and exclusions:
+	•	Updated files are re-uploaded into the app
+	•	Final metrics are generated
+	•	A PowerPoint is created for governance review
+	•	If a metric is yellow or red, a formal Action Plan is required
+	•	Includes breach summary, root cause, and remediation plan
+
+⸻
+
+SLA & Configuration Notes
+	•	SLAs are driven by TechADS SLA configuration tables
+	•	Logic aligns with DSA documentation
+	•	Queries used are documented in the Control Metric Document
+	•	Historical raw data is available; post-RCA historical views are planned
+
+⸻
+
+Provisioning Clarifications
+	•	DQ-002 includes target table availability, distribution, and API access
+	•	API metrics represent successful consumer pulls
+	•	Consumer lists are informational; calculations are based on successful interactions
+	•	Documentation wording will be updated to reflect current provisioning behavior
+
+⸻
+
+Governance Considerations
+	•	Metric percentages are submitted first to ORCIT
+	•	Commentary and action plans require governance review, especially for upstream issues
+	•	Submission language must be carefully reviewed due to CIO dashboard visibility
+	•	Exclusions and remediation details should also be reflected in the Control Metric Document
+
+⸻
+
+Future Enhancements (In Progress)
+	•	Automated persistence of RCA and exclusions in the database
+	•	One-click ORCIT submissions
+	•	Centralized PARCM module on the TechADS dashboard
+	•	Full historical audit traceability
+	•	Reduced reliance on SharePoint as an interim step
+
+⸻
+
+Key Takeaways
+	•	PARCM is fully driven by daily DQC monitoring
+	•	RCA and exclusions are critical to accurate reporting
+	•	Planned outages are handled via SLA window adjustments
+	•	The current process is governance-sound and audit-ready
+
+Please let me know if there are any questions or if additional follow-ups are needed.
+
+Thanks,
+Kamran
+
+⸻
+
+If you want, I can also:
+	•	Shorten this into an exec-level summary
+	•	Pull out explicit action items by owner
+	•	Reformat it for Confluence or governance documentation
