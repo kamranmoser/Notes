@@ -1,56 +1,12 @@
-Hi Team,
+Hi Lakshmi,
 
-Following up on Vedad’s note below — we need to stand up daily automated DQ summary emails by domain.
+Can you help analyze the daily control completion times by domain so we can determine when to schedule the automated reports?
 
-Scope / Domains
-We will create one automated report per domain:
-- Change  
-- Records Management & Operations  
-- Application  
-- GT Reporting  
+We’re mainly looking for:
+- When the last control typically completes per domain  
+- A reasonable buffer time for sending the daily email  
 
-Each daily report must include (pass / fail counts):
-- Upstream SLAs  
-- Downstream SLAs  
-- GVRs (upstream & downstream)  
-- APIs  
-- Null checks  
-- Duplicate checks  
-
-Next steps / asks:
-
-1. Determine run timing per domain  
-   - We need to analyze when all relevant controls complete for each domain.
-   - The email should be sent shortly after final control completion to ensure accuracy.
-
-2. Automation / Scheduling
-   - We’ll partner with the Dev team to set this up as an Autosys job per domain.
-   - Autosys should:
-     - Trigger the data pull
-     - Generate the report
-     - Send the automated email on a daily cadence
-
-3. Controls Team
-   - Define the final report format/content
-   - Validate timing assumptions per domain
-   - Review initial outputs once automation is in place
-
-Let’s use this week to:
-- Confirm domain-specific completion times
-- Align on report structure
-- Get Autosys jobs created and scheduled
-
-Once we have a proposed timing per domain, we can review quickly and move into implementation.
+Let me know if you need anything from my side.
 
 Thanks,  
-Kamran  
-TechADS Controls Team
-
----
-
-If you want, next I can:
-- Turn this into Jira stories (analysis + automation + validation)
-- Draft a standard report template the automation will generate
-- Propose initial timing assumptions per domain based on what you already know
-
-This is a solid ask from Vedad — and you’re framing it exactly the right way.
+Kamran
