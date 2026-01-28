@@ -1,45 +1,54 @@
-Got it 👍 — here’s the full, cleaned, Jira-ready output for TECHQARC-871: Provide Knowledge Transfer Sessions for DQC / PARCM Processes, aligned exactly to your rules:
-	•	✅ Clean description
-	•	✅ Given / When / Then acceptance criteria
-	•	✅ No execution windows
-	•	✅ Dates provided separately (not in AC or description)
+Perfect — this one is a core BAU + audit-defensible story, so we’ll make it clean, reusable, and easy to explain on the Kanban call.
+
+Below is the full Jira-ready output for TECHQARC-813, with a stronger title, tightened description, and clean Given / When / Then acceptance criteria.
 
 ⸻
 
-Story Title
+Proposed Story Title
 
-Provide Knowledge Transfer Sessions for DQC / PARCM Processes
+Maintain & Enhance Daily DQC SQL Logic for PARCM and EIQ Controls
+
+(Reads clean to leadership + audit, and clearly frames this as ongoing ownership, not ad-hoc SQL.)
 
 ⸻
 
 Description
 
-This story covers the planning and execution of structured knowledge transfer (KT) sessions for DQC and PARCM processes to onboard and upskill team members.
+This story covers ongoing analysis, maintenance, and enhancement of SQL logic used to support Daily Data Quality Controls (DQC) monitoring and PARCM reporting.
 
-The sessions will focus on explaining end-to-end DQC daily controls monitoring, PARCM metrics, root cause analysis workflows, escalation processes, tooling (Jira, EIQ, EMP, Autosys, Tableau), and supporting governance expectations.
+Work includes reviewing existing SQL queries, applying updates required for new or modified controls, supporting EIQ-driven control results, and troubleshooting daily control failures. Updates ensure accuracy of control results, proper failure detection, and alignment with upstream metadata, job execution behavior, and PARCM calculation requirements.
 
-The goal is to ensure participants are confident in independently reviewing control failures, documenting analysis, escalating issues appropriately, and supporting monthly PARCM reporting activities.
+This effort supports reliable daily DQC operations and reduces downstream rework during monthly PARCM reporting.
 
 ⸻
 
 Acceptance Criteria
 
-Given team members require onboarding and process alignment for DQC and PARCM workflows
-When knowledge transfer sessions are conducted
-Then DQC daily controls monitoring and PARCM processes are clearly explained
-And escalation paths, ownership determination, and documentation standards are reviewed
-And tooling used in daily operations (Jira, EIQ, EMP, Autosys, Tableau) is demonstrated at a high level
-And participants are able to ask questions and reference shared materials after the session
+Given Daily DQC monitoring relies on SQL logic to identify control failures and PARCM inputs
+When SQL queries are reviewed and updated
+Then queries accurately reflect current control logic and metadata definitions
+And updates support correct identification of control pass/fail outcomes
+And SQL changes are validated against recent control results and job execution behavior
+And daily DQC outputs remain consistent, traceable, and suitable for PARCM reporting
 
 ⸻
 
 Suggested Dates (Jira Fields Only)
-	•	Start Date: January 20, 2026
-	•	End Date: February 7, 2026
+	•	Start Date: January 15, 2026
+	•	End Date: February 28, 2026
 
-(Accounts for multiple sessions, prep, and follow-up questions.)
+(Appropriate for iterative updates, validation, and ongoing troubleshooting.)
 
 ⸻
 
-When you’re ready, drop the next story screenshot and we’ll keep going.
-By the time you hit the Kanban sync tomorrow, this board is going to look clean, defensible, and leadership-ready 💪
+Optional Kanban Talking Point (for the sync)
+
+“This is our BAU SQL maintenance story — it captures all daily DQC / PARCM SQL updates so we’re not creating one-off tickets every time logic changes.”
+
+⸻
+
+If you want, next we can:
+	•	Normalize all remaining SQL / PARCM / RCA stories so they follow this same pattern
+	•	Or prep one-liners for each story so you sound crisp and confident on the Kanban call
+
+Drop the next screenshot when ready.
