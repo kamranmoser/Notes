@@ -1,53 +1,117 @@
-Subject: Quick Jira Sync | Meeting Notes & Next Steps
+Below is a clean copy/paste meeting notes version focused only on DQ App + SQL updates (no personal chatter).
 
-Team,
+⸻
 
-Here are the notes from our quick Jira stories call.
+Subject: DQ App Working Session – SQL Updates for This Week’s Release + Required Tables (Meeting Notes)
 
----
+Hi team,
 
-## Key Decisions
+Here are the meeting notes from our DQ App working session focused on updating SQL for the upcoming release (column changes) and confirming the tables needed for the DQ App.
 
-### 1) Legacy “Business Impact / MViews & APIs” story
-- Reviewed the story that has been carried over for ~1–2 years.
-- Agreed the story is too ambiguous and we’re also transitioning to the target state, so the effort isn’t worth prioritizing.
-- Decision: Cancel/close the story.
-- Action: Add a short justification in the Jira comments for why we’re cancelling.
+⸻
 
----
+Attendees
+	•	Kamran
+	•	Tashu
+	•	Saurabh
+	•	Huda (mentioned as working on UI in parallel)
 
-## DQ App / Change Team Support (New Work)
+⸻
 
-### 2) EIQ → TechADS ingestion (Autosys job + tables)
-- For the DQ App, we need an Autosys job to pull EIQ results into TechADS.
-- There are 3 TechADS tables (create scripts exist; not in prod yet) that will receive the EIQ results.
-- Change team asked for details so they can create the story and staff it with their developer, and move through UAT → SIT/SD as needed.
+Purpose
+	•	Align on SQL updates needed for this week’s release (column changes + script updates).
+	•	Confirm the full list of tables required for the DQ App, including logging/history needs.
+	•	Align on where we will store SQL scripts used by the app.
 
-What I will send to Change team:
-- Story summary + description + acceptance criteria
-- Create scripts (for the 3 tables)
-- Insert/load logic details (what to pull from EIQ, how to populate the tables)
-- Any other relevant references/attachments
+⸻
 
-### 3) Moving UI/API work to Change board for production
-- Current UI work is tracked on the Controls board.
-- Once we’re ready to deploy to production, we’ll transition the required production items to the Change board (since that’s the path needed to promote/upgrade code).
+Key Outcomes / Decisions
 
-### 4) Timing / planning
-- Working assumption is targeting the March release.
-- I will confirm with the team and share an updated timeline so Change can plan capacity and reserve space for the work.
+1) SQL script updates for the upcoming release
+	•	We need to update SQL to reflect column changes and ensure scripts align with existing prod patterns.
+	•	For objects:
+	•	Views use CREATE OR REPLACE.
+	•	Tables generally follow DROP + CREATE pattern (consistent with existing log table scripts in prod/UAT).
+	•	Concern raised: DROP TABLE behavior if table does not exist (may error).
+	•	Decision: keep scripts consistent with current dev patterns and confirm with dev team if we need safeguards.
 
----
+2) Store SQL scripts in the database (DQ App)
+	•	We discussed storing SQL scripts in a table so updates are managed centrally (update DB, app always uses latest).
+	•	Option chosen: store SQL in the Application Parameters table using a CLOB column (since scripts can exceed normal VARCHAR length).
+	•	Approach:
+	•	Add a dedicated CLOB column (or equivalent) specifically for SQL script storage (not in the existing “value” string column).
+	•	Naming convention will clearly identify “SQL Script for <control/failure type>” to avoid confusion.
+	•	A “flag” was discussed for identifying SQL rows, but we can also rely on naming standards; team leaned toward keeping it simple and dynamic.
 
-## Action Items
-- Kamran:  
-  - Add justification comment and proceed with cancelling the legacy business impact story.  
-  - Send Change team the story package for EIQ → TechADS ingestion (Autosys + tables): summary/AC + scripts + load details.  
-  - Confirm target release timing (tentatively March) and share back.
+3) Failure Comments History / Audit Trail table
+	•	We confirmed the need for a Failure Comment Log table to retain the full history of additional failure comments (audit defensibility).
+	•	UI will display the latest comment, but the log table will store:
+	•	the comment change history,
+	•	who made the change,
+	•	when it was made.
 
-- Change team:  
-  - Create the story in the Change backlog and assign to a developer once details are received.  
-  - Plan work into the March release window (pending final confirmation).
+Table design confirmed (high level):
+	•	HISTORY_ID (Primary Key) – required for technical/data modeling purposes
+	•	FAILURE_ID (foreign key reference to a failure record)
+	•	INSERT_TS (timestamp)
+	•	COMMENT (additional failure comments)
+	•	UPDATED_BY (who made the change) (implied requirement discussed)
+	•	Sequence + Trigger required to populate HISTORY_ID
 
-Thanks,  
+4) Grants / access issues in Dev
+	•	Issue: some tables were not accessible/visible in Dev for backend connectivity.
+	•	Decision:
+	•	Ensure GRANT SELECT is applied (e.g., to PUBLIC initially for dev testing, consistent with other scripts).
+	•	Confirm grants were missing on at least one DQX table in Dev and add them.
+	•	Note: There may be a delay for tables to appear depending on tool/session; logging out/in may be needed.
+
+5) PARCM metric storage approach
+	•	We discussed whether PARCM rollups should be stored or computed dynamically.
+	•	Agreement:
+	•	The PARCM metrics are generally dynamic (change as exclusions/inclusions are applied).
+	•	However, we do need to store the “final submitted” version (what was sent to ORCIT) for audit purposes.
+	•	Decision:
+	•	Keep a PARCM metrics table to store the final submission view.
+	•	Remove unneeded SQL text fields from that table:
+	•	Drop PARCM_SQL and EIQ_PARCM_SQL columns (these will live in the parameters/SQL storage approach instead).
+	•	Use existing date fields:
+	•	Start Date + End Date can represent the reporting month (no separate report_month field needed).
+	•	Keep an Executed/Insert timestamp field to show when submission record was created.
+
+⸻
+
+Work Items / Next Steps
+
 Kamran
+	•	Finalize the table list needed for the DQ App and send to the dev team.
+	•	Update PARCM metrics table definition:
+	•	Remove PARCM_SQL and EIQ_PARCM_SQL columns.
+	•	Confirm fields for report period (start/end date) and executed/insert timestamp.
+	•	Build/confirm Failure Comment Log table DDL, sequence, trigger, and grants.
+	•	Update necessary insert scripts for the tables that require insert logic (based on column changes).
+
+Saurabh
+	•	Backend planning:
+	•	Implement or prepare POST API logic to write failure comments history into the comment log table.
+	•	Confirm backend connectivity to Dev schema and resolve access (account lock/unlock if needed).
+	•	Validate access/grants for key DQX tables needed by backend.
+
+Tashu
+	•	Documentation updates:
+	•	Clean up and update story descriptions, tracker alignment, and Confluence/Horizon documentation.
+	•	Update architecture diagram with latest changes.
+	•	Work with team on SQL storage approach (Application Parameters + CLOB).
+
+Data setup for testing (agreed approach)
+	•	Create one failure record in the failure table (e.g., SLA failure table) to generate a valid FAILURE_ID.
+	•	Insert one corresponding row into Failure Comment Log using that same FAILURE_ID (sample data is fine).
+	•	This will allow backend + UI testing end-to-end.
+
+⸻
+
+Release Target
+	•	Kamran to complete remaining updates by end of this week (release window).
+
+⸻
+
+If you want, I can also format this as a shorter “executive notes” version (5–7 bullets) for leadership updates.
