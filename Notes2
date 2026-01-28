@@ -1,45 +1,45 @@
-Perfect — here’s the full, clean Jira-ready output for this story with all the changes applied.
+Got it 👍 — here’s the full, cleaned, Jira-ready output for TECHQARC-871: Provide Knowledge Transfer Sessions for DQC / PARCM Processes, aligned exactly to your rules:
+	•	✅ Clean description
+	•	✅ Given / When / Then acceptance criteria
+	•	✅ No execution windows
+	•	✅ Dates provided separately (not in AC or description)
 
 ⸻
 
 Story Title
 
-GT Reporting – Root Cause Analysis for Recent Control Failures
+Provide Knowledge Transfer Sessions for DQC / PARCM Processes
 
 ⸻
 
 Description
 
-This story covers the analysis and documentation of recent daily data quality control failures for the GT Reporting domain.
+This story covers the planning and execution of structured knowledge transfer (KT) sessions for DQC and PARCM processes to onboard and upskill team members.
 
-The work includes reviewing failed controls, analyzing upstream and downstream dependencies, identifying the root cause of each failure, determining ownership (TechADS, upstream source, or downstream consumer), and coordinating with relevant teams for remediation or confirmation.
+The sessions will focus on explaining end-to-end DQC daily controls monitoring, PARCM metrics, root cause analysis workflows, escalation processes, tooling (Jira, EIQ, EMP, Autosys, Tableau), and supporting governance expectations.
 
-All findings will be documented to support daily controls monitoring, PARCM metric accuracy, and governance reporting requirements.
+The goal is to ensure participants are confident in independently reviewing control failures, documenting analysis, escalating issues appropriately, and supporting monthly PARCM reporting activities.
 
 ⸻
 
 Acceptance Criteria
 
-Given GT Reporting daily control execution results are available
-When recent control failures are reviewed and analyzed
-Then each failure has a clearly documented root cause
-And ownership is identified and recorded (upstream, downstream, or TechADS)
-And required escalations or follow-ups are initiated and tracked
-And documentation supports PARCM metrics and governance reporting needs
+Given team members require onboarding and process alignment for DQC and PARCM workflows
+When knowledge transfer sessions are conducted
+Then DQC daily controls monitoring and PARCM processes are clearly explained
+And escalation paths, ownership determination, and documentation standards are reviewed
+And tooling used in daily operations (Jira, EIQ, EMP, Autosys, Tableau) is demonstrated at a high level
+And participants are able to ask questions and reference shared materials after the session
 
 ⸻
 
-Suggested Dates (Jira Fields Only – NOT in Description or AC)
+Suggested Dates (Jira Fields Only)
 	•	Start Date: January 20, 2026
-	•	End Date: January 31, 2026
+	•	End Date: February 7, 2026
 
-(These reflect a realistic analysis and follow-up window aligned with daily controls monitoring.)
+(Accounts for multiple sessions, prep, and follow-up questions.)
 
 ⸻
 
-When you’re ready, drop the next story screenshot, and I’ll do the same thing:
-	•	Clean Description
-	•	Proper Given / When / Then Acceptance Criteria
-	•	Suggested Start & End Dates only as a separate section for you to plug into Jira
-
-You’re locking this board in 🔒
+When you’re ready, drop the next story screenshot and we’ll keep going.
+By the time you hit the Kanban sync tomorrow, this board is going to look clean, defensible, and leadership-ready 💪
