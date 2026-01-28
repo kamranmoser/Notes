@@ -1,54 +1,80 @@
-Perfect — this one is a core BAU + audit-defensible story, so we’ll make it clean, reusable, and easy to explain on the Kanban call.
-
-Below is the full Jira-ready output for TECHQARC-813, with a stronger title, tightened description, and clean Given / When / Then acceptance criteria.
+Perfect — I’ve got you. Below is a clean, copy-paste-ready Jira story for TECHQCARC-870 (Complete PLDM Assessments for January Intake Tickets), updated exactly per your rules:
+	•	✅ No execution windows
+	•	✅ Start / End dates as a separate field
+	•	✅ Acceptance Criteria in strict Given / When / Then
+	•	✅ Clear, audit-ready description
+	•	✅ Kanban-friendly and governance-defensible
 
 ⸻
 
-Proposed Story Title
+Title
 
-Maintain & Enhance Daily DQC SQL Logic for PARCM and EIQ Controls
-
-(Reads clean to leadership + audit, and clearly frames this as ongoing ownership, not ad-hoc SQL.)
+Complete PLDM Assessments for January Intake Jira Tickets
 
 ⸻
 
 Description
 
-This story covers ongoing analysis, maintenance, and enhancement of SQL logic used to support Daily Data Quality Controls (DQC) monitoring and PARCM reporting.
+This task covers the completion of PLDM (Product & Lineage Data Management) assessments for all January intake Jira tickets related to TechADS DQ Controls and PARCM processes.
 
-Work includes reviewing existing SQL queries, applying updates required for new or modified controls, supporting EIQ-driven control results, and troubleshooting daily control failures. Updates ensure accuracy of control results, proper failure detection, and alignment with upstream metadata, job execution behavior, and PARCM calculation requirements.
+The assessment includes reviewing metadata impacts, validating ADS / ADST / AIT changes, and coordinating with relevant domain and development teams to ensure all PLDM requirements are satisfied prior to closure.
 
-This effort supports reliable daily DQC operations and reduces downstream rework during monthly PARCM reporting.
-
-⸻
-
-Acceptance Criteria
-
-Given Daily DQC monitoring relies on SQL logic to identify control failures and PARCM inputs
-When SQL queries are reviewed and updated
-Then queries accurately reflect current control logic and metadata definitions
-And updates support correct identification of control pass/fail outcomes
-And SQL changes are validated against recent control results and job execution behavior
-And daily DQC outputs remain consistent, traceable, and suitable for PARCM reporting
+The goal is to ensure that all intake tickets are properly assessed, documented, and either approved or routed for follow-up remediation in alignment with governance and audit expectations.
 
 ⸻
 
-Suggested Dates (Jira Fields Only)
-	•	Start Date: January 15, 2026
-	•	End Date: February 28, 2026
-
-(Appropriate for iterative updates, validation, and ongoing troubleshooting.)
+Scope of Work
+	•	Review all January intake Jira tickets requiring PLDM assessment
+	•	Identify metadata, lineage, and control impacts
+	•	Validate ADS / ADST / AIT changes against requirements
+	•	Coordinate with BT, metadata, and development teams as needed
+	•	Track assessment outcomes and ensure proper documentation
+	•	Close assessments once requirements are met or follow-ups are assigned
 
 ⸻
 
-Optional Kanban Talking Point (for the sync)
+Acceptance Criteria (Given / When / Then)
 
-“This is our BAU SQL maintenance story — it captures all daily DQC / PARCM SQL updates so we’re not creating one-off tickets every time logic changes.”
+Given January intake Jira tickets requiring PLDM review are identified
+When metadata, lineage, and control impacts are analyzed
+Then each ticket has a completed PLDM assessment documented in Jira
+
+⸻
+
+Given ADS / ADST / AIT changes are part of an intake request
+When validations are performed against PLDM standards
+Then validation results are recorded and any gaps are clearly identified
+
+⸻
+
+Given an intake ticket requires follow-up actions or remediation
+When coordination with relevant teams is completed
+Then ownership, next steps, and tracking are documented in the ticket
+
+⸻
+
+Given all PLDM assessment requirements are satisfied
+When final review is completed
+Then the Jira ticket is updated and closed appropriately
+
+⸻
+
+Dates
+	•	Start Date: January 20, 2026
+	•	End Date: January 30, 2026
+
+⸻
+
+Notes for Kanban Sync
+	•	Work is ongoing and dependent on intake volume and team responses
+	•	Any blocked or delayed assessments should be surfaced during weekly DQC sync
+	•	Follow-up actions should result in separate Jira stories where applicable
 
 ⸻
 
 If you want, next we can:
-	•	Normalize all remaining SQL / PARCM / RCA stories so they follow this same pattern
-	•	Or prep one-liners for each story so you sound crisp and confident on the Kanban call
+	•	🔹 Do TECHQCARC-813 (SQL updates)
+	•	🔹 Finish GT Reporting RCA
+	•	🔹 Or batch-clean all remaining PARCM / BAU stories before the Kanban call
 
-Drop the next screenshot when ready.
+Just tell me which one to open next 👌
