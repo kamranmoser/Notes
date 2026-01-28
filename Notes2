@@ -1,100 +1,53 @@
-Subject: Daily Controls Monitoring KT – Part 2 | Meeting Notes & Next Steps
+Subject: Quick Jira Sync | Meeting Notes & Next Steps
 
 Team,
 
-Here are the meeting notes from Daily Controls Monitoring KT – Part 2 (Hands-On Failure Review).
+Here are the notes from our quick Jira stories call.
 
 ---
 
-## Purpose of Session
-- Part 2 was hands-on, focused on building confidence to:
-  - Review daily control failures
-  - Document RCA consistently
-  - Know when/how to escalate
-  - Track recurring issues through Jira so they actually get fixed
+## Key Decisions
 
-## Key Reminders / Why This Matters
-- Daily DQC monitoring is the source of truth for:
-  - Data timeliness
-  - Data completeness
-  - Data quality
-- Daily outcomes feed directly into PARCM (PARCM becomes mechanical if daily monitoring/RCA is done correctly).
-
-## Access / Setup
-- Confirmed the key access areas needed for day-to-day work (DB, Jira, eIQ, EMP, Tableau, Autosys).
-- Shared drive setup:
-  - A working failure list was posted in the shared drive (everyone should save a local copy to work off).
-  - Created individual folders for sharing artifacts/materials during KT sessions.
+### 1) Legacy “Business Impact / MViews & APIs” story
+- Reviewed the story that has been carried over for ~1–2 years.
+- Agreed the story is too ambiguous and we’re also transitioning to the target state, so the effort isn’t worth prioritizing.
+- Decision: Cancel/close the story.
+- Action: Add a short justification in the Jira comments for why we’re cancelling.
 
 ---
 
-## Standard Workflow (Mental Model)
-We will follow the same loop for every failure:
-Detect → Understand → Document → Escalate → Track
+## DQ App / Change Team Support (New Work)
 
-What each step means:
-- Detect: Identify failures (daily report/app/spreadsheet output).
-- Understand: Use logs + email history + patterns to determine “what happened.”
-- Document: Add clear failure comments and RCA notes in the tracker.
-- Escalate: Notify the owning team (TechADS vs upstream vs downstream).
-- Track: Ensure recurring items are tracked via Jira and followed up until fixed.
+### 2) EIQ → TechADS ingestion (Autosys job + tables)
+- For the DQ App, we need an Autosys job to pull EIQ results into TechADS.
+- There are 3 TechADS tables (create scripts exist; not in prod yet) that will receive the EIQ results.
+- Change team asked for details so they can create the story and staff it with their developer, and move through UAT → SIT/SD as needed.
 
----
+What I will send to Change team:
+- Story summary + description + acceptance criteria
+- Create scripts (for the 3 tables)
+- Insert/load logic details (what to pull from EIQ, how to populate the tables)
+- Any other relevant references/attachments
 
-## Hands-On Walkthrough (SLA Examples)
-We focused on SLAs since they typically take the most time and analysis effort.
+### 3) Moving UI/API work to Change board for production
+- Current UI work is tracked on the Controls board.
+- Once we’re ready to deploy to production, we’ll transition the required production items to the Change board (since that’s the path needed to promote/upgrade code).
 
-### Example 1 – “Missing SLA” due to decommissioned job still in config
-- Used DYNAMIC_LOG_VIEW to validate job execution history:
-  - Filtered using EXECUTION_ORDER = 0 to view the overall job (not every step).
-  - Confirmed last successful/failed runs and whether the job stopped running.
-- Checked email history to confirm the job was placed on hold / decommissioned due to upstream/source no longer sending data (0 files/records).
-- Key point: even if the job is decommissioned, it will continue to show as Missing SLA as long as it remains active in SLA_CONFIG.
-- Action:
-  - Escalate to dev team to create a Jira story to remove the SLA entry from SLA_CONFIG (and/or fully decommission related entries).
-  - Track as Unresolved until config is updated.
-
-### Example 2 – SLA misses caused by predecessor runtime creeping
-- Observed start time shifting later and runtime variability.
-- Checked Autosys to identify:
-  - Predecessor job behavior (runtime spikes)
-  - Whether upstream/predecessor jobs are delaying successor and causing SLA misses
-- Action:
-  - Email dev team to investigate:
-    - Performance regression / runtime variability
-    - Whether SLA adjustment is appropriate (ex: +30 minutes) vs fixing underlying performance
-
-### Follow-up expectations
-- For PARCM in-scope domains/issues, follow up every 24–48 hours if still failing or if no response.
-- Once a Jira story is created and prioritized, follow-ups shift to ensuring it stays moving to release.
-- Recurring issues should also be brought up in the weekly TechADS Controls + Dev sync to accelerate progress.
-
----
-
-## Quick Guidance on Other Control Types (High Level)
-- GVR: Counts should match → usually escalate directly to dev team, request RCA and remediation.
-- Nulls/Dupes: Validate against EMP/metadata first:
-  - If metadata is correct, escalate to remediate data (ETL/source).
-  - If metadata changed/incorrect, work with metadata team to update indicators/remove check.
-- Deviations: Confirm whether the record count is valid; if valid, request an override as needed and document rationale.
-
----
-
-## Next Sessions / Next Steps
-- Schedule follow-up KT for:
-  - End-to-end practice: run the app → export file → analyze → document → escalate
-  - eIQ walkthrough (viewing failures and pulling details)
-  - Tableau dashboard interpretation
-- Longer-term: start ramping into monthly PARCM compilation, once daily monitoring/RCA is consistent.
-- Automation / future-state updates:
-  - Work is underway to move this workflow into a TechADS dashboard module and reduce spreadsheet dependence (failures + comments stored in DB).
+### 4) Timing / planning
+- Working assumption is targeting the March release.
+- I will confirm with the team and share an updated timeline so Change can plan capacity and reserve space for the work.
 
 ---
 
 ## Action Items
-- Sridharshar: Work toward running the app end-to-end (app → spreadsheet → analysis) in the next session; continue access setup as needed.
-- Amruta: Continue getting app setup on machine (in progress) and begin practicing failure review using the shared tracker.
-- All: Use the tracker consistently for failure comments, ownership, and escalation notes; flag recurring issues for Jira creation.
+- Kamran:  
+  - Add justification comment and proceed with cancelling the legacy business impact story.  
+  - Send Change team the story package for EIQ → TechADS ingestion (Autosys + tables): summary/AC + scripts + load details.  
+  - Confirm target release timing (tentatively March) and share back.
+
+- Change team:  
+  - Create the story in the Change backlog and assign to a developer once details are received.  
+  - Plan work into the March release window (pending final confirmation).
 
 Thanks,  
 Kamran
