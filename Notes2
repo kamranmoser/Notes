@@ -1,80 +1,72 @@
-Perfect — I’ve got you. Below is a clean, copy-paste-ready Jira story for TECHQCARC-870 (Complete PLDM Assessments for January Intake Tickets), updated exactly per your rules:
-	•	✅ No execution windows
-	•	✅ Start / End dates as a separate field
-	•	✅ Acceptance Criteria in strict Given / When / Then
-	•	✅ Clear, audit-ready description
-	•	✅ Kanban-friendly and governance-defensible
+You are my senior Oracle SQL engineer + DQ Controls governance partner.
 
-⸻
+GOAL
+Rewrite and standardize the SQL for ONE table at a time and return the final result as a SINGLE .sql file content (ready to save as <TABLE_NAME>.sql).
 
-Title
+CRITICAL OUTPUT RULES
+- Output ONLY SQL (no explanations, no markdown, no bullet points outside SQL comments).
+- The entire response must be valid content of a .sql file.
+- Use SQL comments for documentation. Do NOT output any extra narrative.
+- The .sql file must be organized as:
+  1) Create Script Section (drop/create/constraints/indexes/sequence/trigger/grants)
+  2) Insert Script Section (only if inserts exist)
 
-Complete PLDM Assessments for January Intake Jira Tickets
+DO NOT CHANGE
+- Do not change business logic, table names, column names, data types, or constraint names unless there is a clear bug/syntax error.
+- Keep tablespace/storage clauses if they exist.
+- Keep grants, but format and group them consistently.
 
-⸻
+YOU MAY DO
+- Fix syntax errors (missing commas, missing semicolons, invalid ordering).
+- Reorder statements to a safe execution order.
+- Improve readability and consistency.
+- Rewrite/standardize comments while preserving intent.
 
-Description
+FORMATTING STANDARDS
+- Uppercase SQL keywords (CREATE, TABLE, CONSTRAINT, GRANT, etc.).
+- Consistent indentation (2 spaces or 4 spaces — pick one and stay consistent).
+- Align column definitions in CREATE TABLE where reasonable.
+- End each statement with a semicolon.
+- Commas at end of lines.
+- Keep object names exactly as provided (schema.table, constraint names, sequence names).
 
-This task covers the completion of PLDM (Product & Lineage Data Management) assessments for all January intake Jira tickets related to TechADS DQ Controls and PARCM processes.
+REQUIRED FILE STRUCTURE (IN SQL COMMENTS)
+At the very top, include a header block comment with:
+- File: <TABLE_NAME>.sql
+- Object: <SCHEMA.TABLE>
+- Purpose: 1–3 bullets
+- Used by: UI / Autosys / Manual (if known from comments)
+- Primary key:
+- Dependencies: sequence/trigger/FKs (if applicable)
+- Run notes: idempotency behavior (DROP/CREATE), prerequisites (if any)
 
-The assessment includes reviewing metadata impacts, validating ADS / ADST / AIT changes, and coordinating with relevant domain and development teams to ensure all PLDM requirements are satisfied prior to closure.
+Then include these labeled sections exactly:
 
-The goal is to ensure that all intake tickets are properly assessed, documented, and either approved or routed for follow-up remediation in alignment with governance and audit expectations.
+/* =========================================================
+   SECTION 1 — CREATE SCRIPTS
+   ========================================================= */
 
-⸻
+Include in this order (only what applies):
+1) DROP statements (table first, then dependent objects if present and safe)
+2) CREATE TABLE
+3) Constraints (PK/UK/FK) (explicit names, same as input)
+4) Indexes (if present)
+5) Sequences (if present)
+6) Triggers (if present)
+7) Grants (grouped: PUBLIC first, then role/team grants)
+8) ALTER statements (only if needed and present)
 
-Scope of Work
-	•	Review all January intake Jira tickets requiring PLDM assessment
-	•	Identify metadata, lineage, and control impacts
-	•	Validate ADS / ADST / AIT changes against requirements
-	•	Coordinate with BT, metadata, and development teams as needed
-	•	Track assessment outcomes and ensure proper documentation
-	•	Close assessments once requirements are met or follow-ups are assigned
+/* =========================================================
+   SECTION 2 — INSERT SCRIPTS
+   ========================================================= */
 
-⸻
+- Only include if inserts exist for this table.
+- If seed/config data, label it clearly in comments.
+- Keep inserts readable (one row per INSERT if possible).
+- Do NOT convert to MERGE unless I explicitly request it.
 
-Acceptance Criteria (Given / When / Then)
+INPUT
+I will paste the raw SQL for a single table below. Rewrite it into the final .sql file content following all rules above.
 
-Given January intake Jira tickets requiring PLDM review are identified
-When metadata, lineage, and control impacts are analyzed
-Then each ticket has a completed PLDM assessment documented in Jira
-
-⸻
-
-Given ADS / ADST / AIT changes are part of an intake request
-When validations are performed against PLDM standards
-Then validation results are recorded and any gaps are clearly identified
-
-⸻
-
-Given an intake ticket requires follow-up actions or remediation
-When coordination with relevant teams is completed
-Then ownership, next steps, and tracking are documented in the ticket
-
-⸻
-
-Given all PLDM assessment requirements are satisfied
-When final review is completed
-Then the Jira ticket is updated and closed appropriately
-
-⸻
-
-Dates
-	•	Start Date: January 20, 2026
-	•	End Date: January 30, 2026
-
-⸻
-
-Notes for Kanban Sync
-	•	Work is ongoing and dependent on intake volume and team responses
-	•	Any blocked or delayed assessments should be surfaced during weekly DQC sync
-	•	Follow-up actions should result in separate Jira stories where applicable
-
-⸻
-
-If you want, next we can:
-	•	🔹 Do TECHQCARC-813 (SQL updates)
-	•	🔹 Finish GT Reporting RCA
-	•	🔹 Or batch-clean all remaining PARCM / BAU stories before the Kanban call
-
-Just tell me which one to open next 👌
+INPUT SQL:
+<<PASTE RAW SQL HERE>>
