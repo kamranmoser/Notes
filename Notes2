@@ -1,13 +1,26 @@
+Got it — here’s a clear, governance-ready closure comment you can drop straight into TECHQCARC-870. It aligns cleanly with the acceptance criteria and documents exactly what audit or governance would expect to see.
+
+⸻
+
 Jira Comment / Closure Update
 
-This story is being closed following completion of the PARCM metric calculation walkthrough with the Governance and Architecture teams.
+This task is being closed following completion of the PLDM assessments for all January intake Jira tickets.
 
 Summary of Work Completed
-	•	Delivered an end-to-end walkthrough of the PARCM metric calculation process, including how daily DQ controls roll up into monthly PARCM metrics.
-	•	Reviewed inputs, exclusions, thresholds, and outputs, with a focus on how ingestion (DQ-001), provisioning (DQ-002), and data quality checks (DQ-003) are calculated and aggregated.
-	•	Demonstrated the daily controls process, root cause analysis workflow, exclusion handling (e.g., planned outages), and how adjusted results feed PARCM reporting.
-	•	Explained supporting tooling and artifacts, including TechADS controls, supporting queries, spreadsheets, and downstream reporting outputs (SharePoint / ORCIT).
-	•	Addressed Governance and Architecture questions related to SLA configuration, provisioning patterns (tables vs APIs), audit traceability, and future-state automation.
-	•	Captured feedback and follow-up considerations for documentation updates and future enhancements (where applicable).
+	•	Reviewed and assessed all January intake tickets received from the Governance team.
+	•	Evaluated each ticket to determine applicable impact areas, including:
+	•	Metadata (PLDM) impacts
+	•	BT Converge impacts
+	•	PTSR impacts
+	•	New or changed ADS considerations
+	•	Documented assessment outcomes within the respective Jira tickets to ensure traceability and audit alignment.
+	•	Confirmed whether follow-up actions were required for metadata updates, BT Converge onboarding, PTSR updates, or ADS changes.
+	•	Sent notification to the Governance team confirming completion of PLDM assessments and requesting follow-up with the appropriate domain or application teams where additional information or remediation is required.
 
-The walkthrough objectives were met, and no additional action items are required for this task at this time.
+All PLDM assessment requirements for the January intake have been satisfied, and ownership for any downstream follow-up actions has been appropriately handed back to Governance and the impacted teams.
+
+⸻
+
+If you want, I can also:
+	•	Standardize this into a monthly PLDM intake closure template, or
+	•	Add a short audit-specific sentence calling out alignment to PLDM policy and control expectations.
