@@ -1,49 +1,42 @@
-Got it — here’s a clean, clear email you can send to Lakshmi that gives her everything she needs without overloading her. It’s structured, technical, and respectful of her time, and it clearly explains why the change is needed and what exactly needs to be updated.
+Got it 👍 — here’s a revised close-out Jira comment that removes the UI references and clearly sets Autosys → PROD in March. This is clean, audit-safe, and aligned with what was actually communicated to Change.
 
-I’ll keep this focused just on the email, per your ask 👌
+You can paste this directly into the story and close it.
 
 ⸻
 
-:::writing{id=“84721” variant=“email” subject=“Action Needed: Update Daily DQ SQL Queries for DOMAIN → TARGET_CATEGORY Change”}
-Hi Lakshmi,
+Closing Update / Final Status
 
-I wanted to loop you in on an update that will require changes to our daily DQ SQL queries.
+This work is complete from the TechADS DQ Controls side.
 
-The TechADS Base Dev team recently renamed the column DOMAIN to TARGET_CATEGORY in the SLA configuration tables (this change has already been promoted). As a result, all of our daily DQ queries that reference DOMAIN are now failing and need to be updated to align with the new column name.
+Summary of outcomes:
+	•	Alignment confirmed with Governance and Change on the approach to ingest EIQ Data Quality results into TechADS-owned tables
+	•	Agreed that ingestion will be handled via scheduled Autosys jobs (daily run)
+	•	Scope confirmed to ingest EIQ failure results and supporting metadata, treated consistently with existing TechADS DQ failures
+	•	Results will be:
+	•	Stored in TechADS-owned control tables
+	•	Available for analyst review, RCA, and commentary
+	•	Included in PARCM metrics and downstream reporting
 
-What’s needed
+Implementation details confirmed:
+	•	Daily ingestion will load prior day (T-1) data
+	•	Insert-based SQL scripts will be used to define source-to-target mappings
+	•	Target table structures are defined and available in DEV
+	•	Required artifacts (insert scripts) have been shared with the Change team to support Autosys job configuration
 
-Please update the daily DQ SQL to replace all references to:
-	•	DOMAIN → TARGET_CATEGORY
+Delivery & promotion approach:
+	•	Autosys job creation and promotion will be handled via the Change board
+	•	Target Production timeline for Autosys ingestion: March
+	•	UI-related work will be coordinated separately and is out of scope for this story
 
-This applies across the full set of daily DQ queries, including (but not limited to):
-	•	SLA-related queries
-	•	GVR checks
-	•	Intraday checks
-	•	API / REST checks
-	•	Null / Duplicate checks
-	•	Deviation checks
+Next steps:
+	•	Change team to proceed with Autosys job setup and promotion
+	•	TechADS team to follow up separately on UI-related work
 
-I’ve attached the list of affected queries for reference.
+Closing this story as the ingestion approach, scope, and delivery plan have been finalized and handed off to Change for implementation.
 
-Where the code lives
+⸻
 
-All daily DQ queries are maintained in the Bitbucket repo here:
-👉 [Bitbucket – Daily DQ Queries Repo]
-(link attached in the email)
-
-Support / code merge
-
-If you need help with:
-	•	creating a branch
-	•	committing changes
-	•	or merging the updates back into Bitbucket
-
-please feel free to connect with Tashu, who can assist with the merge process.
-
-Let me know if you have any questions or want to walk through the change together — happy to help.
-
-Thanks so much for jumping on this.
-
-Best,
-Kamran
+If you want, I can also:
+	•	Tighten this further for audit language
+	•	Convert it into a “Resolved – Design Complete” style comment
+	•	Or mirror the wording to match other closed TechADS architecture stories
