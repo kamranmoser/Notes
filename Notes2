@@ -1,61 +1,15 @@
-Absolutely — here’s a clean, audit-ready JIRA story you can copy/paste directly.
+Subject: Control Metric Documentation Updates – Review Requested
 
-⸻
+Hi team,
 
-JIRA Summary (Title)
+I’ve completed the required updates to the control metric documentation across all four domains (GT Reporting, Record Management & Operations, Application, and Change Management).
 
-Update Control Metric Documentation for DQ-002 and Application Asset Scope
+Updates include:
+- Adding a standardized DQ-002 calculation statement to each control document
+- Updating the Application domain asset list to remove BT Converge, as it is not currently in scope
 
-⸻
+I’ve attached the link to the shared drive with the updated documents below for your review.  
+Please take a look and let me know if you have any questions or if any additional updates are needed.
 
-Description
-
-This story covers required documentation updates following alignment with the TechADS Governance team.
-
-The control metric documentation was updated across all four TechADS domains to ensure accuracy, consistency, and audit readiness:
-	•	Domains updated:
-	•	GT Reporting
-	•	Record Management & Operations
-	•	Application
-	•	Change Management
-	•	A standardized DQ-002 calculation statement was added to each control metric document to clearly explain how provisioning success is measured, aggregated, and reported.
-	•	The Application domain asset list was updated to remove BT Converge, as it is not yet in scope for DQ-002 measurement or reporting.
-
-These updates ensure the control documentation accurately reflects the current provisioning model, downstream consumption patterns, and agreed-upon governance scope.
-
-⸻
-
-Acceptance Criteria (Given / When / Then)
-
-Given the TechADS control metric documentation for GT Reporting, Record Management & Operations, Application, and Change Management,
-When the documentation is reviewed for DQ-002 methodology and asset scope accuracy,
-Then each document includes a consistent DQ-002 calculation statement describing how provisioning success is determined and rolled up monthly.
-
-⸻
-
-Given the Application domain control metric documentation and asset list,
-When asset scope is validated against current onboarding and provisioning status,
-Then BT Converge is removed from the Application domain asset list and no longer referenced as an in-scope asset.
-
-⸻
-
-Given the updated documentation,
-When reviewed by governance or audit stakeholders,
-Then the documents clearly reflect current DQ-002 calculation logic, approved exclusions, and accurate domain asset scope.
-
-⸻
-
-Start Date
-
-January 27, 2026
-
-Due Date
-
-January 30, 2026
-
-⸻
-
-If you want, next we can:
-	•	Add a linked follow-up story for future asset onboarding (BT Converge readiness)
-	•	Break this into two stories (DQ-002 language vs. asset scope) if governance prefers separation
-	•	Align the wording exactly with EDR / ORCIT language for zero rework later
+Thanks,  
+Kamran
