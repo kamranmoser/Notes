@@ -1,27 +1,13 @@
-Got it 👍 — here’s a clean, ready-to-paste Jira comment you can add to the next story covering the DQ-002 documentation update and BT Converge removal. This mirrors the tone, structure, and level of detail from the prior closure comment so it’ll read consistent and audit-ready.
-
-⸻
-
 Jira Comment / Closure Update
 
-This story is being closed following completion of the requested control metric documentation updates.
+This story is being closed following completion of the PARCM metric calculation walkthrough with the Governance and Architecture teams.
 
 Summary of Work Completed
-	•	Updated the DQ-002 calculation statement across all TechADS control metric documentation to clearly describe how provisioning success is measured, aggregated, and rolled up on a monthly basis.
-	•	Ensured the DQ-002 methodology consistently reflects the current provisioning model, including SLA checks, payload/table loads, and downstream API consumption.
-	•	Removed BT Converge from the Application domain asset list, as it is not currently in scope for DQ-002 measurement or reporting.
-	•	Confirmed documentation alignment across all applicable domains:
-	•	GT Reporting
-	•	Record Management & Operations
-	•	Application
-	•	Change Management
+	•	Delivered an end-to-end walkthrough of the PARCM metric calculation process, including how daily DQ controls roll up into monthly PARCM metrics.
+	•	Reviewed inputs, exclusions, thresholds, and outputs, with a focus on how ingestion (DQ-001), provisioning (DQ-002), and data quality checks (DQ-003) are calculated and aggregated.
+	•	Demonstrated the daily controls process, root cause analysis workflow, exclusion handling (e.g., planned outages), and how adjusted results feed PARCM reporting.
+	•	Explained supporting tooling and artifacts, including TechADS controls, supporting queries, spreadsheets, and downstream reporting outputs (SharePoint / ORCIT).
+	•	Addressed Governance and Architecture questions related to SLA configuration, provisioning patterns (tables vs APIs), audit traceability, and future-state automation.
+	•	Captured feedback and follow-up considerations for documentation updates and future enhancements (where applicable).
 
-These updates were completed to address governance feedback, ensure audit readiness, and align control documentation with the current TechADS data provisioning and monitoring process.
-
-No further action is required for this item at this time.
-
-⸻
-
-If you want, next we can:
-	•	Tighten this further for audit language (even more formal), or
-	•	Reuse this as a standard closure template for future documentation stories so you don’t have to rewrite it each time.
+The walkthrough objectives were met, and no additional action items are required for this task at this time.
