@@ -1,1 +1,49 @@
-Establish daily Autosys ingestion of EIQ Data Quality results into TechADS control tables to support the DQ App. This integration is a foundational dependency for deploying the DQ App module to the TechADS dashboard, enabling daily DQ monitoring, root cause analysis, and downstream PARCM reporting.
+Got it — here’s a clean, clear email you can send to Lakshmi that gives her everything she needs without overloading her. It’s structured, technical, and respectful of her time, and it clearly explains why the change is needed and what exactly needs to be updated.
+
+I’ll keep this focused just on the email, per your ask 👌
+
+⸻
+
+:::writing{id=“84721” variant=“email” subject=“Action Needed: Update Daily DQ SQL Queries for DOMAIN → TARGET_CATEGORY Change”}
+Hi Lakshmi,
+
+I wanted to loop you in on an update that will require changes to our daily DQ SQL queries.
+
+The TechADS Base Dev team recently renamed the column DOMAIN to TARGET_CATEGORY in the SLA configuration tables (this change has already been promoted). As a result, all of our daily DQ queries that reference DOMAIN are now failing and need to be updated to align with the new column name.
+
+What’s needed
+
+Please update the daily DQ SQL to replace all references to:
+	•	DOMAIN → TARGET_CATEGORY
+
+This applies across the full set of daily DQ queries, including (but not limited to):
+	•	SLA-related queries
+	•	GVR checks
+	•	Intraday checks
+	•	API / REST checks
+	•	Null / Duplicate checks
+	•	Deviation checks
+
+I’ve attached the list of affected queries for reference.
+
+Where the code lives
+
+All daily DQ queries are maintained in the Bitbucket repo here:
+👉 [Bitbucket – Daily DQ Queries Repo]
+(link attached in the email)
+
+Support / code merge
+
+If you need help with:
+	•	creating a branch
+	•	committing changes
+	•	or merging the updates back into Bitbucket
+
+please feel free to connect with Tashu, who can assist with the merge process.
+
+Let me know if you have any questions or want to walk through the change together — happy to help.
+
+Thanks so much for jumping on this.
+
+Best,
+Kamran
