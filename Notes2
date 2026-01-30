@@ -1,72 +1,9 @@
-You are my senior Oracle SQL engineer + DQ Controls governance partner.
+DQ-002 (Provisioning) is calculated from daily downstream provisioning controls and rolled up to a monthly result.
+DQ-002 measures whether TechADS-provisioned data is made available correctly and on time for downstream consumption. The monthly DQ-002 percentage is derived by aggregating the daily control outcomes for the reporting month at the control level (pass / fail / total counts) and then rolling those results up to the DQ-002 metric level.
 
-GOAL
-Rewrite and standardize the SQL for ONE table at a time and return the final result as a SINGLE .sql file content (ready to save as <TABLE_NAME>.sql).
+DQ-002 is driven by the following provisioning evidence types (as applicable by domain):
+	•	Downstream SLA checks confirming target/provisioning jobs complete within defined SLA expectations
+	•	Provisioning “payload / table-load” checks validating the expected target tables are successfully loaded and available for consumption
+	•	Downstream consumption checks (e.g., API / distribute consumption) validating downstream consumers successfully retrieve (“pull”) the provisioned data when applicable
 
-CRITICAL OUTPUT RULES
-- Output ONLY SQL (no explanations, no markdown, no bullet points outside SQL comments).
-- The entire response must be valid content of a .sql file.
-- Use SQL comments for documentation. Do NOT output any extra narrative.
-- The .sql file must be organized as:
-  1) Create Script Section (drop/create/constraints/indexes/sequence/trigger/grants)
-  2) Insert Script Section (only if inserts exist)
-
-DO NOT CHANGE
-- Do not change business logic, table names, column names, data types, or constraint names unless there is a clear bug/syntax error.
-- Keep tablespace/storage clauses if they exist.
-- Keep grants, but format and group them consistently.
-
-YOU MAY DO
-- Fix syntax errors (missing commas, missing semicolons, invalid ordering).
-- Reorder statements to a safe execution order.
-- Improve readability and consistency.
-- Rewrite/standardize comments while preserving intent.
-
-FORMATTING STANDARDS
-- Uppercase SQL keywords (CREATE, TABLE, CONSTRAINT, GRANT, etc.).
-- Consistent indentation (2 spaces or 4 spaces — pick one and stay consistent).
-- Align column definitions in CREATE TABLE where reasonable.
-- End each statement with a semicolon.
-- Commas at end of lines.
-- Keep object names exactly as provided (schema.table, constraint names, sequence names).
-
-REQUIRED FILE STRUCTURE (IN SQL COMMENTS)
-At the very top, include a header block comment with:
-- File: <TABLE_NAME>.sql
-- Object: <SCHEMA.TABLE>
-- Purpose: 1–3 bullets
-- Used by: UI / Autosys / Manual (if known from comments)
-- Primary key:
-- Dependencies: sequence/trigger/FKs (if applicable)
-- Run notes: idempotency behavior (DROP/CREATE), prerequisites (if any)
-
-Then include these labeled sections exactly:
-
-/* =========================================================
-   SECTION 1 — CREATE SCRIPTS
-   ========================================================= */
-
-Include in this order (only what applies):
-1) DROP statements (table first, then dependent objects if present and safe)
-2) CREATE TABLE
-3) Constraints (PK/UK/FK) (explicit names, same as input)
-4) Indexes (if present)
-5) Sequences (if present)
-6) Triggers (if present)
-7) Grants (grouped: PUBLIC first, then role/team grants)
-8) ALTER statements (only if needed and present)
-
-/* =========================================================
-   SECTION 2 — INSERT SCRIPTS
-   ========================================================= */
-
-- Only include if inserts exist for this table.
-- If seed/config data, label it clearly in comments.
-- Keep inserts readable (one row per INSERT if possible).
-- Do NOT convert to MERGE unless I explicitly request it.
-
-INPUT
-I will paste the raw SQL for a single table below. Rewrite it into the final .sql file content following all rules above.
-
-INPUT SQL:
-<<PASTE RAW SQL HERE>>
+If a control miss is attributable to a planned platform outage (or other governance-approved exclusion), the miss is documented via RCA and excluded per the standard exclusion process so the final DQ-002 result reflects the adjusted, auditable outcome for the month.
